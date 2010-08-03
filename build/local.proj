@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="Utils\MSBuild.Community.Tasks.Targets" />
-  <Import Project="Utils\MSBuild.Deployment.Tasks.Targets" />
+  <Import Project="lib\MSBuild.Community.Tasks.Targets" />
+  <Import Project="lib\MSBuild.Deployment.Tasks.Targets" />
 
   <PropertyGroup>
     <Root>$(MSBuildStartupDirectory)</Root>
@@ -18,7 +18,14 @@
     <Message Text="Build dir:       $(MSBuildProjectDirectory)" />
     <Message Text="Project root:    $(Root)" />
     <Message Text="NUnit Console:   $(nunitconsoleexe)" />
-    <Message Text="Signing Info:    $(signing_config_path)" />
+
+    <!-- Clean up -->
+    <ItemGroup>
+      <FilesToDelete Include="$(Root)\src\**\bin\**\*.*" />
+      <FilesToDelete Include="$(Root)\src\**\obj\**\*.*" />
+      <FilesToDelete Include="$(Root)\build\Artifacts\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" ContinueOnError="true" />
 
     <!-- Ensure directories exists -->
     <MakeDir Directories="$(MSBuildProjectDirectory)\Artifacts" Condition="!Exists('$(MSBuildProjectDirectory)\Artifacts')" />
@@ -26,19 +33,16 @@
 
     <!-- Version Info -->
     <AssemblyInfo
-        CodeLanguage="CS"
-        OutputFile="$(Root)\src\Magellan\Properties\VersionInfo.cs"
-        AssemblyVersion="$(build_version)"
-        AssemblyFileVersion="$(build_number)"
-            />
+      CodeLanguage="CS"
+      OutputFile="$(Root)\src\Magellan\Properties\VersionInfo.cs"
+      AssemblyVersion="$(build_version)"
+      AssemblyFileVersion="$(build_number)"
+      />
 
     <!-- Compile -->
     <ItemGroup>
       <ProjectToBuild Include="$(Root)\src\Magellan.sln" />
     </ItemGroup>
-    <MSBuild Projects="@(ProjectToBuild)" Targets="Build" Properties="Configuration=Debug">
-      <Output TaskParameter="TargetOutputs" ItemName="AssembliesBuiltByChildProjects" />
-    </MSBuild>
     <MSBuild Projects="@(ProjectToBuild)" Targets="Build" Properties="Configuration=Release">
       <Output TaskParameter="TargetOutputs" ItemName="AssembliesBuiltByChildProjects" />
     </MSBuild>
@@ -46,8 +50,10 @@
     <!-- Zip binaries -->
     <ItemGroup>
       <BinaryFiles Include="$(Root)\src\Magellan\bin\Release\*.*" />
-      <BinaryFiles Include="$(Root)\src\Magellan.Composite\bin\Release\*.*" />
-      <BinaryFiles Include="$(Root)\src\Magellan.Transitionals\bin\Release\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <ExtensionFiles Include="$(Root)\src\Magellan.Behaviors\bin\Release\*.*" />
+      <ExtensionFiles Include="$(Root)\src\Magellan.Transitionals\bin\Release\*.*" />
     </ItemGroup>
     <ItemGroup>
       <InfoFiles Include="$(Root)\Readme.txt" />
@@ -55,19 +61,20 @@
       <InfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
     <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40\Assemblies" />
+    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40\Assemblies\Extensions" />
     <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40" />
     <ItemGroup>
       <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Binaries\**\*.*" />
     </ItemGroup>
     <Zip Files="@(BinaryFilesToZip)"
-        WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Binaries"
-        ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
-        ZipLevel="9"
-            />
+      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Binaries"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+      ZipLevel="9"
+      />
 
     <!-- Test -->
     <ItemGroup>
-      <TestAssemblies Include="$(Root)\src\Magellan.Tests\bin\Debug\Magellan.Tests.dll"/>
+      <TestAssemblies Include="$(Root)\src\Magellan.Tests\bin\Release\Magellan.Tests.dll"/>
     </ItemGroup>
     <Exec Condition="$(teamcity_dotnet_nunitlauncher) != ''" Command="$(teamcity_dotnet_nunitlauncher) v4.0 x86 NUnit-2.5.0 @(TestAssemblies)" />
     <Exec Condition="$(teamcity_dotnet_nunitlauncher) == ''" Command="$(nunitconsoleexe) @(TestAssemblies)" />

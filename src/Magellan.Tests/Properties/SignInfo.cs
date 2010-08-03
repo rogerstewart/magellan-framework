@@ -1,1 +1,3 @@
-﻿// This file is overwritten by the build server with full signing information.
+﻿using System.Reflection;
+
+[assembly: AssemblyKeyFile(@"..\Magellan.snk")]
