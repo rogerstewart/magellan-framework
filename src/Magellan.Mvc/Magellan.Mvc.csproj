@@ -48,78 +48,13 @@
     <Compile Include="..\Magellan\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Behaviors\NavigateControllerAction.cs" />
     <Compile Include="ControllerRouteCatalog.cs" />
-    <Compile Include="Routing\ControllerRouteHandler.cs" />
-    <Compile Include="Routing\ControllerRouteValidator.cs" />
-    <Compile Include="Events\PostResultFiltersNavigationEvent.cs" />
-    <Compile Include="Events\ExecutingActionNavigationEvent.cs" />
-    <Compile Include="Events\ExecutingResultNavigationEvent.cs" />
-    <Compile Include="Events\PostActionFiltersNavigationEvent.cs" />
-    <Compile Include="Events\PreActionFiltersNavigationEvent.cs" />
-    <Compile Include="Events\PreResultFiltersNavigationEvent.cs" />
-    <Compile Include="Events\ResolvingActionNavigationEvent.cs" />
-    <Compile Include="Events\ResolvingControllerNavigationEvent.cs" />
-    <Compile Include="Mvc\ActionExecutedContext.cs" />
-    <Compile Include="Mvc\ActionExecutingContext.cs" />
-    <Compile Include="Mvc\ActionInvoker.cs" />
-    <Compile Include="Mvc\ActionNotFoundException.cs" />
-    <Compile Include="Mvc\ActionResult.cs" />
-    <Compile Include="Mvc\AsyncActionInvoker.cs" />
-    <Compile Include="Mvc\AsyncController.cs" />
-    <Compile Include="Mvc\AsyncControllerFactory.cs" />
-    <Compile Include="Mvc\BackResult.cs" />
-    <Compile Include="Mvc\CancelResult.cs" />
-    <Compile Include="Mvc\CommonViewResultOptions.cs" />
-    <Compile Include="Mvc\Controller.cs" />
-    <Compile Include="Mvc\ControllerBase.cs" />
-    <Compile Include="Mvc\ControllerContext.cs" />
-    <Compile Include="Mvc\ControllerFactory.cs" />
-    <Compile Include="Mvc\ControllerFactoryResult.cs" />
-    <Compile Include="Mvc\DefaultActionInvoker.cs" />
-    <Compile Include="Mvc\DefaultModelBinder.cs" />
-    <Compile Include="Mvc\DefaultViewActivator.cs" />
-    <Compile Include="Mvc\DefaultViewNamespaceConvention.cs" />
-    <Compile Include="Mvc\DefaultViewNamingConventions.cs" />
-    <Compile Include="Mvc\DelegateActionDescriptor.cs" />
-    <Compile Include="Mvc\DialogResult.cs" />
-    <Compile Include="Mvc\FrameworkElementViewEngineResult.cs" />
-    <Compile Include="Mvc\IActionDescriptor.cs" />
-    <Compile Include="Mvc\IActionFilter.cs" />
-    <Compile Include="Mvc\IActionInvoker.cs" />
-    <Compile Include="Mvc\IController.cs" />
-    <Compile Include="Mvc\IControllerFactory.cs" />
-    <Compile Include="Mvc\IModelBinder.cs" />
-    <Compile Include="Mvc\IResultFilter.cs" />
-    <Compile Include="Mvc\IViewActivator.cs" />
-    <Compile Include="Mvc\IViewEngine.cs" />
-    <Compile Include="Mvc\IViewNamespaceConvention.cs" />
-    <Compile Include="Mvc\IViewNamingConvention.cs" />
-    <Compile Include="Mvc\ModelBinderDictionary.cs" />
-    <Compile Include="Mvc\ModelBinders.cs" />
-    <Compile Include="Mvc\ModelBindingContext.cs" />
-    <Compile Include="Mvc\PageResult.cs" />
-    <Compile Include="Mvc\PageViewEngine.cs" />
-    <Compile Include="Mvc\PageViewEngineResult.cs" />
-    <Compile Include="Mvc\RedirectResult.cs" />
-    <Compile Include="Mvc\ReflectionBasedViewEngine.cs" />
-    <Compile Include="Mvc\RelayCommand.cs" />
-    <Compile Include="Mvc\ResultExecutedContext.cs" />
-    <Compile Include="Mvc\ResultExecutingContext.cs" />
-    <Compile Include="Mvc\StartProcessResult.cs" />
-    <Compile Include="Mvc\ViewEngineCollection.cs" />
-    <Compile Include="Mvc\ViewEngineResult.cs" />
-    <Compile Include="Mvc\ViewEngines.cs" />
-    <Compile Include="Mvc\ViewNotFoundException.cs" />
-    <Compile Include="Mvc\ViewResult.cs" />
-    <Compile Include="Mvc\ViewResultOptions.cs" />
-    <Compile Include="Mvc\WindowResult.cs" />
-    <Compile Include="Mvc\WindowViewEngine.cs" />
-    <Compile Include="Mvc\WindowViewEngineResult.cs" />
     <Compile Include="NavigatorExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Routing\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Magellan\Magellan.csproj">
       <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>

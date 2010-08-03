@@ -289,10 +289,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Magellan.Mvc\Magellan.Mvc.csproj">
-      <Project>{11BEA9FB-D5CA-49E8-AECF-EC5FADA0084E}</Project>
-      <Name>Magellan.Mvc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Magellan.Transitionals\Magellan.Transitionals.csproj">
       <Project>{55AE7230-4545-4B10-BAD2-B8E93305992C}</Project>
       <Name>Magellan.Transitionals</Name>
