@@ -9,13 +9,26 @@
   </PropertyGroup>
 
   <Target Name="Publish" DependsOnTargets="Package">
-    <GoogleCodeUpload
-		  Project="magellan-framework"
-		  Username="$(googlecode_username)"
-		  Password="$(googlecode_password)"
-		  Summary=".NET 4.0 binaries for Magellan $(build_version)$(build_versiontag)"
+    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
+		  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries"
 		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
 		  Labels="Featured;Type-Archive"
+      >
+      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
+    </GoogleCodeUpload>
+
+    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
+		  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries with Transitionals and Blend Behaviors extensions"
+		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
+		  Labels="Featured;Type-Archive"
+      >
+      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
+    </GoogleCodeUpload>
+
+    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
+		  Summary="Magellan $(build_version)$(build_versiontag) source code (includes sample applications)"
+		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
+		  Labels="Featured;Type-Source"
       >
       <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
     </GoogleCodeUpload>
@@ -52,6 +65,17 @@
       AssemblyFileVersion="$(build_number)"
       />
 
+    <!-- Zip source -->
+    <ItemGroup>
+      <SourceFilesToZip Include="$(Root)\src\**\*.*" />
+      <SourceFilesToZip Include="$(Root)\lib\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(SourceFilesToZip)"
+      WorkingDirectory="$(Root)"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
+      ZipLevel="9"
+      />
+
     <!-- Compile -->
     <ItemGroup>
       <ProjectToBuild Include="$(Root)\src\Magellan.sln" />
@@ -60,28 +84,42 @@
       <Output TaskParameter="TargetOutputs" ItemName="AssembliesBuiltByChildProjects" />
     </MSBuild>
 
-    <!-- Zip binaries -->
+    <!-- Zip binaries (.NET 4.0, Magellan only) -->
     <ItemGroup>
       <BinaryFiles Include="$(Root)\src\Magellan\bin\Release\*.*" />
     </ItemGroup>
+    <ItemGroup>
+      <InfoFiles Include="$(Root)\Changelog.txt" />
+      <InfoFiles Include="$(Root)\License.txt" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\Assemblies" />
+    <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
+    <ItemGroup>
+      <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(BinaryFilesToZip)"
+      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+      ZipLevel="9"
+      />
+    
+    <!-- Zip binaries (.NET 4.0, Magellan with Extensions) -->
     <ItemGroup>
       <ExtensionFiles Include="$(Root)\src\Magellan.Behaviors\bin\Release\*.*" />
       <ExtensionFiles Include="$(Root)\src\Magellan.Transitionals\bin\Release\*.*" />
     </ItemGroup>
     <ItemGroup>
-      <InfoFiles Include="$(Root)\Readme.txt" />
-      <InfoFiles Include="$(Root)\Changelog.txt" />
-      <InfoFiles Include="$(Root)\License.txt" />
+      <ExtensionInfoFiles Include="$(Root)\Changelog.txt" />
+      <ExtensionInfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40\Assemblies" />
-    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40\Assemblies\Extensions" />
-    <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40" />
+    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\Assemblies" />
+    <Copy SourceFiles="@(ExtensionInfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex" />
     <ItemGroup>
-      <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Binaries\**\*.*" />
+      <BinaryFilesToZip2 Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\**\*.*" />
     </ItemGroup>
-    <Zip Files="@(BinaryFilesToZip)"
-      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Binaries"
-      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+    <Zip Files="@(BinaryFilesToZip2)"
+      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
       ZipLevel="9"
       />
 
