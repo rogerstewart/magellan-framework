@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
+using Sample.Features.Search.ServiceProxies;
 
-namespace MVVM.Views
+namespace Sample.Features.Search
 {
     public partial class SearchView : UserControl
     {

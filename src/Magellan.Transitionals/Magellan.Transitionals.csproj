@@ -81,6 +81,7 @@
     <Compile Include="..\Magellan\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\NavigateWithTransitionAction.cs" />
     <Compile Include="NavigatorExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -135,6 +136,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Magellan.Behaviors\Magellan.Behaviors.csproj">
+      <Project>{14620616-8CD2-4B10-81F7-1E0EAD136659}</Project>
+      <Name>Magellan.Behaviors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Magellan\Magellan.csproj">
       <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>
       <Name>Magellan</Name>
