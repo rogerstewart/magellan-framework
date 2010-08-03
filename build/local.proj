@@ -8,7 +8,20 @@
     <nunitconsoleexe>$(Root)\lib\NUnit\exe\nunit-console-x86.exe</nunitconsoleexe>
   </PropertyGroup>
 
-  <Target Name="Deploy">
+  <Target Name="Publish" DependsOnTargets="Package">
+    <GoogleCodeUpload
+		  Project="magellan-framework"
+		  Username="$(googlecode_username)"
+		  Password="$(googlecode_password)"
+		  Summary=".NET 4.0 binaries for Magellan $(build_version)$(build_versiontag)"
+		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+		  Labels="$(build_versiontag)"
+      >
+      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
+    </GoogleCodeUpload>
+  </Target>
+  
+  <Target Name="Package">
 
     <!-- Diagnostics -->
     <Message Text="Diagnostics:"/>
