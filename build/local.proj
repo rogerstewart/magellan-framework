@@ -68,7 +68,7 @@
     <!-- Zip source -->
     <ItemGroup>
       <SourceFilesToZip Include="$(Root)\src\**\*.*" />
-      <SourceFilesToZip Include="$(Root)\lib\**\*.*" />
+      <SourceFilesToZip Include="$(Root)\lib\**\*.*" Exclude="**\Exe\**" />
     </ItemGroup>
     <Zip Files="@(SourceFilesToZip)"
       WorkingDirectory="$(Root)"
