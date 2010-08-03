@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Magellan.Mvc;
+using Magellan;
 using Magellan.Routing;
 using NUnit.Framework;
 using System;

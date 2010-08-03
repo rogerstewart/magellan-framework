@@ -1,5 +1,4 @@
-﻿using System;
-using Magellan.Exceptions;
+﻿using Magellan.Exceptions;
 
 namespace Magellan.Mvc
 {

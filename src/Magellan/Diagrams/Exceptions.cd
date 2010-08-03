@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Magellan.Mvc.ActionNotFoundException" Collapsed="true">
+  <Class Name="Magellan.ActionNotFoundException" Collapsed="true">
     <Position X="4.25" Y="0.5" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />
@@ -15,9 +15,9 @@
       <FileName>Framework\ActionNotFoundException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.ImpossibleNavigationRequestException" Collapsed="true">
+  <Class Name="Magellan.ImpossibleNavigationRequestException" Collapsed="true">
     <Position X="4.25" Y="1.25" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" ManuallyRouted="true" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />
@@ -30,9 +30,9 @@
       <FileName>Framework\ImpossibleNavigationRequestException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.NavigationConfigurationException" Collapsed="true">
+  <Class Name="Magellan.NavigationConfigurationException" Collapsed="true">
     <Position X="4.25" Y="2" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />
@@ -45,16 +45,16 @@
       <FileName>Framework\NavigationConfigurationException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.NavigationException" Collapsed="true">
+  <Class Name="Magellan.NavigationException" Collapsed="true">
     <Position X="0.5" Y="2.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Framework\NavigationException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.UnhandledActionInvocationException" Collapsed="true">
+  <Class Name="Magellan.UnhandledActionInvocationException" Collapsed="true">
     <Position X="4.25" Y="2.75" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />
@@ -67,9 +67,9 @@
       <FileName>Framework\UnhandledActionInvocationException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.UnhandledActionResultException" Collapsed="true">
+  <Class Name="Magellan.UnhandledActionResultException" Collapsed="true">
     <Position X="4.25" Y="3.5" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />
@@ -82,9 +82,9 @@
       <FileName>Framework\UnhandledActionResultException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.ViewNotFoundException" Collapsed="true">
+  <Class Name="Magellan.ViewNotFoundException" Collapsed="true">
     <Position X="4.25" Y="4.25" Width="3" />
-    <InheritanceLine Type="Magellan.Mvc.NavigationException" FixedFromPoint="true">
+    <InheritanceLine Type="Magellan.NavigationException" FixedFromPoint="true">
       <Path>
         <Point X="2.5" Y="2.625" />
         <Point X="2.875" Y="2.625" />

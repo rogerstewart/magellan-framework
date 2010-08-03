@@ -1,4 +1,5 @@
-﻿using Magellan.Mvc;
+﻿using Magellan;
+using Magellan.Mvc;
 
 namespace Magellan.Tests.Helpers
 {

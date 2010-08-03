@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Magellan.ComponentModel;
 
 namespace Magellan.Mvc
 {
+    /// <summary>
+    /// A dictionary of settings for view results.
+    /// </summary>
     public class ViewResultOptions : ValueDictionary
     {
         /// <summary>

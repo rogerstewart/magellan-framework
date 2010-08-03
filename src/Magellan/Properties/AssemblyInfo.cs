@@ -18,13 +18,11 @@ using System.Windows;
 
 [assembly: XmlnsDefinition("http://xamlforge.com/magellan", "Magellan")]
 [assembly: XmlnsDefinition("http://xamlforge.com/magellan", "Magellan.Abstractions")]
-[assembly: XmlnsDefinition("http://xamlforge.com/magellan", "Magellan.Behaviors")]
 [assembly: XmlnsDefinition("http://xamlforge.com/magellan", "Magellan.Controls")]
 [assembly: XmlnsDefinition("http://xamlforge.com/magellan", "Magellan.Views")]
 [assembly: XmlnsPrefix("http://xamlforge.com/magellan", "magellan")]
 
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Magellan")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Magellan.Abstractions")]
-[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Magellan.Behaviors")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Magellan.Controls")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Magellan.Views")]

@@ -88,7 +88,7 @@ detailed history and prior versions (http://magellan.codeplex.com/SourceControl/
 2009-12-09:
   - Fixed a bug in RedirectResult where it always used Navigator.Default rather than the navigator serving 
     the request
-  - Added a lot of tests; Magellan.Mvc now has 100% coverage
+  - Added a lot of tests; Magellan now has 100% coverage
   - Added a 'return StartProcess("calc.exe")' for controllers, with the optional ability to wait for the 
     process to exit.
 

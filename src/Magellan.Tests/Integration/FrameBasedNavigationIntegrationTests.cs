@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Magellan.Events;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Progress;
 using Magellan.Routing;

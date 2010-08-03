@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Magellan.Abstractions;
 using Magellan.Exceptions;
-using Magellan.Mvc;
+using Magellan;
 using Magellan.Routing;
 using Magellan.Tests.Helpers;
 using Magellan.Views;

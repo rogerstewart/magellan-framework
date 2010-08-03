@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Magellan.Diagnostics;
+using Magellan;
 using Magellan.Mvc;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.ServiceLocation;

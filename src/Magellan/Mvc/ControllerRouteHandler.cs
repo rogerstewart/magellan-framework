@@ -1,7 +1,7 @@
 ﻿using Magellan.Events;
-using Magellan.Mvc;
+using Magellan.Routing;
 
-namespace Magellan.Routing
+namespace Magellan.Mvc
 {
     /// <summary>
     /// A <see cref="IRouteHandler"/> for Model-View-Controller routes.

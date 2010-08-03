@@ -6,7 +6,7 @@
   <Comment CommentText="View Engine Results encapsulate the logic for rendering the view to the screen. Since the logic to wire up the model and other services are the same, they share a common base class.">
     <Position X="0.74" Y="3.813" Height="1.135" Width="2.179" />
   </Comment>
-  <Class Name="Magellan.Mvc.ReflectionBasedViewEngine" Collapsed="true">
+  <Class Name="Magellan.ReflectionBasedViewEngine" Collapsed="true">
     <Position X="3.5" Y="0.5" Width="2.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -21,56 +21,56 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Magellan.Mvc.PageViewEngine" Collapsed="true">
+  <Class Name="Magellan.PageViewEngine" Collapsed="true">
     <Position X="3" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAgAAQAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAg=</HashCode>
       <FileName>Framework\PageViewEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.WindowViewEngine" Collapsed="true">
+  <Class Name="Magellan.WindowViewEngine" Collapsed="true">
     <Position X="5" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAgEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAg=</HashCode>
       <FileName>Framework\WindowViewEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.WindowViewEngineResult" Collapsed="true">
+  <Class Name="Magellan.WindowViewEngineResult" Collapsed="true">
     <Position X="5.25" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAACAAAEAAABQAAAAAAAAAAAAAAAAAAABAACAAAAAA=</HashCode>
       <FileName>Framework\WindowViewEngineResult.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.PageViewEngineResult" Collapsed="true">
+  <Class Name="Magellan.PageViewEngineResult" Collapsed="true">
     <Position X="3" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAACAAAEAAABQAAAAAAAAAEAAAAAAAAABAACAAAAAA=</HashCode>
       <FileName>Framework\PageViewEngineResult.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.FrameworkElementViewEngineResult" Collapsed="true">
+  <Class Name="Magellan.FrameworkElementViewEngineResult" Collapsed="true">
     <Position X="4" Y="4.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAQCAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Framework\FrameworkElementViewEngineResult.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.Mvc.ViewEngineResult" Collapsed="true">
+  <Class Name="Magellan.ViewEngineResult" Collapsed="true">
     <Position X="4.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAABEAAAAAEAA=</HashCode>
       <FileName>Framework\ViewEngineResult.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Magellan.Mvc.IViewEngine">
+  <Interface Name="Magellan.IViewEngine">
     <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Framework\IViewEngine.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Magellan.Mvc.IViewNamespaceProvider">
+  <Interface Name="Magellan.IViewNamespaceProvider">
     <Position X="7.75" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>

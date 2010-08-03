@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using Magellan;
 using Magellan.Mvc;
 
 namespace Magellan.Composite.Framework

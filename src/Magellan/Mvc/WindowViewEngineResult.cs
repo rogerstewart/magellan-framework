@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Magellan.Abstractions;
 using Magellan.Diagnostics;
 
 namespace Magellan.Mvc

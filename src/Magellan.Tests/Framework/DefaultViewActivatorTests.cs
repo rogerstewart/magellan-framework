@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Routing;
 using NUnit.Framework;

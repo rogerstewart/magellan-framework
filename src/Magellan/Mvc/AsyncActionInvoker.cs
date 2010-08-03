@@ -1,7 +1,5 @@
 ﻿using System.Threading;
 using System;
-using System.Reflection;
-using Magellan.Abstractions;
 using System.Diagnostics;
 using Magellan.Exceptions;
 

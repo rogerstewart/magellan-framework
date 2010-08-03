@@ -4,7 +4,7 @@ namespace Magellan.Mvc
 {
     /// <summary>
     /// Provides an interface for generating the alternative names for a view. This allows projects to use 
-    /// different naming conventions for views. See the source to <see cref="DefaultViewNamingConventions"/>.
+    /// different naming conventions for views. See the source to <see cref="DefaultViewNamingConvention"/>.
     /// </summary>
     public interface IViewNamingConvention
     {

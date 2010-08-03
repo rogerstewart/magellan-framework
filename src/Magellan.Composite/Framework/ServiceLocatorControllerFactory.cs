@@ -1,4 +1,5 @@
 ﻿using System;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Routing;
 using Microsoft.Practices.ServiceLocation;

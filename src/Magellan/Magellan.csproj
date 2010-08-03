@@ -67,10 +67,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Interactivity\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider">
@@ -97,11 +93,8 @@
     <Compile Include="Abstractions\INavigationService.cs" />
     <Compile Include="Abstractions\FrameNavigationServiceWrapper.cs" />
     <Compile Include="Abstractions\NavigationServiceDecorator.cs" />
-    <Compile Include="Behaviors\NavigateAction.cs" />
-    <Compile Include="Behaviors\Parameter.cs" />
-    <Compile Include="Behaviors\ParameterCollection.cs" />
     <Compile Include="ComponentModel\EnumDisplayName.cs" />
-    <Compile Include="Mvc\Routing\ControllerRouteCatalog.cs" />
+    <Compile Include="ControllerRouteCatalog.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
     <Compile Include="Events\BeginRequestNavigationEvent.cs" />
     <Compile Include="Events\CompleteNavigationEvent.cs" />
@@ -155,7 +148,7 @@
     <Compile Include="Mvc\DefaultModelBinder.cs" />
     <Compile Include="Mvc\DefaultViewActivator.cs" />
     <Compile Include="Mvc\DefaultViewNamespaceConvention.cs" />
-    <Compile Include="Mvc\DefaultViewNamingConventions.cs" />
+    <Compile Include="Mvc\DefaultViewNamingConvention.cs" />
     <Compile Include="Mvc\DelegateActionDescriptor.cs" />
     <Compile Include="Mvc\DialogResult.cs" />
     <Compile Include="Mvc\FrameworkElementViewEngineResult.cs" />
@@ -178,7 +171,9 @@
     <Compile Include="Mvc\PageViewEngineResult.cs" />
     <Compile Include="Mvc\RedirectResult.cs" />
     <Compile Include="Mvc\ReflectionBasedViewEngine.cs" />
-    <Compile Include="Mvc\RelayCommand.cs" />
+    <Compile Include="Mvvm\IViewModelFactory.cs" />
+    <Compile Include="Mvvm\ViewModelFactoryResult.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Mvc\ResultExecutedContext.cs" />
     <Compile Include="Mvc\ResultExecutingContext.cs" />
     <Compile Include="Mvc\StartProcessResult.cs" />
@@ -191,12 +186,9 @@
     <Compile Include="Mvc\WindowResult.cs" />
     <Compile Include="Mvc\WindowViewEngine.cs" />
     <Compile Include="Mvc\WindowViewEngineResult.cs" />
-    <Compile Include="Mvvm\DefaultActivator.cs" />
-    <Compile Include="Mvvm\IActivator.cs" />
-    <Compile Include="Mvvm\IViewModelLocator.cs" />
-    <Compile Include="Mvvm\RelayCommand.cs" />
-    <Compile Include="Mvvm\Routing\ViewModelRouteHandler.cs" />
-    <Compile Include="Mvvm\Routing\ViewModelRouteValidator.cs" />
+    <Compile Include="Mvvm\ViewModelFactory.cs" />
+    <Compile Include="Mvvm\ViewModelRouteHandler.cs" />
+    <Compile Include="Mvvm\ViewModelRouteValidator.cs" />
     <Compile Include="Mvvm\ViewModel.cs" />
     <Compile Include="Progress\NavigationProgressListenerCollection.cs" />
     <Compile Include="INavigator.cs" />
@@ -217,8 +209,8 @@
     <Compile Include="NavigationRequest.cs" />
     <Compile Include="Routing\CatchAllParameterSegment.cs" />
     <Compile Include="Routing\CatchAllParameterSegmentRecognizer.cs" />
-    <Compile Include="Mvc\Routing\ControllerRouteHandler.cs" />
-    <Compile Include="Mvc\Routing\ControllerRouteValidator.cs" />
+    <Compile Include="Mvc\ControllerRouteHandler.cs" />
+    <Compile Include="Mvc\ControllerRouteValidator.cs" />
     <Compile Include="Routing\DefaultRouteValidator.cs" />
     <Compile Include="Routing\InvalidRouteException.cs" />
     <Compile Include="Routing\IRoute.cs" />
@@ -265,7 +257,7 @@
     </Compile>
     <Compile Include="Utilities\Guard.cs" />
     <Compile Include="Utilities\PropertyValueLister.cs" />
-    <Compile Include="Mvvm\Routing\ViewModelRouteCatalog.cs" />
+    <Compile Include="ViewModelRouteCatalog.cs" />
     <Compile Include="Views\IView.cs" />
     <AppDesigner Include="Properties\" />
     <Compile Include="Views\NavigationProperties.cs" />

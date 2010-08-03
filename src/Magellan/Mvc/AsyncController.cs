@@ -1,5 +1,4 @@
-﻿
-namespace Magellan.Mvc
+﻿namespace Magellan.Mvc
 {
     /// <summary>
     /// A base class for <see cref="Controller">controllers</see> that are executed asynchronously. An 

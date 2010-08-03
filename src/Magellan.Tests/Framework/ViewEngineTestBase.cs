@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Magellan.Abstractions;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Progress;
 using Magellan.Routing;

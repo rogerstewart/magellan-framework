@@ -1,5 +1,4 @@
-﻿
-using Magellan.Diagnostics;
+﻿using Magellan.Diagnostics;
 
 namespace Magellan.Mvc
 {

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Tests.Helpers;
 using Moq;

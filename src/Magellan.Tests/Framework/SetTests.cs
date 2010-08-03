@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using Magellan.ComponentModel;
-using Magellan.Mvc;
+using Magellan;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Magellan;
 using Magellan.Mvc;
 using NUnit.Framework;
 

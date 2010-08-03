@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Magellan.Abstractions;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Progress;
 using Magellan.Routing;
@@ -64,7 +65,7 @@ namespace Magellan.Tests.Helpers
 
         public ControllerContext BuildControllerContext()
         {
-            return new ControllerContext(Controller.Object, BuildRequest(), Magellan.Mvc.ViewEngines.CreateDefaults(), ModelBinders.CreateDefaults(), () => {});
+            return new ControllerContext(Controller.Object, BuildRequest(), ViewEngines.CreateDefaults(), ModelBinders.CreateDefaults(), () => {});
         }
     }
 }

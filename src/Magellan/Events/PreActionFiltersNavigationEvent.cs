@@ -1,4 +1,4 @@
-﻿using Magellan.Mvc;
+﻿using Magellan;
 
 namespace Magellan.Events
 {

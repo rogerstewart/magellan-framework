@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using Magellan.Abstractions;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Routing;
 using Magellan.Views;

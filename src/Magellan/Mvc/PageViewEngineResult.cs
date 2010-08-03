@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Magellan.Abstractions;
 using Magellan.Diagnostics;
 
 namespace Magellan.Mvc

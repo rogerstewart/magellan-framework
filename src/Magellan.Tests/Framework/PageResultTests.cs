@@ -1,4 +1,5 @@
-﻿using Magellan.Mvc;
+﻿using Magellan;
+using Magellan.Mvc;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

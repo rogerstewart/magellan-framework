@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using Magellan;
 using Magellan.Mvc;
 using NUnit.Framework;
 

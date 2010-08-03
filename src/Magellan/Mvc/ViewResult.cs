@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Windows.Navigation;
+﻿using System.Windows.Navigation;
 using Magellan.Utilities;
 
 namespace Magellan.Mvc

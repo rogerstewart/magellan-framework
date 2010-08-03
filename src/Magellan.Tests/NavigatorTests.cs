@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Magellan.Abstractions;
+using Magellan;
 using Magellan.Mvc;
 using Magellan.Routing;
 using Moq;

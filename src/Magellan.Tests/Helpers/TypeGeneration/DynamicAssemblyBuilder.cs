@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Reflection.Emit;
+using Magellan;
 using Magellan.Mvc;
 
 namespace Magellan.Tests.Helpers.TypeGeneration

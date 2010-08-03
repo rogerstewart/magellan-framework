@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using Magellan;
 using Magellan.Mvc;
 using Moq;
 using NUnit.Framework;

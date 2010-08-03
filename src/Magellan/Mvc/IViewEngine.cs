@@ -9,7 +9,7 @@
         /// Attempts to find the view, or returns information about the locations that were searched.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
-        /// <param name="viewParameters">The view parameters.</param>
+        /// <param name="options">The options.</param>
         /// <param name="view">The view.</param>
         /// <returns>
         /// A <see cref="ViewEngineResult"/> containing the resolved view or information about the locations that were searched.
