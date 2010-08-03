@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Magellan.Behaviors;
 using Magellan.Routing;
 using Magellan.Tests.Helpers;
 using Magellan.Views;
@@ -10,6 +11,13 @@ namespace Magellan.Tests.Behaviors
     [TestFixture]
     public class NavigateBehaviorTests : UITestBase
     {
+        public NavigateBehaviorTests()
+        {
+            // Ensure the assembly containing the behaviors is loaded into the AppDomain, 
+            // so that the XAML tags can be resolved
+            new NavigateControllerAction();
+        }
+
         protected Mock<INavigator> Navigator = new Mock<INavigator>();
 
         private void ExpectNavigationRequest(string controllerName, string actionName, object parameters)

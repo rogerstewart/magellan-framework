@@ -185,6 +185,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Magellan.Behaviors\Magellan.Behaviors.csproj">
+      <Project>{14620616-8CD2-4B10-81F7-1E0EAD136659}</Project>
+      <Name>Magellan.Behaviors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Magellan.Composite\Magellan.Composite.csproj">
       <Project>{2C8E481F-C694-4221-8F69-5EE7F77A5FEB}</Project>
       <Name>Magellan.Composite</Name>
