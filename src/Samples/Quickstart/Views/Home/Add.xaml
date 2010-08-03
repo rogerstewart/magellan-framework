@@ -1,0 +1,26 @@
+﻿<Page 
+    x:Class="Quickstart.Views.Home.Add"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:magellan="http://xamlforge.com/magellan" 
+    Title="Add"
+    >
+    <StackPanel>
+        <WrapPanel>
+            <TextBlock Text="{Binding Path=A}" />
+            <TextBlock Text="+" />
+            <TextBlock Text="{Binding Path=B}" />
+            <TextBlock Text="=" />
+            <TextBlock Text="{Binding Path=Result}" />
+        </WrapPanel>
+
+        <Button Content="Try Again">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <magellan:NavigateControllerAction Controller="Home" Action="Index" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </StackPanel>
+</Page>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{11BEA9FB-D5CA-49E8-AECF-EC5FADA0084E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Magellan</RootNamespace>
+    <AssemblyName>Magellan.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Magellan\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Behaviors\NavigateControllerAction.cs" />
+    <Compile Include="ControllerRouteCatalog.cs" />
+    <Compile Include="Routing\ControllerRouteHandler.cs" />
+    <Compile Include="Routing\ControllerRouteValidator.cs" />
+    <Compile Include="Events\PostResultFiltersNavigationEvent.cs" />
+    <Compile Include="Events\ExecutingActionNavigationEvent.cs" />
+    <Compile Include="Events\ExecutingResultNavigationEvent.cs" />
+    <Compile Include="Events\PostActionFiltersNavigationEvent.cs" />
+    <Compile Include="Events\PreActionFiltersNavigationEvent.cs" />
+    <Compile Include="Events\PreResultFiltersNavigationEvent.cs" />
+    <Compile Include="Events\ResolvingActionNavigationEvent.cs" />
+    <Compile Include="Events\ResolvingControllerNavigationEvent.cs" />
+    <Compile Include="Mvc\ActionExecutedContext.cs" />
+    <Compile Include="Mvc\ActionExecutingContext.cs" />
+    <Compile Include="Mvc\ActionInvoker.cs" />
+    <Compile Include="Mvc\ActionNotFoundException.cs" />
+    <Compile Include="Mvc\ActionResult.cs" />
+    <Compile Include="Mvc\AsyncActionInvoker.cs" />
+    <Compile Include="Mvc\AsyncController.cs" />
+    <Compile Include="Mvc\AsyncControllerFactory.cs" />
+    <Compile Include="Mvc\BackResult.cs" />
+    <Compile Include="Mvc\CancelResult.cs" />
+    <Compile Include="Mvc\CommonViewResultOptions.cs" />
+    <Compile Include="Mvc\Controller.cs" />
+    <Compile Include="Mvc\ControllerBase.cs" />
+    <Compile Include="Mvc\ControllerContext.cs" />
+    <Compile Include="Mvc\ControllerFactory.cs" />
+    <Compile Include="Mvc\ControllerFactoryResult.cs" />
+    <Compile Include="Mvc\DefaultActionInvoker.cs" />
+    <Compile Include="Mvc\DefaultModelBinder.cs" />
+    <Compile Include="Mvc\DefaultViewActivator.cs" />
+    <Compile Include="Mvc\DefaultViewNamespaceConvention.cs" />
+    <Compile Include="Mvc\DefaultViewNamingConventions.cs" />
+    <Compile Include="Mvc\DelegateActionDescriptor.cs" />
+    <Compile Include="Mvc\DialogResult.cs" />
+    <Compile Include="Mvc\FrameworkElementViewEngineResult.cs" />
+    <Compile Include="Mvc\IActionDescriptor.cs" />
+    <Compile Include="Mvc\IActionFilter.cs" />
+    <Compile Include="Mvc\IActionInvoker.cs" />
+    <Compile Include="Mvc\IController.cs" />
+    <Compile Include="Mvc\IControllerFactory.cs" />
+    <Compile Include="Mvc\IModelBinder.cs" />
+    <Compile Include="Mvc\IResultFilter.cs" />
+    <Compile Include="Mvc\IViewActivator.cs" />
+    <Compile Include="Mvc\IViewEngine.cs" />
+    <Compile Include="Mvc\IViewNamespaceConvention.cs" />
+    <Compile Include="Mvc\IViewNamingConvention.cs" />
+    <Compile Include="Mvc\ModelBinderDictionary.cs" />
+    <Compile Include="Mvc\ModelBinders.cs" />
+    <Compile Include="Mvc\ModelBindingContext.cs" />
+    <Compile Include="Mvc\PageResult.cs" />
+    <Compile Include="Mvc\PageViewEngine.cs" />
+    <Compile Include="Mvc\PageViewEngineResult.cs" />
+    <Compile Include="Mvc\RedirectResult.cs" />
+    <Compile Include="Mvc\ReflectionBasedViewEngine.cs" />
+    <Compile Include="Mvc\RelayCommand.cs" />
+    <Compile Include="Mvc\ResultExecutedContext.cs" />
+    <Compile Include="Mvc\ResultExecutingContext.cs" />
+    <Compile Include="Mvc\StartProcessResult.cs" />
+    <Compile Include="Mvc\ViewEngineCollection.cs" />
+    <Compile Include="Mvc\ViewEngineResult.cs" />
+    <Compile Include="Mvc\ViewEngines.cs" />
+    <Compile Include="Mvc\ViewNotFoundException.cs" />
+    <Compile Include="Mvc\ViewResult.cs" />
+    <Compile Include="Mvc\ViewResultOptions.cs" />
+    <Compile Include="Mvc\WindowResult.cs" />
+    <Compile Include="Mvc\WindowViewEngine.cs" />
+    <Compile Include="Mvc\WindowViewEngineResult.cs" />
+    <Compile Include="NavigatorExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Magellan\Magellan.csproj">
+      <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>
+      <Name>Magellan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

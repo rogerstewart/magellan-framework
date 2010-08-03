@@ -1,0 +1,29 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:magellan="http://xamlforge.com/magellan" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    x:Class="Quickstart.Views.Home.Index" 
+    Title="Index"
+    mc:Ignorable="d" d:DesignWidth="330" d:DesignHeight="220"
+    >
+    <StackPanel>
+        <TextBox x:Name="parameterA" />
+        <TextBlock Text="+" />
+        <TextBox x:Name="parameterB" />
+
+        <Button Content="Calculate">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <magellan:NavigateControllerAction Controller="Home" Action="Add">
+                        <magellan:NavigateAction.Parameters>
+                            <magellan:Parameter ParameterName="a" Value="{Binding Text, ElementName=parameterA}" />
+                            <magellan:Parameter ParameterName="b" Value="{Binding Text, ElementName=parameterB}" />
+                        </magellan:NavigateAction.Parameters>
+                    </magellan:NavigateControllerAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </StackPanel>
+</Page>
