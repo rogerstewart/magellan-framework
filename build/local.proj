@@ -15,7 +15,7 @@
 		  Password="$(googlecode_password)"
 		  Summary=".NET 4.0 binaries for Magellan $(build_version)$(build_versiontag)"
 		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
-		  Labels="$(build_versiontag)"
+		  Labels="Featured;Type-Archive"
       >
       <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
     </GoogleCodeUpload>
