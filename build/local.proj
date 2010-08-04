@@ -68,12 +68,12 @@
     <!-- Zip source -->
     <ItemGroup>
       <SourceFilesToZip Include="$(Root)\src\**\*.*" />
-      <SourceFilesToZip Include="$(Root)\lib\**\*.*" Exclude="$(Root)\lib\NUnit\Exe\**\*.*" />
+      <SourceFilesToZip Include="$(Root)\lib\**\*.dll" Exclude="$(Root)\lib\NUnit\Exe\**\*.*" />
     </ItemGroup>
     <Zip Files="@(SourceFilesToZip)"
       WorkingDirectory="$(Root)"
       ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
-      ZipLevel="9"
+      ZipLevel="10"
       />
 
     <!-- Compile -->
@@ -100,7 +100,7 @@
     <Zip Files="@(BinaryFilesToZip)"
       WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40"
       ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
-      ZipLevel="9"
+      ZipLevel="10"
       />
     
     <!-- Zip binaries (.NET 4.0, Magellan with Extensions) -->
@@ -120,7 +120,7 @@
     <Zip Files="@(BinaryFilesToZip2)"
       WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex"
       ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
-      ZipLevel="9"
+      ZipLevel="10"
       />
 
     <!-- Test -->
