@@ -13,7 +13,7 @@ namespace Magellan.Mvc
         /// <param name="controllerContext"></param>
         protected override void ExecuteInternal(ControllerContext controllerContext)
         {
-            TraceSources.MagellanSource.TraceInformation("CancelResult is rendering for request '{0}'.", controllerContext.Request);
+            TraceSources.MagellanSource.TraceInformation("DoNothingResult is rendering for request '{0}'.", controllerContext.Request);
         }
     }
 }

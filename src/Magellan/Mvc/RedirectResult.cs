@@ -36,8 +36,12 @@ namespace Magellan.Mvc
         {
             TraceSources.MagellanSource.TraceVerbose("The RedirectResult is navigating to the request '{0}'.", NewRequest);
 
-            var navigator = controllerContext.Request.Navigator;
-            navigator.Navigate(NewRequest);
+            var dispatcher = controllerContext.Request.Navigator.Dispatcher;
+            dispatcher.Dispatch(
+                delegate
+                {
+                    controllerContext.Request.Navigator.Navigate(NewRequest);
+                });
         }
     }
 }

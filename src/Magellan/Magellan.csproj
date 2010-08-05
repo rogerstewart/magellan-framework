@@ -144,7 +144,7 @@
     <Compile Include="Mvc\AsyncController.cs" />
     <Compile Include="Mvc\AsyncControllerFactory.cs" />
     <Compile Include="Mvc\BackResult.cs" />
-    <Compile Include="Mvc\CancelResult.cs" />
+    <Compile Include="Mvc\DoNothingResult.cs" />
     <Compile Include="Mvc\CommonViewResultOptions.cs" />
     <Compile Include="Mvc\Controller.cs" />
     <Compile Include="Mvc\ControllerBase.cs" />
