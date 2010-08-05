@@ -52,11 +52,11 @@
       <FileName>Framework\BackResult.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magellan.CancelResult" Collapsed="true">
+  <Class Name="Magellan.DoNothingResult" Collapsed="true">
     <Position X="5.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Framework\CancelResult.cs</FileName>
+      <FileName>Framework\DoNothingResult.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Magellan.StartProcessResult" Collapsed="true">

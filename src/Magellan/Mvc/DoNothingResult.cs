@@ -5,7 +5,7 @@ namespace Magellan.Mvc
     /// <summary>
     /// An action result that does nothing.
     /// </summary>
-    public class CancelResult : ActionResult
+    public class DoNothingResult : ActionResult
     {
         /// <summary>
         /// Executes the action result.

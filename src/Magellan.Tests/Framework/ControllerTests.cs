@@ -59,11 +59,11 @@ namespace Magellan.Tests.Framework
         #region Cancel
         
         [Test]
-        public void CancelReturnsCancelResult()
+        public void CancelReturnsDoNothingResult()
         {
             var controller = new DelegatingController();
             var result = controller.Call<ActionResult>("Cancel");
-            Assert.IsInstanceOf<CancelResult>(result);
+            Assert.IsInstanceOf<DoNothingResult>(result);
         }
 
         #endregion

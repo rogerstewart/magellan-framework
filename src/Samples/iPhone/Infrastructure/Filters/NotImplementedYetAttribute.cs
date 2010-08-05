@@ -31,7 +31,7 @@ namespace iPhone.Infrastructure.Filters
         public void OnActionExecuting(ActionExecutingContext context)
         {
             MessageService.ShowInformation(_message);
-            context.OverrideResult = new CancelResult();
+            context.OverrideResult = new DoNothingResult();
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

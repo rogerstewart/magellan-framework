@@ -31,7 +31,7 @@ namespace iPhone.Infrastructure.Filters
             if (!Thread.CurrentPrincipal.IsInRole(RoleName))
             {
                 MessageService.ShowInformation(string.Format("This action is only available to users in the {0} group. Try elevating before starting the application.", RoleName));
-                context.OverrideResult = new CancelResult();
+                context.OverrideResult = new DoNothingResult();
             }
         }
 

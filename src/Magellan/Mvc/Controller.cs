@@ -19,10 +19,10 @@ namespace Magellan.Mvc
         /// <summary>
         /// This method can be used for cancelling the current request; in effect, it is a 'no-op' result.
         /// </summary>
-        /// <returns>A <see cref="CancelResult"/>.</returns>
-        public virtual CancelResult Cancel()
+        /// <returns>A <see cref="DoNothingResult"/>.</returns>
+        public virtual DoNothingResult Cancel()
         {
-            return new CancelResult();
+            return new DoNothingResult();
         }
 
         /// <summary>

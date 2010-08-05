@@ -35,7 +35,7 @@ namespace Magellan.Tests.Framework
         {
             public void OnActionExecuting(ActionExecutingContext context)
             {
-                context.OverrideResult = new CancelResult();
+                context.OverrideResult = new DoNothingResult();
                 Assert.IsNotNull(context.ControllerContext);
                 Assert.IsNotNull(context.Request);
                 Assert.IsNotNull(context.Request.RouteValues);
@@ -49,7 +49,7 @@ namespace Magellan.Tests.Framework
             }
         }
 
-        public class CancelResultAttribute : Attribute, IResultFilter
+        public class DoNothingResultAttribute : Attribute, IResultFilter
         {
             public void OnResultExecuting(ResultExecutingContext context)
             {
@@ -114,23 +114,23 @@ namespace Magellan.Tests.Framework
         [Test]
         public void ShouldSelectCorrectAction()
         {
-            Controller.Method("ShowCustomer").Returns(() => new CancelResult()).MustBeCalled();
+            Controller.Method("ShowCustomer").Returns(() => new DoNothingResult()).MustBeCalled();
             Controller.Instance.Execute("ShowCustomer");
         }
 
         [Test]
         public void ShouldSelectCorrectActionByParameters()
         {
-            Controller.Method("ShowCustomer").Returns((int a) => new CancelResult()).MustNotBeCalled();
-            Controller.Method("ShowCustomer").Returns((int a, int b) => new CancelResult()).MustBeCalled();
-            Controller.Method("ShowCustomer").Returns((int a, int b, int c) => new CancelResult()).MustNotBeCalled();
+            Controller.Method("ShowCustomer").Returns((int a) => new DoNothingResult()).MustNotBeCalled();
+            Controller.Method("ShowCustomer").Returns((int a, int b) => new DoNothingResult()).MustBeCalled();
+            Controller.Method("ShowCustomer").Returns((int a, int b, int c) => new DoNothingResult()).MustNotBeCalled();
             Controller.Instance.Execute("ShowCustomer", new { a = 1, b = 2});
         }
 
         [Test]
         public void ActionNamesAreNotCaseSensitive()
         {
-            Controller.Method("ShowCustomer").Returns(() => new CancelResult()).MustBeCalled();
+            Controller.Method("ShowCustomer").Returns(() => new DoNothingResult()).MustBeCalled();
             Controller.Instance.Execute("ShowCustomer");
             Controller.Instance.Execute("ShowCustOMER");
             Controller.Instance.Execute("SHOWCUSTOMER");
@@ -139,14 +139,14 @@ namespace Magellan.Tests.Framework
         [Test]
         public void ActionsMayNotBePrivate()
         {
-            Controller.Method("ShowCustomer1").Private().Returns(() => new CancelResult()).MustNotBeCalled();
+            Controller.Method("ShowCustomer1").Private().Returns(() => new DoNothingResult()).MustNotBeCalled();
             Assert.Throws<ActionNotFoundException>(() => Controller.Instance.Execute("ShowCustomer1"));
         }
 
         [Test]
         public void ActionsMayNotBeProtected()
         {
-            Controller.Method("ShowCustomer").Protected().Returns(() => new CancelResult()).MustNotBeCalled();
+            Controller.Method("ShowCustomer").Protected().Returns(() => new DoNothingResult()).MustNotBeCalled();
             Assert.Throws<ActionNotFoundException>(() => Controller.Instance.Execute("ShowCustomer"));
         }
 
@@ -212,7 +212,7 @@ namespace Magellan.Tests.Framework
         public void ResultsCanBeAvoidedByCancellation()
         {
             Controller.Method("ShowCustomer")
-                .Attribute<CancelResultAttribute>()
+                .Attribute<DoNothingResultAttribute>()
                 .Returns(() => new ExplodeResult())
                 .MustBeCalled();
 

@@ -34,7 +34,7 @@ namespace Magellan.Tests.Framework
                 {
                     Assert.AreNotEqual(testThreadId, Thread.CurrentThread.ManagedThreadId);
                     waitHandle.Set();
-                    return new CancelResult();
+                    return new DoNothingResult();
                 }).MustBeCalled();
 
             Controller.Instance.ActionInvoker = new AsyncActionInvoker();
@@ -52,7 +52,7 @@ namespace Magellan.Tests.Framework
             {
                 Assert.IsTrue(Thread.CurrentThread.Name.StartsWith("Navigation request: "));
                 waitHandle.Set();
-                return new CancelResult();
+                return new DoNothingResult();
             }).MustBeCalled();
 
             Controller.Instance.ActionInvoker = new AsyncActionInvoker();
