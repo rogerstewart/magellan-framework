@@ -27,8 +27,13 @@ namespace Magellan.Mvc
         {
             TraceSources.MagellanSource.TraceInformation("BackResult is rendering for request '{0}'. RemoveFromJournal is {1}", controllerContext.Request, _removeFromJournal);
 
-            var navigationService = controllerContext.Request.Navigator;
-            navigationService.GoBack(_removeFromJournal);
+            var dispatcher = controllerContext.Request.Navigator.Dispatcher;
+            dispatcher.Dispatch(
+                delegate
+                {
+                    var navigationService = controllerContext.Request.Navigator;
+                    navigationService.GoBack(_removeFromJournal);
+                });
         }
     }
 }
