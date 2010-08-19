@@ -1,6 +1,4 @@
-﻿using Magellan.Exceptions;
-
-namespace Magellan.Routing
+﻿namespace Magellan.Exceptions
 {
     /// <summary>
     /// An exception thrown when a constraint is given that is not supported.

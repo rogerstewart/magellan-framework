@@ -1,6 +1,6 @@
-﻿using Magellan.Exceptions;
+﻿using Magellan.Routing;
 
-namespace Magellan.Routing
+namespace Magellan.Exceptions
 {
     /// <summary>
     /// An exception thrown when an invalid route (for example, a route with a specifcation using illegal 

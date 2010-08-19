@@ -1,6 +1,4 @@
-﻿using Magellan.Exceptions;
-
-namespace Magellan.Routing
+﻿namespace Magellan.Exceptions
 {
     /// <summary>
     /// An exception thrown when an attempt is made to navigate using a route, but the route cannot be 

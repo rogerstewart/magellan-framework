@@ -1,4 +1,7 @@
-﻿using Magellan.Framework;
+﻿using System;
+using System.Diagnostics;
+using Magellan.Exceptions;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;
 using Magellan;
@@ -41,6 +44,33 @@ namespace Magellan.Tests.Framework
             Controller.Instance.Execute("ShowCustomer", new { a = 3 });
 
             waitHandle.WaitOne();
+        }
+
+        [Test]
+        public void ShouldDispatchExceptionsToUIThread()
+        {
+            var testThreadId = Thread.CurrentThread.ManagedThreadId;
+            var waitHandle = new AutoResetEvent(false);
+
+            Controller.Method("ShowCustomer").Returns((int a) =>
+            {
+                Assert.AreNotEqual(testThreadId, Thread.CurrentThread.ManagedThreadId);
+                throw new DivideByZeroException();
+                return new DoNothingResult();
+            }).MustBeCalled();
+
+            var dispatcher = new ManualPumpDispatcher();
+
+            var request = RequestBuilder.CreateRequest("ExampleController", "ShowCustomer", new {a = 3});
+            request.Dispatcher = dispatcher;
+            
+            Controller.Instance.ActionInvoker = new AsyncActionInvoker();
+            Controller.Instance.Execute(request.BuildControllerContext(Controller.Instance));
+
+            Thread.Sleep(200);
+
+            var ex = Assert.Throws<AsyncControllerExecutionException>(dispatcher.Pump);
+            Assert.IsInstanceOf<DivideByZeroException>(ex.InnerException);
         }
 
         [Test]

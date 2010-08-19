@@ -1,4 +1,5 @@
 ﻿using System;
+using Magellan.Exceptions;
 using Magellan.Routing;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;

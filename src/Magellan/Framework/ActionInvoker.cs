@@ -1,5 +1,6 @@
 ﻿using System;
 using Magellan.Events;
+using Magellan.Exceptions;
 using Magellan.Utilities;
 using System.Collections.Generic;
 using Magellan.Diagnostics;

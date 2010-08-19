@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Magellan.Exceptions;
 using Magellan.Utilities;
 
 namespace Magellan.Routing

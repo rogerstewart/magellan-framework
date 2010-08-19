@@ -138,10 +138,11 @@
     <Compile Include="Framework\ActionExecutedContext.cs" />
     <Compile Include="Framework\ActionExecutingContext.cs" />
     <Compile Include="Framework\ActionInvoker.cs" />
-    <Compile Include="Framework\ActionNotFoundException.cs" />
+    <Compile Include="Exceptions\ActionNotFoundException.cs" />
     <Compile Include="Framework\ActionResult.cs" />
     <Compile Include="Framework\AsyncActionInvoker.cs" />
     <Compile Include="Framework\AsyncController.cs" />
+    <Compile Include="Exceptions\AsyncControllerExecutionException.cs" />
     <Compile Include="Framework\AsyncControllerFactory.cs" />
     <Compile Include="Framework\BackResult.cs" />
     <Compile Include="Framework\DoNothingResult.cs" />
@@ -190,7 +191,7 @@
     <Compile Include="Framework\ViewEngineCollection.cs" />
     <Compile Include="Framework\ViewEngineResult.cs" />
     <Compile Include="Framework\ViewEngines.cs" />
-    <Compile Include="Framework\ViewNotFoundException.cs" />
+    <Compile Include="Exceptions\ViewNotFoundException.cs" />
     <Compile Include="Framework\ViewResult.cs" />
     <Compile Include="Framework\ViewResultOptions.cs" />
     <Compile Include="Framework\WindowResult.cs" />
@@ -222,7 +223,7 @@
     <Compile Include="Framework\ControllerRouteHandler.cs" />
     <Compile Include="Framework\ControllerRouteValidator.cs" />
     <Compile Include="Routing\DefaultRouteValidator.cs" />
-    <Compile Include="Routing\InvalidRouteException.cs" />
+    <Compile Include="Exceptions\InvalidRouteException.cs" />
     <Compile Include="Routing\IRoute.cs" />
     <Compile Include="Routing\IRouteConstraint.cs" />
     <Compile Include="Routing\IRouteHandler.cs" />
@@ -254,8 +255,8 @@
     <Compile Include="Routing\SegmentPathMatch.cs" />
     <Compile Include="Routing\SegmentRecognizer.cs" />
     <Compile Include="Routing\SegmentValueMatch.cs" />
-    <Compile Include="Routing\UnroutableRequestException.cs" />
-    <Compile Include="Routing\UnsupportedConstraintException.cs" />
+    <Compile Include="Exceptions\UnroutableRequestException.cs" />
+    <Compile Include="Exceptions\UnsupportedConstraintException.cs" />
     <Compile Include="Routing\UrlParameter.cs" />
     <Compile Include="Utilities\DelegateInvoker.cs" />
     <Compile Include="Utilities\BindingExtensions.cs" />

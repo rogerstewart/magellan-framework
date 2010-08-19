@@ -9,7 +9,8 @@ namespace Magellan.Framework
     /// <summary>
     /// A <see cref="ViewEngineResult"/> that contains a WPF <see cref="Page"/> that will be navigated to using the <see cref="NavigationService"/> of the incoming request.
     /// </summary>
-    public class PageViewEngineResult : FrameworkElementViewEngineResult
+    public class 
+        PageViewEngineResult : FrameworkElementViewEngineResult
     {
         private readonly Type _viewType;
         private readonly IViewActivator _viewActivator;

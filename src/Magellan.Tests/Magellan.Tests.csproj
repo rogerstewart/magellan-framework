@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\BusyStateTests.cs" />
+    <Compile Include="Helpers\ManualPumpDispatcher.cs" />
     <Compile Include="Integration\ContentBasedNavigationIntegrationTests.cs" />
     <Compile Include="NavigatorExtensionsTests.cs" />
     <Compile Include="Framework\AsyncActionInvoker.cs" />

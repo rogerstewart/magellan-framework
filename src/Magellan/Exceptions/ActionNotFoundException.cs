@@ -1,6 +1,6 @@
-﻿using Magellan.Exceptions;
+﻿using Magellan.Framework;
 
-namespace Magellan.Framework
+namespace Magellan.Exceptions
 {
     /// <summary>
     /// An exception thrown by the Magellan navigation framework when an action is not found on the 

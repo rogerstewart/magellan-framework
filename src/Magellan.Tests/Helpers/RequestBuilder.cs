@@ -26,6 +26,7 @@ namespace Magellan.Tests.Helpers
             Controller = new Mock<IController>();
             Path = "TestPath";
             ProgressListeners = new List<INavigationProgressListener>();
+            Dispatcher = new TestDispatcher();
         }
 
         public static RequestBuilder CreateRequest()
@@ -44,10 +45,11 @@ namespace Magellan.Tests.Helpers
         public Mock<IRoute> Route { get; set; }
         public string Path { get; set; }
         public List<INavigationProgressListener> ProgressListeners { get; set; }
+        public IDispatcher Dispatcher { get; set; }
 
         public ResolvedNavigationRequest BuildRequest()
         {
-            Navigator.SetupGet(x => x.Dispatcher).Returns(new TestDispatcher());
+            Navigator.SetupGet(x => x.Dispatcher).Returns(Dispatcher);
 
             var values = new RouteValueDictionary(_routeValues);
             values["controller"] = _controllerName;
@@ -65,7 +67,12 @@ namespace Magellan.Tests.Helpers
 
         public ControllerContext BuildControllerContext()
         {
-            return new ControllerContext(Controller.Object, BuildRequest(), ViewEngines.CreateDefaults(), ModelBinders.CreateDefaults(), () => {});
+            return BuildControllerContext(Controller.Object);
+        }
+
+        public ControllerContext BuildControllerContext(IController controllerInstance)
+        {
+            return new ControllerContext(controllerInstance, BuildRequest(), ViewEngines.CreateDefaults(), ModelBinders.CreateDefaults(), () => { });
         }
     }
 }

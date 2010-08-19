@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Magellan.Diagnostics;
 using Magellan.Views;
 
@@ -81,6 +82,30 @@ namespace Magellan.Framework
                     navigationAwareView.Navigator = navigator;
                 }
                 NavigationProperties.SetNavigator(viewAsDependencyObject, navigator);
+            }
+
+            // Notify the view model that the view is attached
+            var viewAware = model as IViewAware;
+            if (viewAware != null)
+            {
+                viewAware.ViewAttached(view);
+
+                RoutedEventHandler setLoaded = null;
+                setLoaded = new RoutedEventHandler((sender, e) =>
+                {
+                    viewAware.Loaded();
+                    view.Loaded -= setLoaded;
+                });
+
+                if (view.IsLoaded)
+                {
+                    viewAware.Loaded();
+                }
+                else
+                {
+                    view.Loaded += setLoaded;
+                }
+
             }
         }
     }

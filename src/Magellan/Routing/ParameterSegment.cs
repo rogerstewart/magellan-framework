@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Magellan.Exceptions;
 using Magellan.Utilities;
 
 namespace Magellan.Routing

@@ -47,6 +47,30 @@ namespace Magellan.Tests.Framework
         }
 
         [Test]
+        public void DoesntGetItsKnickersInATwistWhenExitingTooManyTimes()
+        {
+            var busyState = new BusyState();
+            busyState.Exit();   
+            busyState.Exit();
+            busyState.Exit();
+            Assert.IsFalse(busyState.IsBusy);
+
+            busyState.Enter();
+            Assert.IsTrue(busyState.IsBusy);
+        }
+
+        [Test]
+        public void CanUseUsingBlock()
+        {
+            var busyState = new BusyState();
+            using (busyState.Enter())
+            {
+                Assert.IsTrue(busyState.IsBusy);
+            }
+            Assert.IsFalse(busyState.IsBusy);
+        }
+
+        [Test]
         public void RaisesPropertyChangedOnIsBusyChanged()
         {
             var changes = new Queue<string>();

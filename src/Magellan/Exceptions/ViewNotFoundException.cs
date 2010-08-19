@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Magellan.Exceptions;
 
-namespace Magellan.Framework
+namespace Magellan.Exceptions
 {
     /// <summary>
     /// An exception thrown by the Magellan navigation framework. This exception indicates that an action has 

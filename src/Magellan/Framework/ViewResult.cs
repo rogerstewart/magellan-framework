@@ -1,4 +1,5 @@
 ﻿using System.Windows.Navigation;
+using Magellan.Exceptions;
 using Magellan.Utilities;
 
 namespace Magellan.Framework

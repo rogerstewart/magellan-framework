@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:Controls="clr-namespace:Magellan.Controls" xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework">
+    xmlns:Controls="clr-namespace:Magellan.Controls" xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework" x:Class="Magellan.Themes.d__code_magellan_gc_trunk_src_magellan_themes_generic_xaml">
 
     <Style TargetType="Controls:Layout">
         <Setter Property="Focusable" Value="False" />

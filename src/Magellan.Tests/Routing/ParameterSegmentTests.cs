@@ -1,4 +1,5 @@
-﻿using Magellan.Routing;
+﻿using Magellan.Exceptions;
+using Magellan.Routing;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 

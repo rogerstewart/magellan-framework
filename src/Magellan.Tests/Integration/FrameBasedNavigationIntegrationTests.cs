@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Magellan.Events;
 using Magellan;
+using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Progress;
 using Magellan.Routing;
