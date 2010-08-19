@@ -8,7 +8,7 @@ namespace Magellan.Routing
     /// <summary>
     /// The default implementation of <see cref="IRoute"/>. Most of the details of this class are delegated 
     /// to types such as <see cref="IRouteParser"/> (the default being <see cref="RouteParser"/>) and 
-    /// <see cref="IRouteValidator"/> (defaulting to <see cref="DefaultRouteValidator"/>).
+    /// <see cref="IRouteValidator"/> (defaulting to <see cref="RouteValidator"/>).
     /// </summary>
     public class Route : IRoute
     {
@@ -86,7 +86,7 @@ namespace Magellan.Routing
             _pathSpecification = routeSpecification ?? string.Empty;
             _routeHandler = routeHandler;
 
-            _validator = validator ?? new DefaultRouteValidator();
+            _validator = validator ?? new RouteValidator();
             _defaults = defaults ?? new RouteValueDictionary();
             _constraints = constraints ?? new RouteValueDictionary();
             

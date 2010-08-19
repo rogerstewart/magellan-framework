@@ -222,7 +222,7 @@
     <Compile Include="Routing\CatchAllParameterSegmentRecognizer.cs" />
     <Compile Include="Framework\ControllerRouteHandler.cs" />
     <Compile Include="Framework\ControllerRouteValidator.cs" />
-    <Compile Include="Routing\DefaultRouteValidator.cs" />
+    <Compile Include="Routing\RouteValidator.cs" />
     <Compile Include="Exceptions\InvalidRouteException.cs" />
     <Compile Include="Routing\IRoute.cs" />
     <Compile Include="Routing\IRouteConstraint.cs" />

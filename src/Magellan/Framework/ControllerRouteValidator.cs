@@ -6,32 +6,35 @@ namespace Magellan.Framework
     /// <summary>
     /// A validator for Magellan's MVC routes (<see cref="ControllerRouteHandler"/>).
     /// </summary>
-    public class ControllerRouteValidator : DefaultRouteValidator
+    public class ControllerRouteValidator : RouteValidator
     {
         /// <summary>
-        /// Validates the specified route, producing a <see cref="RouteValidationResult"/> indicating
-        /// what the error (if any) was.
+        /// Initializes a new instance of the <see cref="ControllerRouteValidator"/> class.
         /// </summary>
-        /// <param name="route">The route to validate.</param>
-        /// <returns>
-        /// An object indicating the success of the validation attempt, and details about any error
-        /// encountered.
-        /// </returns>
-        public override RouteValidationResult Validate(ParsedRoute route)
+        public ControllerRouteValidator()
         {
-            var result = base.Validate(route);
-            if (!result.Success)
-                return result;
+            Rules.Add(MustHaveControllerSegment);
+            Rules.Add(MustHaveActionSegment);
+        }
 
-            var hasController = route.Segments.OfType<ParameterSegment>().Any(x => x.ParameterName == "controller")
-                                || route.Defaults.GetOrDefault<object>("controller") != null;
-            var hasAction = route.Segments.OfType<ParameterSegment>().Any(x => x.ParameterName == "action")
-                            || route.Defaults.GetOrDefault<object>("action") != null;
+        private static RouteValidationResult MustHaveControllerSegment(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
+        {
+            var hasController = segments.OfType<ParameterSegment>().Any(x => x.ParameterName == "controller")
+                                || defaults.GetOrDefault<object>("controller") != null;
+         
+            return hasController 
+                ? RouteValidationResult.Successful()
+                : RouteValidationResult.Failure("The route does not contain a '{controller}' segment, and no default controller was provided.");
+        }
 
-            if (!hasController) return RouteValidationResult.Failure("The route does not contain a '{controller}' segment, and no default controller was provided.");
-            if (!hasAction) return RouteValidationResult.Failure("The route does not contain an '{action}' segment, and no default action was provided.");
-
-            return RouteValidationResult.Successful();
+        private static RouteValidationResult MustHaveActionSegment(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
+        {
+            var hasController = segments.OfType<ParameterSegment>().Any(x => x.ParameterName == "action")
+                                || defaults.GetOrDefault<object>("action") != null;
+         
+            return hasController 
+                ? RouteValidationResult.Successful()
+                : RouteValidationResult.Failure("The route does not contain an '{action}' segment, and no default action was provided.");
         }
     }
 }

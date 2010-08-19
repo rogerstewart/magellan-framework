@@ -8,15 +8,15 @@ namespace Magellan.Routing
     /// The default implementation of <see cref="IRouteValidator"/>, which enforces the invariant 
     /// expectations that apply to route specifications. 
     /// </summary>
-    public class DefaultRouteValidator : IRouteValidator
+    public class RouteValidator : IRouteValidator
     {
-        private readonly List<Func<Segment[], RouteValidationResult>> _rules = new List<Func<Segment[], RouteValidationResult>>();
+        private readonly List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>> _rules = new List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>>();
         private readonly HashSet<Type> _supportedSegmentTypes = new HashSet<Type>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultRouteValidator"/> class.
+        /// Initializes a new instance of the <see cref="RouteValidator"/> class.
         /// </summary>
-        public DefaultRouteValidator()
+        public RouteValidator()
         {
             Rules.Add(EnsureNoUnrecognizableSegments);
             Rules.Add(EnsureNoMoreThanOneCatchAllSegment);
@@ -40,7 +40,7 @@ namespace Magellan.Routing
         /// Gets the rules that apply to this route.
         /// </summary>
         /// <value>The rules.</value>
-        protected List<Func<Segment[], RouteValidationResult>> Rules
+        protected List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>> Rules
         {
             get { return _rules; }
         }
@@ -62,20 +62,20 @@ namespace Magellan.Routing
                 return RouteValidationResult.Successful();
             }
 
-            return Rules.Select(rule => rule(segments))
+            return Rules.Select(rule => rule(segments, route.Defaults, route.Constraints))
                 .FirstOrDefault(x => !x.Success) 
                 ?? RouteValidationResult.Successful();
         }
 
-        private RouteValidationResult EnsureNoUnrecognizableSegments(Segment[] segments)
+        private RouteValidationResult EnsureNoUnrecognizableSegments(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
             var unrecognized = segments.Where(x => SupportedSegmentTypes.Contains(x.GetType()) == false).ToList();
             return unrecognized.Count > 0 
-                ? RouteValidationResult.Failure(string.Format("Unrecognized segment types were found. If using a custom segment type, please replace the IRouteValidityChecker to enforce your own route validation rules. Unrecognized types: {0}", string.Join(", ", unrecognized.Select(x => "'" + x.GetType().Name + "'").ToArray()))) 
+                ? RouteValidationResult.Failure(string.Format("Unrecognized segment types were found. If using a custom segment type, please replace the IRouteValidator to enforce your own route validation rules. Unrecognized types: {0}", string.Join(", ", unrecognized.Select(x => "'" + x.GetType().Name + "'").ToArray()))) 
                 : RouteValidationResult.Successful();
         }
 
-        private static RouteValidationResult EnsureNoMoreThanOneCatchAllSegment(Segment[] segments)
+        private static RouteValidationResult EnsureNoMoreThanOneCatchAllSegment(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
             var catchAll = segments.OfType<CatchAllParameterSegment>().ToList();
             return catchAll.Count > 1 
@@ -83,7 +83,7 @@ namespace Magellan.Routing
                 : RouteValidationResult.Successful();
         }
 
-        private static RouteValidationResult EnsureCatchAllOnlyAppearAtEnd(Segment[] segments)
+        private static RouteValidationResult EnsureCatchAllOnlyAppearAtEnd(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
             var catchAll = segments.OfType<CatchAllParameterSegment>().ToList();
             return catchAll.Count == 1 && segments.Last() != catchAll.Single()
@@ -91,7 +91,7 @@ namespace Magellan.Routing
                 : RouteValidationResult.Successful();
         }
 
-        private static RouteValidationResult EnsureParameterNamesAreUnique(Segment[] segments)
+        private static RouteValidationResult EnsureParameterNamesAreUnique(Segment[] segments, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
             var parameterSegments = segments.OfType<ParameterSegment>().Select(x => x.ParameterName);
             var catchAllSegments = segments.OfType<CatchAllParameterSegment>().Select(x => x.ParameterName);

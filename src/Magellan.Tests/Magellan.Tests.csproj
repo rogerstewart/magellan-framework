@@ -156,6 +156,7 @@
     <Compile Include="NavigatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\SignInfo.cs" />
+    <Compile Include="Routing\CatchAllParameterSegmentTests.cs" />
     <Compile Include="Routing\LiteralSegmentRecognizerTests.cs" />
     <Compile Include="Routing\LiteralSegmentTests.cs" />
     <Compile Include="Routing\ParameterSegmentRecognizerTests.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Routing\PathSplitterTests.cs" />
     <Compile Include="Routing\RegexConstraintTests.cs" />
     <Compile Include="Routing\RouteTests.cs" />
+    <Compile Include="Routing\RouteValidatorTests.cs" />
     <Compile Include="Routing\RoutingBehavior.cs" />
     <Compile Include="Utilities\GuardTests.cs" />
     <Compile Include="Utilities\PropertyValueListerTests.cs" />

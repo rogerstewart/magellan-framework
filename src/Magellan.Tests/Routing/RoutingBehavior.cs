@@ -156,7 +156,7 @@ namespace Magellan.Tests.Routing
         {
             Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{id}/{id}"));        // Same parameter name used
             Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{ID}/{*id}"));
-            Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{*Foo}/{*foo}"));    
+            Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{*Foo}/{*foo}"));
             Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{*foo}/{*bar}"));    // Multiple catch-all's
             Assert.Throws<InvalidRouteException>(() => Routes.Register("blog/{*path}/hello"));    // Catch-all not at end of path
             Assert.Throws<InvalidRouteException>(() => Routes.Register("{sddsds/foosdd}"));       // Nonsense path
