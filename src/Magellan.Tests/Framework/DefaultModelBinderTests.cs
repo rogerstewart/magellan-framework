@@ -1,6 +1,6 @@
 ﻿using System;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Routing;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Magellan.Views;
 using Moq;

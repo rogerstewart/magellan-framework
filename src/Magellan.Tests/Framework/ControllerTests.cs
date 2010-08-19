@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;
 using System.Data;
@@ -26,7 +26,7 @@ namespace Magellan.Tests.Framework
 
             public DelegatingController(string controllerName, string actionName)
             {
-                ControllerContext = new ControllerContext(this, RequestBuilder.CreateRequest(controllerName, actionName, null).BuildRequest(), Mvc.ViewEngines.CreateDefaults());
+                ControllerContext = new ControllerContext(this, RequestBuilder.CreateRequest(controllerName, actionName, null).BuildRequest(), Magellan.Framework.ViewEngines.CreateDefaults());
             }
 
             public TResult Call<TResult>(string methodName, params object[] args)

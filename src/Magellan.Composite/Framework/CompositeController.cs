@@ -1,5 +1,5 @@
 ﻿using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 
 namespace Magellan.Composite.Framework
 {

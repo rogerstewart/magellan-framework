@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

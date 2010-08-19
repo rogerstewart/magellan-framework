@@ -1,6 +1,6 @@
 ﻿using System;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Magellan.Tests.Helpers.TypeGeneration;
 using NUnit.Framework;

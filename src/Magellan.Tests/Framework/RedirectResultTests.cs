@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Routing;
 using Moq;
 using NUnit.Framework;

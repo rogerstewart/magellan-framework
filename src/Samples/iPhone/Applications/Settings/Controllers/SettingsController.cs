@@ -1,5 +1,5 @@
-﻿using Magellan.Mvc;
-using iPhone.Infrastructure.Filters;
+﻿using iPhone.Infrastructure.Filters;
+using Magellan.Framework;
 
 namespace iPhone.Applications.Settings.Controllers
 {

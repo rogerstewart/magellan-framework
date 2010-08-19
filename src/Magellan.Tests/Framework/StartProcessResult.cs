@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;
 

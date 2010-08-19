@@ -1,6 +1,6 @@
 ﻿using System;
-using Magellan.Mvc;
 using System.Threading;
+using Magellan.Framework;
 
 namespace iPhone.Infrastructure.Filters
 {

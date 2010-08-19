@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 
 namespace Magellan.Composite.Framework
 {

@@ -1,4 +1,4 @@
-﻿using Magellan.Mvc;
+﻿using Magellan.Framework;
 
 namespace iPhone.Applications.Home.Controllers
 {

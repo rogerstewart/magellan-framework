@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
 using Magellan;
-using Magellan.Mvc;
 
 namespace iPhone.Applications.Phone.Views
 {

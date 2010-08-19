@@ -1,5 +1,5 @@
 ﻿using System;
-using Magellan.Mvc;
+using Magellan.Framework;
 
 namespace iPhone.Infrastructure.Filters
 {

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Wizard.Controllers;
 
 namespace Wizard

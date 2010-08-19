@@ -1,5 +1,5 @@
 ﻿using iPhone.Infrastructure.Filters;
-using Magellan.Mvc;
+using Magellan.Framework;
 
 namespace iPhone.Applications.Mail.Controllers
 {

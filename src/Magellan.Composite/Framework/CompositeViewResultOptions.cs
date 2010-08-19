@@ -1,5 +1,5 @@
 ﻿using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Microsoft.Practices.Composite.Regions;
 
 namespace Magellan.Composite.Framework

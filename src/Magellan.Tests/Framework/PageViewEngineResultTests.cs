@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Magellan.Abstractions;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Routing;
 using Magellan.Views;
 using Moq;

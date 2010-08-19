@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Magellan;
-using Magellan.Mvvm;
+using Magellan.Framework;
 using Sample.Features.Details;
 using Sample.Features.Details.ServiceProxies;
 using Sample.Features.Search;

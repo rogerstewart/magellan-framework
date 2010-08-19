@@ -1,5 +1,5 @@
 ﻿using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Routing;
 using Magellan.Utilities;
 
@@ -34,8 +34,8 @@ namespace Magellan
         {
             Guard.ArgumentNotNull(controllerFactory, "controllerFactory");
             _controllerFactory = controllerFactory;
-            _viewEngines = Mvc.ViewEngines.CreateDefaults(viewActivator);
-            _modelBinders = Mvc.ModelBinders.CreateDefaults();
+            _viewEngines = Framework.ViewEngines.CreateDefaults(viewActivator);
+            _modelBinders = Framework.ModelBinders.CreateDefaults();
             _handler = new ControllerRouteHandler(_controllerFactory, _viewEngines, _modelBinders);
         }
 

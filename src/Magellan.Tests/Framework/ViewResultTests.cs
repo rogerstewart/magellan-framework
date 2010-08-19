@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Moq;
 using NUnit.Framework;

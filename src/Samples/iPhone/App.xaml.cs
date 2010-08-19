@@ -7,7 +7,7 @@ using iPhone.Applications.Phone.Controllers;
 using iPhone.Applications.Phone.Repositories.InMemory;
 using iPhone.Applications.Settings.Controllers;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Transitionals;
 using Magellan.Transitionals.Transitions;
 

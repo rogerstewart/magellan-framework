@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Magellan;
-using Magellan.Mvvm;
+using Magellan.Framework;
 using Sample.Features.Search.Model;
 using Sample.Features.Search.ServiceProxies;
 

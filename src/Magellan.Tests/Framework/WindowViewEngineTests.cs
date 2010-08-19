@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

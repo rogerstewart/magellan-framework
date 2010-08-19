@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Moq;
 using NUnit.Framework;
 using System.ComponentModel;

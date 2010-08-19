@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Magellan.Abstractions;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Magellan.Progress;
 using Magellan.Routing;
 using Moq;

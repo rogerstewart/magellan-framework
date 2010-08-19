@@ -1,4 +1,4 @@
-﻿using Magellan.Mvvm;
+﻿using Magellan.Framework;
 using Sample.Features.Details.Model;
 using Sample.Features.Details.ServiceProxies;
 

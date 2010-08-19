@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 
 namespace Magellan.Tests.Helpers.TypeGeneration
 {

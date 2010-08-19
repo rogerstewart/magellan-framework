@@ -1,4 +1,4 @@
-﻿using Magellan.Mvvm;
+﻿using Magellan.Framework;
 using Magellan.Routing;
 using Magellan.Utilities;
 

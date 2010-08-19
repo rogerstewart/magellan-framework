@@ -1,6 +1,6 @@
 ﻿using System;
 using Magellan;
-using Magellan.Mvc;
+using Magellan.Framework;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Magellan.Composite.Framework
