@@ -10,9 +10,9 @@ namespace Magellan
     /// </summary>
     public class ViewModelRouteCatalog : RouteCatalog
     {
-        private readonly IRouteValidator _validator = new ViewModelRouteValidator();
         private readonly IRouteHandler _handler;
-
+        private IRouteValidator _validator;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelRouteCatalog"/> class.
         /// </summary>
@@ -21,6 +21,17 @@ namespace Magellan
         {
             Guard.ArgumentNotNull(factory, "factory");
             _handler = new ViewModelRouteHandler(factory);
+        }
+
+        /// <summary>
+        /// Gets or sets the validator to use when validating routes. By default uses the 
+        /// <see cref="ViewModelRouteValidator"/>.
+        /// </summary>
+        /// <value>The validator.</value>
+        public IRouteValidator Validator
+        {
+            get { return _validator = _validator ?? new ViewModelRouteValidator(); }
+            set { _validator = value; }
         }
 
         /// <summary>

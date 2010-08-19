@@ -14,15 +14,7 @@ namespace Magellan.Framework
         /// Initializes a new instance of the <see cref="ControllerFactoryResult"/> class.
         /// </summary>
         /// <param name="controller">The controller.</param>
-        public ControllerFactoryResult(IController controller) : this(controller, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ControllerFactoryResult"/> class.
-        /// </summary>
-        /// <param name="controller">The controller.</param>
-        /// <param name="releaseCallback">The cleanup callback.</param>
+        /// <param name="releaseCallback">The cleanup callback. Can be null to do nothing.</param>
         public ControllerFactoryResult(IController controller, Action releaseCallback)
         {
             _releaseCallback = releaseCallback;

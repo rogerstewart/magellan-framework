@@ -15,7 +15,7 @@ namespace Magellan
         private readonly ViewEngineCollection _viewEngines;
         private readonly ModelBinderDictionary _modelBinders;
         private readonly ControllerRouteHandler _handler;
-        private readonly IRouteValidator _validator = new ControllerRouteValidator();
+        private IRouteValidator _validator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerRouteCatalog"/> class.
@@ -37,6 +37,17 @@ namespace Magellan
             _viewEngines = Framework.ViewEngines.CreateDefaults(viewActivator);
             _modelBinders = Framework.ModelBinders.CreateDefaults();
             _handler = new ControllerRouteHandler(_controllerFactory, _viewEngines, _modelBinders);
+        }
+
+        /// <summary>
+        /// Gets or sets the validator to use when validating routes. By default uses the 
+        /// <see cref="ControllerRouteValidator"/>.
+        /// </summary>
+        /// <value>The validator.</value>
+        public IRouteValidator Validator
+        {
+            get { return _validator = _validator ?? new ControllerRouteValidator(); }
+            set { _validator = value; }
         }
 
         /// <summary>
@@ -123,7 +134,7 @@ namespace Magellan
         /// </returns>
         public ControllerRouteCatalog MapRoute(string routeSpecification, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
-            Add(new Route(routeSpecification, () => _handler, defaults, constraints, _validator));
+            Add(new Route(routeSpecification, () => _handler, defaults, constraints, Validator));
             return this;
         }
     }

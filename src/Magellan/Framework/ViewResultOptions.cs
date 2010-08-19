@@ -19,14 +19,6 @@ namespace Magellan.Framework
         /// Initializes a new instance of the <see cref="ViewResultOptions"/> class.
         /// </summary>
         /// <param name="items">The items.</param>
-        public ViewResultOptions(IDictionary items) : base(items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ViewResultOptions"/> class.
-        /// </summary>
-        /// <param name="items">The items.</param>
         public ViewResultOptions(object items) : base(items)
         {
         }

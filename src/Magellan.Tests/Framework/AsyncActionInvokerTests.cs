@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Threading;
 using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;
-using NUnit.Framework;
-using Magellan;
 using Magellan.Tests.Helpers.TypeGeneration;
-using System.Threading;
+using NUnit.Framework;
 
 namespace Magellan.Tests.Framework
 {
