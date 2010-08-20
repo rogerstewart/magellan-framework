@@ -34,7 +34,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +69,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -103,6 +104,7 @@
     <Compile Include="ComponentModel\EnumDisplayName.cs" />
     <Compile Include="ControllerRouteCatalog.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
+    <Compile Include="Controls\TextBoxBehavior.cs" />
     <Compile Include="Events\BeginRequestNavigationEvent.cs" />
     <Compile Include="Events\CompleteNavigationEvent.cs" />
     <Compile Include="Events\ExecutingActionNavigationEvent.cs" />
@@ -128,7 +130,7 @@
     <Compile Include="Controls\Conventions\FieldContext.cs" />
     <Compile Include="Controls\Field.cs" />
     <Compile Include="Controls\Conventions\FieldInferenceRule.cs" />
-    <Compile Include="Controls\Conventions\DefaultFieldConvention.cs" />
+    <Compile Include="Controls\Conventions\FieldConvention.cs" />
     <Compile Include="Controls\Conventions\FieldInferrer.cs" />
     <Compile Include="Controls\Form.cs" />
     <Compile Include="Controls\Layout.cs" />

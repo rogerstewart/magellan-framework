@@ -18,7 +18,6 @@
         </Setter>
     </Style>
 
-
     <Style TargetType="{x:Type  Controls:Field}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Header" Value="{Binding RelativeSource={RelativeSource Self}, Path=InferredHeader}" />
@@ -52,7 +51,7 @@
                                         Margin="0" Padding="0" 
                                         Target="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                                         >
-                                        <ContentPresenter Content="{TemplateBinding Property=Header}" />
+                                        <ContentPresenter Content="{TemplateBinding Property=Header}" ContentStringFormat="{}{0}:" />
                                     </Label>
                                 </StackPanel>
                             </Border>
@@ -96,6 +95,12 @@
                         </MultiTrigger>
                         <Trigger Property="IsRequired" Value="True">
                             <Setter TargetName="PART_FieldNameLabel" Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                        <Trigger Property="Header" Value="">
+                            <Setter TargetName="PART_FieldNameLabel" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Header" Value="{x:Null}">
+                            <Setter TargetName="PART_FieldNameLabel" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
 

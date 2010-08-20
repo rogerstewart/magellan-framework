@@ -25,7 +25,7 @@ namespace Magellan.Controls.Conventions
             var editorBinding = binding.Clone();
 
             var fieldBuilder = Form.GetFieldBuilder(field)
-                               ?? new DefaultFieldConvention(EditorStrategies.Strategies);
+                               ?? new FieldConvention(EditorStrategies.Strategies);
             
             binding.ValidationRules.Add(new FieldInferenceRule(field, fieldBuilder, editorBinding));
         }

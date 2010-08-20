@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using Magellan.Controls.Conventions.Editors;
 
@@ -80,6 +82,15 @@ namespace Magellan.Controls.Conventions
         public PropertyDescriptor PropertyDescriptor
         {
             get { return _propertyDescriptor; }
+        }
+
+        public void WhenHasAttribute<TAttribute>(Action<TAttribute> hasAttributeCallback) where TAttribute : Attribute
+        {
+            var attributes = _propertyDescriptor.Attributes.OfType<TAttribute>().ToList();
+            foreach (var att in attributes)
+            {
+                hasAttributeCallback(att);
+            }
         }
     }
 }

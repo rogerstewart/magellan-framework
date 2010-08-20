@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Magellan.Controls.Conventions.Editors
@@ -22,6 +23,8 @@ namespace Magellan.Controls.Conventions.Editors
         public object CreateEditor(FieldContext context)
         {
             var textBox = new TextBox { Width = 200 };
+            context.WhenHasAttribute<StringLengthAttribute>(sl => textBox.MaxLength = sl.MaximumLength);
+
             BindingOperations.SetBinding(textBox, TextBox.TextProperty, context.Binding);
             return textBox;
         }
