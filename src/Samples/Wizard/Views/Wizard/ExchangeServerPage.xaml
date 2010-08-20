@@ -6,6 +6,7 @@
     x:Class="Wizard.Views.Wizard.ExchangeServerPage" 
     Title="Exchange Server Settings"
     mc:Ignorable="d" d:DesignWidth="538.038" d:DesignHeight="292.604"
+    TextOptions.TextFormattingMode="Display"
     >
     <Layout>
         <Zone ZonePlaceHolderName="Content">

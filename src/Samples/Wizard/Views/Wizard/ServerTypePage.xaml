@@ -6,6 +6,7 @@
     x:Class="Wizard.Views.Wizard.ServerTypePage" 
     Title="Select Server Type"
     mc:Ignorable="d" d:DesignWidth="576.264" d:DesignHeight="309.663"
+    TextOptions.TextFormattingMode="Display"
     >
     <Layout>
         <Zone ZonePlaceHolderName="Content">

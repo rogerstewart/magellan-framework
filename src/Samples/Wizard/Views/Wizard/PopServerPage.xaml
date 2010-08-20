@@ -6,6 +6,7 @@
     x:Class="Wizard.Views.Wizard.PopServerPage" 
     Title="POP Settings"
     mc:Ignorable="d" d:DesignWidth="497.283" d:DesignHeight="226.491"
+    TextOptions.TextFormattingMode="Display"
     >
     <Layout>
         <Zone ZonePlaceHolderName="Content">

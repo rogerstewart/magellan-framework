@@ -6,6 +6,7 @@
     x:Class="Wizard.Views.Wizard.WelcomePage" 
     Title="Welcome"
     mc:Ignorable="d" d:DesignWidth="612.302" d:DesignHeight="305.283"
+    TextOptions.TextFormattingMode="Display"
     >
     <Layout>
         <Zone ZonePlaceHolderName="Content">
