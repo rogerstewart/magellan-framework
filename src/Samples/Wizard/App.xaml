@@ -2,7 +2,7 @@
     x:Class="Wizard.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:magellan="http://xamlforge.com/magellan" xmlns:Controls="clr-namespace:Wizard.Controls"
+    xmlns:Controls="clr-namespace:Wizard.Controls"
     >
     <Application.Resources>
         <ResourceDictionary>
@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="/Reuxables;Component/Paper.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="magellan:Layout">
+            <Style TargetType="Layout">
                 <Setter Property="Source" Value="/Wizard;component/Views/Shared/Main.xaml" />
             </Style>
 
