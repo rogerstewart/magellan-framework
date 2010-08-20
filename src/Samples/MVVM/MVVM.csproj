@@ -124,7 +124,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Magellan\Magellan.csproj">
       <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>
-      <Name>Magellan %28Desktop\Magellan%29</Name>
+      <Name>Magellan</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

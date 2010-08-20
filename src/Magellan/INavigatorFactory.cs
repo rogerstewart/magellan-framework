@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Magellan.Abstractions;
@@ -48,7 +49,7 @@ namespace Magellan
         /// <returns>
         /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
         /// </returns>
-        INavigator GetOwningNavigator(Visual sourceElement);
+        INavigator GetOwningNavigator(UIElement sourceElement);
 
         /// <summary>
         /// Creates an <see cref="INavigator"/> bound to the specified frame. This method can 

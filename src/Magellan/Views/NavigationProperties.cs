@@ -7,11 +7,19 @@ namespace Magellan.Views
     /// </summary>
     public static class NavigationProperties
     {
+#if SILVERLIGHT
+        /// <summary>
+        /// A dependency property for storing the <see cref="INavigator"/> associated with a UI element. This 
+        /// property is marked for inheritance.
+        /// </summary>
+        public static readonly DependencyProperty NavigatorProperty = DependencyProperty.RegisterAttached("Navigator", typeof(INavigator), typeof(NavigationProperties), new PropertyMetadata(null));
+#else
         /// <summary>
         /// A dependency property for storing the <see cref="INavigator"/> associated with a UI element. This 
         /// property is marked for inheritance.
         /// </summary>
         public static readonly DependencyProperty NavigatorProperty = DependencyProperty.RegisterAttached("Navigator", typeof(INavigator), typeof(NavigationProperties), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+#endif
 
         /// <summary>
         /// Gets the navigator.

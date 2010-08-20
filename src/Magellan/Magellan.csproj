@@ -184,7 +184,7 @@
     <Compile Include="Framework\IViewModelFactory.cs" />
     <Compile Include="Framework\PresentationObject.cs" />
     <Compile Include="Framework\ViewModelFactoryResult.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Framework\RelayCommand.cs" />
     <Compile Include="Framework\ResultExecutedContext.cs" />
     <Compile Include="Framework\ResultExecutingContext.cs" />
     <Compile Include="Framework\StartProcessResult.cs" />

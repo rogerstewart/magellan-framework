@@ -32,10 +32,15 @@ namespace Magellan.Controls
             
         }
 
-        public bool NavigateTo(object content)
+        public bool NavigateDirectToContent(object content)
         {
             Content = content;
             return true;
+        }
+
+        public bool NavigateDirectToContent(object content, object customState)
+        {
+            return NavigateDirectToContent(content);
         }
 
         IDispatcher INavigationService.Dispatcher

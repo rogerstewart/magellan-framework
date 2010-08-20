@@ -6,6 +6,8 @@ using System.Threading;
 
 namespace Magellan.Abstractions
 {
+    public delegate void Action();
+
     /// <summary>
     /// This dispatcher is used at runtime by both Windows Forms and WPF. The WPF Dispatcher 
     /// class works within Windows Forms, so this appears to be safe.

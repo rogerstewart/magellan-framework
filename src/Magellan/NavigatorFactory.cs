@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -163,7 +164,7 @@ namespace Magellan
         /// <returns>
         /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
         /// </returns>
-        public INavigator GetOwningNavigator(Visual sourceElement)
+        public INavigator GetOwningNavigator(UIElement sourceElement)
         {
             Guard.ArgumentNotNull(sourceElement, "sourceElement");
 

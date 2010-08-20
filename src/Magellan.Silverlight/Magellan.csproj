@@ -76,316 +76,412 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Desktop\Magellan\Abstractions\IDispatcher.cs">
+    <Compile Include="..\Magellan\Abstractions\IDispatcher.cs">
       <Link>Abstractions\IDispatcher.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Diagnostics\TraceExtensions.cs">
+    <Compile Include="..\Magellan\ComponentModel\EnumDisplayName.cs">
+      <Link>ComponentModel\EnumDisplayName.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\ComponentModel\Set.cs">
+      <Link>ComponentModel\Set.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\ComponentModel\SetDebuggerView.cs">
+      <Link>ComponentModel\SetDebuggerView.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\ComponentModel\ValueDictionary.cs">
+      <Link>ComponentModel\ValueDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\ControllerRouteCatalog.cs">
+      <Link>ControllerRouteCatalog.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Diagnostics\TraceExtensions.cs">
       <Link>Diagnostics\TraceExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Diagnostics\TraceSources.cs">
+    <Compile Include="..\Magellan\Diagnostics\TraceSources.cs">
       <Link>Diagnostics\TraceSources.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ActionExecutedContext.cs">
+    <Compile Include="..\Magellan\Events\BeginRequestNavigationEvent.cs">
+      <Link>Events\BeginRequestNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\CompleteNavigationEvent.cs">
+      <Link>Events\CompleteNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\ExecutingActionNavigationEvent.cs">
+      <Link>Events\ExecutingActionNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\ExecutingResultNavigationEvent.cs">
+      <Link>Events\ExecutingResultNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\INavigationEvent.cs">
+      <Link>Events\INavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\NavigationStage.cs">
+      <Link>Events\NavigationStage.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\PostActionFiltersNavigationEvent.cs">
+      <Link>Events\PostActionFiltersNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\PostResultFiltersNavigationEvent.cs">
+      <Link>Events\PostResultFiltersNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\PreActionFiltersNavigationEvent.cs">
+      <Link>Events\PreActionFiltersNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\PreResultFiltersNavigationEvent.cs">
+      <Link>Events\PreResultFiltersNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\ResolvingActionNavigationEvent.cs">
+      <Link>Events\ResolvingActionNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\ResolvingControllerNavigationEvent.cs">
+      <Link>Events\ResolvingControllerNavigationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Events\RoutingEvents.cs">
+      <Link>Events\RoutingEvents.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\ActionNotFoundException.cs">
+      <Link>Exceptions\ActionNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\AsyncControllerExecutionException.cs">
+      <Link>Exceptions\AsyncControllerExecutionException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\ImpossibleNavigationRequestException.cs">
+      <Link>Exceptions\ImpossibleNavigationRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\InvalidRouteException.cs">
+      <Link>Exceptions\InvalidRouteException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\NavigationConfigurationException.cs">
+      <Link>Exceptions\NavigationConfigurationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\NavigationException.cs">
+      <Link>Exceptions\NavigationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\UnroutableRequestException.cs">
+      <Link>Exceptions\UnroutableRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\UnsupportedConstraintException.cs">
+      <Link>Exceptions\UnsupportedConstraintException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Exceptions\ViewNotFoundException.cs">
+      <Link>Exceptions\ViewNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ActionExecutedContext.cs">
       <Link>Framework\ActionExecutedContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ActionExecutingContext.cs">
+    <Compile Include="..\Magellan\Framework\ActionExecutingContext.cs">
       <Link>Framework\ActionExecutingContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ActionInvoker.cs">
+    <Compile Include="..\Magellan\Framework\ActionInvoker.cs">
       <Link>Framework\ActionInvoker.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ActionNotFoundException.cs">
-      <Link>Framework\ActionNotFoundException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ActionResult.cs">
+    <Compile Include="..\Magellan\Framework\ActionResult.cs">
       <Link>Framework\ActionResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\AsyncActionInvoker.cs">
+    <Compile Include="..\Magellan\Framework\AsyncActionInvoker.cs">
       <Link>Framework\AsyncActionInvoker.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\AsyncController.cs">
+    <Compile Include="..\Magellan\Framework\AsyncController.cs">
       <Link>Framework\AsyncController.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\AsyncControllerFactory.cs">
+    <Compile Include="..\Magellan\Framework\AsyncControllerFactory.cs">
       <Link>Framework\AsyncControllerFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\CancelResult.cs">
-      <Link>Framework\CancelResult.cs</Link>
+    <Compile Include="..\Magellan\Framework\BusyState.cs">
+      <Link>Framework\BusyState.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ControllerBase.cs">
+    <Compile Include="..\Magellan\Framework\CommonViewResultOptions.cs">
+      <Link>Framework\CommonViewResultOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ControllerBase.cs">
       <Link>Framework\ControllerBase.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ControllerBuilder.cs">
-      <Link>Framework\ControllerBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ControllerContext.cs">
+    <Compile Include="..\Magellan\Framework\ControllerContext.cs">
       <Link>Framework\ControllerContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ControllerFactory.cs">
+    <Compile Include="..\Magellan\Framework\ControllerFactory.cs">
       <Link>Framework\ControllerFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ControllerFactoryResult.cs">
+    <Compile Include="..\Magellan\Framework\ControllerFactoryResult.cs">
       <Link>Framework\ControllerFactoryResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\DefaultActionInvoker.cs">
+    <Compile Include="..\Magellan\Framework\ControllerRouteHandler.cs">
+      <Link>Framework\ControllerRouteHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ControllerRouteValidator.cs">
+      <Link>Framework\ControllerRouteValidator.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\DefaultActionInvoker.cs">
       <Link>Framework\DefaultActionInvoker.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\DefaultViewActivator.cs">
+    <Compile Include="..\Magellan\Framework\DefaultViewActivator.cs">
       <Link>Framework\DefaultViewActivator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\DefaultViewNamespaceConvention.cs">
+    <Compile Include="..\Magellan\Framework\DefaultViewNamespaceConvention.cs">
       <Link>Framework\DefaultViewNamespaceConvention.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\DefaultViewNamingConventions.cs">
-      <Link>Framework\DefaultViewNamingConventions.cs</Link>
+    <Compile Include="..\Magellan\Framework\DefaultViewNamingConvention.cs">
+      <Link>Framework\DefaultViewNamingConvention.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\DelegateActionDescriptor.cs">
+    <Compile Include="..\Magellan\Framework\DelegateActionDescriptor.cs">
       <Link>Framework\DelegateActionDescriptor.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\FrameworkElementViewEngineResult.cs">
+    <Compile Include="..\Magellan\Framework\DialogResult.cs">
+      <Link>Framework\DialogResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\DoNothingResult.cs">
+      <Link>Framework\DoNothingResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\FrameworkElementViewEngineResult.cs">
       <Link>Framework\FrameworkElementViewEngineResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IActionDescriptor.cs">
+    <Compile Include="..\Magellan\Framework\IActionDescriptor.cs">
       <Link>Framework\IActionDescriptor.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IActionFilter.cs">
+    <Compile Include="..\Magellan\Framework\IActionFilter.cs">
       <Link>Framework\IActionFilter.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IActionInvoker.cs">
+    <Compile Include="..\Magellan\Framework\IActionInvoker.cs">
       <Link>Framework\IActionInvoker.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IController.cs">
+    <Compile Include="..\Magellan\Framework\IController.cs">
       <Link>Framework\IController.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IControllerFactory.cs">
+    <Compile Include="..\Magellan\Framework\IControllerFactory.cs">
       <Link>Framework\IControllerFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IModelBinder.cs">
+    <Compile Include="..\Magellan\Framework\IModelBinder.cs">
       <Link>Framework\IModelBinder.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ImpossibleNavigationRequestException.cs">
-      <Link>Framework\ImpossibleNavigationRequestException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\INavigationAware.cs">
-      <Link>Framework\INavigationAware.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\INavigationProgressListener.cs">
-      <Link>Framework\INavigationProgressListener.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IResultFilter.cs">
+    <Compile Include="..\Magellan\Framework\IResultFilter.cs">
       <Link>Framework\IResultFilter.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IViewActivator.cs">
+    <Compile Include="..\Magellan\Framework\IViewActivator.cs">
       <Link>Framework\IViewActivator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IViewEngine.cs">
+    <Compile Include="..\Magellan\Framework\IViewEngine.cs">
       <Link>Framework\IViewEngine.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IViewNamespaceConvention.cs">
+    <Compile Include="..\Magellan\Framework\IViewLifecycle.cs">
+      <Link>Framework\IViewLifecycle.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\IViewModelFactory.cs">
+      <Link>Framework\IViewModelFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\IViewNamespaceConvention.cs">
       <Link>Framework\IViewNamespaceConvention.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\IViewNamingConvention.cs">
+    <Compile Include="..\Magellan\Framework\IViewNamingConvention.cs">
       <Link>Framework\IViewNamingConvention.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ModelBinderDictionary.cs">
+    <Compile Include="..\Magellan\Framework\ModelBinderDictionary.cs">
       <Link>Framework\ModelBinderDictionary.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ModelBinders.cs">
+    <Compile Include="..\Magellan\Framework\ModelBinders.cs">
       <Link>Framework\ModelBinders.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ModelBindingContext.cs">
+    <Compile Include="..\Magellan\Framework\ModelBindingContext.cs">
       <Link>Framework\ModelBindingContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationConfigurationException.cs">
-      <Link>Framework\NavigationConfigurationException.cs</Link>
+    <Compile Include="..\Magellan\Framework\PresentationObject.cs">
+      <Link>Framework\PresentationObject.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationContext.cs">
-      <Link>Framework\NavigationContext.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationException.cs">
-      <Link>Framework\NavigationException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationProgress.cs">
-      <Link>Framework\NavigationProgress.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationProgressListenerCollection.cs">
-      <Link>Framework\NavigationProgressListenerCollection.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationRequest.cs">
-      <Link>Framework\NavigationRequest.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\NavigationStage.cs">
-      <Link>Framework\NavigationStage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ParameterValueDictionary.cs">
-      <Link>Framework\ParameterValueDictionary.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\RedirectResult.cs">
+    <Compile Include="..\Magellan\Framework\RedirectResult.cs">
       <Link>Framework\RedirectResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ReflectionBasedViewEngine.cs">
+    <Compile Include="..\Magellan\Framework\ReflectionBasedViewEngine.cs">
       <Link>Framework\ReflectionBasedViewEngine.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ResultExecutedContext.cs">
+    <Compile Include="..\Magellan\Framework\RelayCommand.cs">
+      <Link>Framework\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ResultExecutedContext.cs">
       <Link>Framework\ResultExecutedContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ResultExecutingContext.cs">
+    <Compile Include="..\Magellan\Framework\ResultExecutingContext.cs">
       <Link>Framework\ResultExecutingContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\Set.cs">
-      <Link>Framework\Set.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\UnhandledActionInvocationException.cs">
-      <Link>Framework\UnhandledActionInvocationException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\UnhandledActionResultException.cs">
-      <Link>Framework\UnhandledActionResultException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ValueDictionary.cs">
-      <Link>Framework\ValueDictionary.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ViewEngineCollection.cs">
+    <Compile Include="..\Magellan\Framework\ViewEngineCollection.cs">
       <Link>Framework\ViewEngineCollection.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ViewEngineResult.cs">
+    <Compile Include="..\Magellan\Framework\ViewEngineResult.cs">
       <Link>Framework\ViewEngineResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ViewNotFoundException.cs">
-      <Link>Framework\ViewNotFoundException.cs</Link>
+    <Compile Include="..\Magellan\Framework\ViewModel.cs">
+      <Link>Framework\ViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\ViewResult.cs">
+    <Compile Include="..\Magellan\Framework\ViewModelFactory.cs">
+      <Link>Framework\ViewModelFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ViewModelFactoryResult.cs">
+      <Link>Framework\ViewModelFactoryResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ViewModelRouteHandler.cs">
+      <Link>Framework\ViewModelRouteHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ViewModelRouteValidator.cs">
+      <Link>Framework\ViewModelRouteValidator.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Framework\ViewResult.cs">
       <Link>Framework\ViewResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Framework\WellKnownParameters.cs">
-      <Link>Framework\WellKnownParameters.cs</Link>
+    <Compile Include="..\Magellan\Framework\ViewResultOptions.cs">
+      <Link>Framework\ViewResultOptions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\INavigator.cs">
+    <Compile Include="..\Magellan\INavigationAware.cs">
+      <Link>INavigationAware.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\INavigator.cs">
       <Link>INavigator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\NavigatorExtensions.cs">
-      <Link>NavigatorExtensions.cs</Link>
+    <Compile Include="..\Magellan\INavigatorFactory.cs">
+      <Link>INavigatorFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\CatchAllParameterSegment.cs">
+    <Compile Include="..\Magellan\NavigationRequest.cs">
+      <Link>NavigationRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Progress\INavigationProgressListener.cs">
+      <Link>Progress\INavigationProgressListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Progress\NavigationProgressListenerCollection.cs">
+      <Link>Progress\NavigationProgressListenerCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Properties\SignInfo.cs">
+      <Link>Properties\SignInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\CatchAllParameterSegment.cs">
       <Link>Routing\CatchAllParameterSegment.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\CatchAllParameterSegmentRecognizer.cs">
+    <Compile Include="..\Magellan\Routing\CatchAllParameterSegmentRecognizer.cs">
       <Link>Routing\CatchAllParameterSegmentRecognizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\DefaultRouteValidator.cs">
-      <Link>Routing\DefaultRouteValidator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\InvalidRouteException.cs">
-      <Link>Routing\InvalidRouteException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\IRoute.cs">
+    <Compile Include="..\Magellan\Routing\IRoute.cs">
       <Link>Routing\IRoute.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\IRouteConstraint.cs">
+    <Compile Include="..\Magellan\Routing\IRouteConstraint.cs">
       <Link>Routing\IRouteConstraint.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\IRouteHandler.cs">
+    <Compile Include="..\Magellan\Routing\IRouteHandler.cs">
       <Link>Routing\IRouteHandler.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\IRouteParser.cs">
+    <Compile Include="..\Magellan\Routing\IRouteParser.cs">
       <Link>Routing\IRouteParser.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\IRouteValidator.cs">
+    <Compile Include="..\Magellan\Routing\IRouteResolver.cs">
+      <Link>Routing\IRouteResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\IRouteValidator.cs">
       <Link>Routing\IRouteValidator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\LiteralSegment.cs">
+    <Compile Include="..\Magellan\Routing\LiteralSegment.cs">
       <Link>Routing\LiteralSegment.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\LiteralSegmentRecognizer.cs">
+    <Compile Include="..\Magellan\Routing\LiteralSegmentRecognizer.cs">
       <Link>Routing\LiteralSegmentRecognizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\ParameterSegment.cs">
+    <Compile Include="..\Magellan\Routing\ParameterSegment.cs">
       <Link>Routing\ParameterSegment.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\ParameterSegmentRecognizer.cs">
+    <Compile Include="..\Magellan\Routing\ParameterSegmentRecognizer.cs">
       <Link>Routing\ParameterSegmentRecognizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\ParsedRoute.cs">
+    <Compile Include="..\Magellan\Routing\ParsedRoute.cs">
       <Link>Routing\ParsedRoute.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\PathIterator.cs">
+    <Compile Include="..\Magellan\Routing\PathIterator.cs">
       <Link>Routing\PathIterator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\PathMatch.cs">
+    <Compile Include="..\Magellan\Routing\PathMatch.cs">
       <Link>Routing\PathMatch.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\PathSplitter.cs">
+    <Compile Include="..\Magellan\Routing\PathSplitter.cs">
       <Link>Routing\PathSplitter.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RegexBasedSegmentRecognizer.cs">
+    <Compile Include="..\Magellan\Routing\QueryValueCollection.cs">
+      <Link>Routing\QueryValueCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\QueryValueCollectionDebuggerView.cs">
+      <Link>Routing\QueryValueCollectionDebuggerView.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\RegexBasedSegmentRecognizer.cs">
       <Link>Routing\RegexBasedSegmentRecognizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RegexConstraint.cs">
+    <Compile Include="..\Magellan\Routing\RegexConstraint.cs">
       <Link>Routing\RegexConstraint.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\Route.cs">
+    <Compile Include="..\Magellan\Routing\ResolvedNavigationRequest.cs">
+      <Link>Routing\ResolvedNavigationRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\Route.cs">
       <Link>Routing\Route.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteCollection.cs">
-      <Link>Routing\RouteCollection.cs</Link>
+    <Compile Include="..\Magellan\Routing\RouteCatalog.cs">
+      <Link>Routing\RouteCatalog.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteCollectionExtensions.cs">
-      <Link>Routing\RouteCollectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteMatch.cs">
+    <Compile Include="..\Magellan\Routing\RouteMatch.cs">
       <Link>Routing\RouteMatch.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteParser.cs">
+    <Compile Include="..\Magellan\Routing\RouteParser.cs">
       <Link>Routing\RouteParser.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteRequest.cs">
-      <Link>Routing\RouteRequest.cs</Link>
+    <Compile Include="..\Magellan\Routing\RouteResolver.cs">
+      <Link>Routing\RouteResolver.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteValidationResult.cs">
+    <Compile Include="..\Magellan\Routing\RouteValidationResult.cs">
       <Link>Routing\RouteValidationResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteValueBag.cs">
+    <Compile Include="..\Magellan\Routing\RouteValidator.cs">
+      <Link>Routing\RouteValidator.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Routing\RouteValueBag.cs">
       <Link>Routing\RouteValueBag.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\RouteValueDictionary.cs">
+    <Compile Include="..\Magellan\Routing\RouteValueDictionary.cs">
       <Link>Routing\RouteValueDictionary.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\Segment.cs">
+    <Compile Include="..\Magellan\Routing\Segment.cs">
       <Link>Routing\Segment.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\SegmentPathMatch.cs">
+    <Compile Include="..\Magellan\Routing\SegmentPathMatch.cs">
       <Link>Routing\SegmentPathMatch.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\SegmentRecognizer.cs">
+    <Compile Include="..\Magellan\Routing\SegmentRecognizer.cs">
       <Link>Routing\SegmentRecognizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\SegmentValueMatch.cs">
+    <Compile Include="..\Magellan\Routing\SegmentValueMatch.cs">
       <Link>Routing\SegmentValueMatch.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\UnsupportedConstraintException.cs">
-      <Link>Routing\UnsupportedConstraintException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Routing\UrlParameter.cs">
+    <Compile Include="..\Magellan\Routing\UrlParameter.cs">
       <Link>Routing\UrlParameter.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Utilities\EnumerableExtensions.cs">
+    <Compile Include="..\Magellan\Utilities\DelegateInvoker.cs">
+      <Link>Utilities\DelegateInvoker.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Utilities\EnumerableExtensions.cs">
       <Link>Utilities\EnumerableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Utilities\Guard.cs">
+    <Compile Include="..\Magellan\Utilities\Guard.cs">
       <Link>Utilities\Guard.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Utilities\PropertyValueLister.cs">
+    <Compile Include="..\Magellan\Utilities\PropertyValueLister.cs">
       <Link>Utilities\PropertyValueLister.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Magellan\Views\IView.cs">
+    <Compile Include="..\Magellan\Utilities\StringExtensions.cs">
+      <Link>Utilities\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Magellan\Views\IView.cs">
       <Link>Views\IView.cs</Link>
     </Compile>
-    <Compile Include="..\..\SolutionInfo\VersionInfo.cs">
-      <Link>Properties\VersionInfo.cs</Link>
+    <Compile Include="..\Magellan\Views\NavigationProperties.cs">
+      <Link>Views\NavigationProperties.cs</Link>
     </Compile>
     <Compile Include="Abstractions\DispatcherWrapper.cs" />
     <Compile Include="Abstractions\INavigationService.cs" />
+    <Compile Include="Abstractions\NavigationServiceDecorator.cs" />
     <Compile Include="Abstractions\NavigationServiceHelper.cs" />
-    <Compile Include="Abstractions\SilverlightNavigationConnector.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
     <Compile Include="Diagnostics\SourceLevels.cs" />
     <Compile Include="Diagnostics\SourceSwitch.cs" />
@@ -406,7 +502,6 @@
     <Compile Include="Framework\ViewEngines.cs" />
     <Compile Include="Navigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routing\ControllerRouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -425,7 +520,11 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\Magellan\Routing\%28How routing works%29.txt">
+      <Link>Routing\%28How routing works%29.txt</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

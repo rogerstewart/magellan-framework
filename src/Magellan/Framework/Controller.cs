@@ -26,6 +26,15 @@ namespace Magellan.Framework
         }
 
         /// <summary>
+        /// This method can be used for cancelling the current request; in effect, it is a 'no-op' result.
+        /// </summary>
+        /// <returns>A <see cref="DoNothingResult"/>.</returns>
+        public virtual DoNothingResult DoNothing()
+        {
+            return new DoNothingResult();
+        }
+
+        /// <summary>
         /// Returns to the previous page in the navigation journal.
         /// </summary>
         /// <returns>A <see cref="BackResult"/>.</returns>

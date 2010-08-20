@@ -17,8 +17,8 @@ namespace Magellan.Utilities
             duplicate.Mode = originalBinding.Mode;
             duplicate.Path = originalBinding.Path;
             duplicate.UpdateSourceTrigger = originalBinding.UpdateSourceTrigger;
-            duplicate.ValidatesOnDataErrors = originalBinding.ValidatesOnDataErrors;
-            duplicate.ValidatesOnExceptions = originalBinding.ValidatesOnExceptions;
+            duplicate.ValidatesOnDataErrors = true;
+            duplicate.ValidatesOnExceptions = true;
             
             foreach (var rule in originalBinding.ValidationRules)
             {

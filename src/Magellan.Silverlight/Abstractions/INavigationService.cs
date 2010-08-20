@@ -56,7 +56,14 @@ namespace Magellan.Abstractions
         /// </summary>
         /// <param name="content">The page.</param>
         /// <returns></returns>
-        bool NavigateTo(object content);
+        bool NavigateDirectToContent(object content);
+
+        /// <summary>
+        /// Navigates to the specified content.
+        /// </summary>
+        /// <param name="content">The page.</param>
+        /// <returns></returns>
+        bool NavigateDirectToContent(object content, object customState);
 
         /// <summary>
         /// Gets the dispatcher associated with this navigation service.

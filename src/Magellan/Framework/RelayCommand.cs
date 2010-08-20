@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Magellan.Utilities;
 
-namespace Magellan
+namespace Magellan.Framework
 {
     /// <summary>
     /// An <see cref="ICommand"/> that invokes a delegate on execution.
@@ -37,6 +37,7 @@ namespace Magellan
     {
         private readonly Action<TArgument> _execute;
         private readonly Func<TArgument, bool> _canExecute;
+        private EventHandler _canExecuteChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayCommand&lt;TArgument&gt;"/> class.
@@ -82,12 +83,27 @@ namespace Magellan
         {
             add
             {
+                _canExecuteChanged += value;
+#if !SILVERLIGHT
                 CommandManager.RequerySuggested += value;
+#endif
             }
             remove
             {
+                _canExecuteChanged -= value;
+#if !SILVERLIGHT
                 CommandManager.RequerySuggested -= value;
+#endif
             }
+        }
+
+        /// <summary>
+        /// Raises the CanExecuteChanged event.
+        /// </summary>
+        public void RaiseCanExecuteChanged()
+        {
+            var handler = _canExecuteChanged;
+            if (handler != null) handler(this, new EventArgs());
         }
 
         /// <summary>
