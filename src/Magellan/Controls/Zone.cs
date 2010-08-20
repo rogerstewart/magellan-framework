@@ -2,13 +2,15 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
+using System.Windows.Markup;
 
 namespace Magellan.Controls
 {
     /// <summary>
     /// Represents a zone used in a <see cref="Layout"/>.
     /// </summary>
-    public class Zone : ContentControl
+    [ContentProperty("Content")]
+    public class Zone : Freezable
     {
         /// <summary>
         /// Dependency property for the ZoneName property.
@@ -16,19 +18,25 @@ namespace Magellan.Controls
         public static readonly DependencyProperty ZonePlaceHolderNameProperty = DependencyProperty.Register("ZonePlaceHolderName", typeof(string), typeof(Zone), new UIPropertyMetadata(string.Empty, ZoneNameSet));
 
         /// <summary>
-        /// Initializes the <see cref="Zone"/> class.
+        /// Dependency property for the Content property.
         /// </summary>
-        static Zone()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Zone), new FrameworkPropertyMetadata(typeof(Zone)));
-        }
+        public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object), typeof(Zone), new UIPropertyMetadata(null));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Zone"/> class.
         /// </summary>
         public Zone()
         {
-            Initialized += ZoneInitialized;
+        }
+
+        /// <summary>
+        /// Gets or sets the content that will be placed in the zone.
+        /// </summary>
+        /// <value>The content.</value>
+        public object Content
+        {
+            get { return (object)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
         }
 
         /// <summary>
@@ -42,6 +50,16 @@ namespace Magellan.Controls
         }
 
         [DebuggerNonUserCode]
+        protected override bool FreezeCore(bool isChecking)
+        {
+            if (string.IsNullOrEmpty(ZonePlaceHolderName))
+            {
+                throw new InvalidOperationException("The ZonePlaceHolderName property must be set.");
+            }
+            return base.FreezeCore(isChecking);
+        }
+
+        [DebuggerNonUserCode]
         private static void ZoneNameSet(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty((string)e.OldValue))
@@ -50,13 +68,9 @@ namespace Magellan.Controls
             }
         }
 
-        [DebuggerNonUserCode]
-        private void ZoneInitialized(object sender, EventArgs e)
+        protected override Freezable CreateInstanceCore()
         {
-            if (string.IsNullOrEmpty(ZonePlaceHolderName))
-            {
-                throw new InvalidOperationException("The ZonePlaceHolderName property must be set.");
-            }
+            return new Zone();
         }
     }
 }

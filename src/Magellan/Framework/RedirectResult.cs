@@ -40,7 +40,7 @@ namespace Magellan.Framework
             dispatcher.Dispatch(
                 delegate
                 {
-                    controllerContext.Request.Navigator.NavigateDirectToContent(NewRequest, controllerContext.Request);
+                    controllerContext.Request.Navigator.Navigate(NewRequest);
                 });
         }
     }

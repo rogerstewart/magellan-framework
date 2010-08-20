@@ -7,17 +7,6 @@
         <Setter Property="Focusable" Value="False" />
     </Style>
     
-    <Style TargetType="Controls:Zone">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Controls:Zone">
-                    <ContentPresenter />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style TargetType="Controls:ZonePlaceHolder">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">

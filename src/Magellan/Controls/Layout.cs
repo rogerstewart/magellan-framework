@@ -36,7 +36,6 @@ namespace Magellan.Controls
         {
             Loaded += Master_Loaded;
             Zones = new ZoneCollection();
-            Zones.CollectionChanged += Zones_CollectionChanged;
         }
 
         /// <summary>
@@ -217,7 +216,7 @@ namespace Magellan.Controls
 
             foreach (var pair in pairs)
             {
-                pair.Key.Content = pair.Value;
+                pair.Key.Content = pair.Value.Content;
             }
         }
 
