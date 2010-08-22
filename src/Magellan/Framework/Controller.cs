@@ -228,7 +228,8 @@ namespace Magellan.Framework
         /// <returns>A <see cref="RedirectResult"/>.</returns>
         public RedirectResult Redirect(string actionName)
         {
-            return Redirect(ControllerContext.ControllerName, actionName);
+            var controllerName = ControllerContext == null ? "" : ControllerContext.ControllerName;
+            return Redirect(controllerName, actionName);
         }
 
         /// <summary>
@@ -239,7 +240,8 @@ namespace Magellan.Framework
         /// <returns>A <see cref="RedirectResult"/>.</returns>
         public RedirectResult Redirect(string actionName, object actionParameters)
         {
-            return Redirect(ControllerContext.ControllerName, actionName, actionParameters);
+            var controllerName = ControllerContext == null ? "" : ControllerContext.ControllerName;
+            return Redirect(controllerName, actionName, actionParameters);
         }
 
         /// <summary>

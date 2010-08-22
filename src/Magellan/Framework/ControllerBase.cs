@@ -1,4 +1,5 @@
-﻿using Magellan.Diagnostics;
+﻿using System;
+using Magellan.Diagnostics;
 using Magellan.Routing;
 
 namespace Magellan.Framework

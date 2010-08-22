@@ -36,6 +36,15 @@ namespace Magellan.Framework
         }
 
         /// <summary>
+        /// Gets the model object passed to this view result.
+        /// </summary>
+        /// <value>The model.</value>
+        public object Model
+        {
+            get { return Options.GetModel(); }
+        }
+
+        /// <summary>
         /// Gets a set of parameters that are shared with the View Engine when this view is rendered. This allows the view engine to 
         /// make use of additional context information when rendering the view.
         /// </summary>
