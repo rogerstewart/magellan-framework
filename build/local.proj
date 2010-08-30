@@ -123,6 +123,12 @@
       ZipLevel="10"
       />
 
+	<!-- Setup ruby gem -->
+	<ItemGroup>
+      <GemFiles Include="$(MSBuildProjectDirectory)\magellan.gemspec" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
+
     <!-- Test -->
     <ItemGroup>
       <TestAssemblies Include="$(Root)\src\Magellan.Tests\bin\Release\Magellan.Tests.dll"/>
