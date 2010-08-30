@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.files       = Dir['lib/**/*']  
   
   spec.summary     = 'Magellan - a navigation framework for WPF and Silverlight'
-  spec.description = 'Magellan is a navigation framework for Windows Presentation Foundation and Silverlight. It helps you to build inductive, navigation-oriented applications. Features include routing, Model-View-Controller and Model-View-ViewModel.'
+  spec.description = 'Magellan is a navigation framework for Windows Presentation Foundation and Silverlight. It helps you to build inductive, navigation-oriented applications. Features include routing, Model-View-Controller and Model-View-ViewModel support.'
 
   spec.author            = 'Paul Stovell'  
   spec.email             = 'magellan-friends@googlegroups.com'  
