@@ -125,9 +125,20 @@
 
 	<!-- Setup ruby gem -->
 	<ItemGroup>
-      <GemFiles Include="$(MSBuildProjectDirectory)\magellan.gemspec" />
+      <GemSpecs Include="$(MSBuildProjectDirectory)\magellan-framework.gemspec" />
     </ItemGroup>
-    <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
+    <Copy SourceFiles="@(GemSpecs)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\lib" />
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\VERSION" Lines="$(build_number)" Overwrite="true" />
+	
+    <!-- Build Gem -->
+	<Exec Command="gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+
+    <!-- Publish Gem -->
+	<ItemGroup>
+      <GemFiles Include="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\magellan-framework-$(build_number).gem" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries" />
 
     <!-- Test -->
     <ItemGroup>
