@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using Magellan;
+using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Routing;
 using Magellan.Tests.Helpers;
@@ -13,7 +15,7 @@ namespace Magellan.Tests.Framework
         protected object Bind(string parameterName, Type parameterType, object parameters)
         {
             var modelBinder = new DefaultModelBinder();
-            var result = modelBinder.BindModel(RequestBuilder.CreateRequest().BuildControllerContext(), new ModelBindingContext("foo", parameterType, new RouteValueDictionary(parameters)));
+            var result = modelBinder.BindModel(RequestBuilder.CreateRequest().BuildRequest(), new ModelBindingContext("foo", MethodInfo.GetCurrentMethod() as MethodInfo, parameterType, new RouteValueDictionary(parameters)));
             return result;
         }
 
@@ -58,7 +60,7 @@ namespace Magellan.Tests.Framework
         [Test]
         public void UnmatchedParametersWillThrowException()
         {
-            Assert.Throws<ArgumentException>(() => Bind("Foo", typeof(string), new { }));
+            Assert.Throws<ModelBindingException>(() => Bind("Foo", typeof(string), new { }));
         }
     }
 }

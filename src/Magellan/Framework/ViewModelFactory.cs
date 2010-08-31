@@ -15,15 +15,25 @@ namespace Magellan.Framework
     /// </summary>
     public class ViewModelFactory : IViewModelFactory
     {
+        private readonly ModelBinderDictionary _modelBinders = new ModelBinderDictionary(new DefaultModelBinder());
+        private readonly IViewInitializer _initializer;
         private readonly Dictionary<string, Func<object>> _modelBuilders = new Dictionary<string, Func<object>>();
         private readonly Dictionary<string, Func<object>> _viewBuilders = new Dictionary<string, Func<object>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
         /// </summary>
-        public ViewModelFactory()
+        public ViewModelFactory() 
+            : this(null)
         {
-            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
+        /// </summary>
+        public ViewModelFactory(IViewInitializer initializer)
+        {
+            _initializer = initializer ?? new DefaultViewInitializer(_modelBinders);
         }
 
         /// <summary>
@@ -52,53 +62,6 @@ namespace Magellan.Framework
             _viewBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewType);
         }
 
-        private void Initialize(ResolvedNavigationRequest request, object instance)
-        {
-            if (instance is INavigationAware)
-            {
-                ((INavigationAware) instance).Navigator = request.Navigator;
-            }
-
-            var initializers = instance.GetType().GetMethods().Where(x => x.Name == "Initialize");
-            foreach (var initializer in initializers)
-            {
-                var arguments = new List<object>();
-                foreach (var parameter in initializer.GetParameters())
-                {
-                    var targetType = parameter.ParameterType;
-                    var source = request.RouteValues.GetOrDefault<object>(parameter.Name);
-
-                    arguments.Add(Convert(source, targetType));
-                }
-                initializer.Invoke(instance, arguments.ToArray());
-            }
-        }
-
-        private object Convert(object source, Type targetType)
-        {
-            if (source == null)
-            {
-                return targetType.IsValueType
-                    ? Activator.CreateInstance(targetType)
-                    : null;
-            }
-
-            var sourceType = source.GetType();
-            if (targetType.IsAssignableFrom(sourceType))
-                return source;
-
-            var targetConverter = TypeDescriptor.GetConverter(targetType);
-            if (targetConverter.CanConvertFrom(sourceType))
-            {
-                return targetConverter.ConvertFrom(source);
-            }
-
-            var sourceConverter = TypeDescriptor.GetConverter(sourceType);
-            return sourceConverter.CanConvertTo(targetType)
-                ? sourceConverter.ConvertTo(source, targetType)
-                : source;
-        }
-
         /// <summary>
         /// Creates a view and view model to handle the given navigation request.
         /// </summary>
@@ -118,8 +81,7 @@ namespace Magellan.Framework
             var model = _modelBuilders[name]();
             var view = _viewBuilders[name]();
 
-            Initialize(request, view);
-            Initialize(request, model);
+            _initializer.Prepare(view, model, request);
 
             return new ViewModelFactoryResult(view, model);
         }

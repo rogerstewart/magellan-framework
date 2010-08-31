@@ -53,10 +53,10 @@ namespace Magellan.Framework
         {
             // Connect the model to the view
             var model = Options.GetModel();
-            if (view is IView)
+            if (view is IModelBound)
             {
                 TraceSources.MagellanSource.TraceVerbose("The view '{0}' implements the IView interface, so the model is being set as the Model on the IView.", view.GetType().Name);
-                ((IView)view).Model = model;
+                ((IModelBound)view).Model = model;
             }
             else
             {

@@ -35,12 +35,12 @@ namespace Magellan.Tests.Framework
         {
         }
 
-        public class SmartView : FrameworkElement, IView
+        public class SmartView : FrameworkElement, IModelBound
         {
             public object Model { get; set; }
         }
 
-        public class ReallySmartView : FrameworkElement, IView, INavigationAware
+        public class ReallySmartView : FrameworkElement, IModelBound, INavigationAware
         {
             public object Model { get; set; }
             public INavigator Navigator { get; set; }

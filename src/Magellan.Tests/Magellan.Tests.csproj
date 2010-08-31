@@ -86,6 +86,7 @@
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Transitionals, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4747a3d6bcb35c80, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Transitionals\Transitionals.dll</HintPath>
@@ -167,6 +168,7 @@
     <Compile Include="Routing\RouteTests.cs" />
     <Compile Include="Routing\RouteValidatorTests.cs" />
     <Compile Include="Routing\RoutingBehavior.cs" />
+    <Compile Include="Utilities\AmazingConverterTests.cs" />
     <Compile Include="Utilities\GuardTests.cs" />
     <Compile Include="Utilities\PropertyValueListerTests.cs" />
     <Compile Include="Utilities\UIElementExtensionsTests.cs" />

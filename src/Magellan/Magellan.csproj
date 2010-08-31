@@ -116,6 +116,8 @@
     <Compile Include="Events\ResolvingActionNavigationEvent.cs" />
     <Compile Include="Events\ResolvingControllerNavigationEvent.cs" />
     <Compile Include="Events\RoutingEvents.cs" />
+    <Compile Include="Exceptions\ModelBindingException.cs" />
+    <Compile Include="Exceptions\ViewNotSupportedException.cs" />
     <Compile Include="Exceptions\ImpossibleNavigationRequestException.cs" />
     <Compile Include="Exceptions\NavigationConfigurationException.cs" />
     <Compile Include="ComponentModel\SetDebuggerView.cs" />
@@ -170,6 +172,8 @@
     <Compile Include="Framework\IResultFilter.cs" />
     <Compile Include="Framework\IViewActivator.cs" />
     <Compile Include="Framework\IViewEngine.cs" />
+    <Compile Include="Framework\IViewInitializer.cs" />
+    <Compile Include="Framework\DefaultViewInitializer.cs" />
     <Compile Include="Framework\IViewNamespaceConvention.cs" />
     <Compile Include="Framework\IViewNamingConvention.cs" />
     <Compile Include="Framework\ModelBinderDictionary.cs" />
@@ -259,6 +263,7 @@
     <Compile Include="Exceptions\UnroutableRequestException.cs" />
     <Compile Include="Exceptions\UnsupportedConstraintException.cs" />
     <Compile Include="Routing\UrlParameter.cs" />
+    <Compile Include="Utilities\AmazingConverter.cs" />
     <Compile Include="Utilities\DelegateInvoker.cs" />
     <Compile Include="Utilities\BindingExtensions.cs" />
     <Compile Include="Utilities\EnumerableExtensions.cs" />
@@ -270,7 +275,7 @@
     <Compile Include="Utilities\Guard.cs" />
     <Compile Include="Utilities\PropertyValueLister.cs" />
     <Compile Include="ViewModelRouteCatalog.cs" />
-    <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\IModelBound.cs" />
     <AppDesigner Include="Properties\" />
     <Compile Include="Views\NavigationProperties.cs" />
   </ItemGroup>
