@@ -15,8 +15,6 @@ namespace Magellan.Framework
     /// </summary>
     public class ViewModelFactory : IViewModelFactory
     {
-        private readonly ModelBinderDictionary _modelBinders = new ModelBinderDictionary(new DefaultModelBinder());
-        private readonly IViewInitializer _initializer;
         private readonly Dictionary<string, Func<object>> _modelBuilders = new Dictionary<string, Func<object>>();
         private readonly Dictionary<string, Func<object>> _viewBuilders = new Dictionary<string, Func<object>>();
 
@@ -24,16 +22,7 @@ namespace Magellan.Framework
         /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
         /// </summary>
         public ViewModelFactory() 
-            : this(null)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
-        /// </summary>
-        public ViewModelFactory(IViewInitializer initializer)
-        {
-            _initializer = initializer ?? new DefaultViewInitializer(_modelBinders);
         }
 
         /// <summary>
@@ -80,8 +69,6 @@ namespace Magellan.Framework
             
             var model = _modelBuilders[name]();
             var view = _viewBuilders[name]();
-
-            _initializer.Prepare(view, model, request);
 
             return new ViewModelFactoryResult(view, model);
         }

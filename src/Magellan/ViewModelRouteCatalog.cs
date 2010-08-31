@@ -10,9 +10,11 @@ namespace Magellan
     /// </summary>
     public class ViewModelRouteCatalog : RouteCatalog
     {
-        private readonly IRouteHandler _handler;
+        private readonly IViewModelFactory _factory;
+        private readonly ModelBinderDictionary _modelBinders;
         private IRouteValidator _validator;
-        
+        private IViewInitializer _viewInitializer;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelRouteCatalog"/> class.
         /// </summary>
@@ -20,7 +22,32 @@ namespace Magellan
         public ViewModelRouteCatalog(IViewModelFactory factory)
         {
             Guard.ArgumentNotNull(factory, "factory");
-            _handler = new ViewModelRouteHandler(factory);
+            _factory = factory;
+            _modelBinders = new ModelBinderDictionary(new DefaultModelBinder());
+        }
+
+        /// <summary>
+        /// Gets or sets the view initializer, which is responsible for preparing a view.
+        /// </summary>
+        /// <value>The view initializer.</value>
+        public IViewInitializer ViewInitializer
+        {
+            get { return _viewInitializer = _viewInitializer ?? new DefaultViewInitializer(ModelBinders); }
+            set { _viewInitializer = value; }
+        }
+
+        /// <summary>
+        /// Gets the model binders used by the default view initializer.
+        /// </summary>
+        /// <value>The model binders.</value>
+        public ModelBinderDictionary ModelBinders
+        {
+            get { return _modelBinders; }
+        }
+
+        private IRouteHandler CreateHandler()
+        {
+            return new ViewModelRouteHandler(_factory, ViewInitializer);
         }
 
         /// <summary>
@@ -102,7 +129,7 @@ namespace Magellan
         {
             defaults = defaults ?? new RouteValueDictionary();
 
-            Add(new Route(routeSpecification, () => _handler, defaults, constraints, _validator));
+            Add(new Route(routeSpecification, CreateHandler, defaults, constraints, _validator));
             return this;
         }
     }

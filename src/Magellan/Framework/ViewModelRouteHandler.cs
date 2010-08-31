@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Magellan.Routing;
+﻿using Magellan.Routing;
 
 namespace Magellan.Framework
 {
@@ -9,14 +8,17 @@ namespace Magellan.Framework
     public class ViewModelRouteHandler : IRouteHandler
     {
         private readonly IViewModelFactory _factory;
+        private readonly IViewInitializer _initializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelRouteHandler"/> class.
         /// </summary>
         /// <param name="factory">The factory.</param>
-        public ViewModelRouteHandler(IViewModelFactory factory)
+        /// <param name="initializer">The initializer.</param>
+        public ViewModelRouteHandler(IViewModelFactory factory, IViewInitializer initializer)
         {
             _factory = factory;
+            _initializer = initializer;
         }
 
         /// <summary>
@@ -29,13 +31,9 @@ namespace Magellan.Framework
             
             var pair = _factory.CreateViewModel(request, modelName);
 
-            var element = pair.View as FrameworkElement;
-            if (element != null)
-            {
-                element.DataContext = pair.ViewModel;
-            }
+            _initializer.Prepare(pair.View, pair.ViewModel, request);
 
-            request.Navigator.NavigateDirectToContent(element, request);
+            request.Navigator.NavigateDirectToContent(pair.View, request);
         }
     }
 }
