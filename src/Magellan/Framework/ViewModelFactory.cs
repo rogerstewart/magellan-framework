@@ -75,7 +75,7 @@ namespace Magellan.Framework
             var name = viewModelName.ToUpper(CultureInfo.InvariantCulture);
             if (!_modelBuilders.ContainsKey(name))
             {
-                throw new Exception("TODO");
+                throw new ArgumentException(string.Format("A view model by the name {0} is not registered in this ViewModelFactory.", name));
             }
             
             var model = _modelBuilders[name]();

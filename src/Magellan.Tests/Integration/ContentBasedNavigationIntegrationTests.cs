@@ -51,7 +51,7 @@ namespace Magellan.Tests.Integration
             Window.Content = Frame = new ContentControl();
 
             var controllerFactory = new ControllerFactory();
-            controllerFactory.Register("Sample", () => new SampleController() { ActionInvoker = new DefaultActionInvoker(), ModelBinders = ModelBinders.CreateDefaults() });
+            controllerFactory.Register("Sample", () => new SampleController() { ActionInvoker = new DefaultActionInvoker() });
 
             var routes = new ControllerRouteCatalog(controllerFactory);
             routes.MapRoute("foobar/{action}", new {controller = "Sample"});
