@@ -9,7 +9,7 @@
     TextOptions.TextFormattingMode="Display"
     >
     <Layout>
-        <Zone ZonePlaceHolderName="Content">
+        <Zone ZonePlaceHolderName="MainContent">
             <StackPanel>
                 <TextBlock Margin="3" TextWrapping="Wrap"><Run Text="This application demonstrates how Magellan can be used to implement a Wizard. The wizard is designed to be similar to the "/><Run FontWeight="Bold" Text="Account Creation"/><Run Text=" wizard in Microsoft Outlook."/></TextBlock>
                 <TextBlock Margin="3" TextWrapping="Wrap"><Run Text="This application uses Master Pages to use a consistent layout across each page. Some zones have default content, such as the Back buttons, which can be overridden on each page."/></TextBlock>

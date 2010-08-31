@@ -104,7 +104,6 @@
     <Compile Include="ComponentModel\EnumDisplayName.cs" />
     <Compile Include="ControllerRouteCatalog.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
-    <Compile Include="Controls\TextBoxBehavior.cs" />
     <Compile Include="Events\BeginRequestNavigationEvent.cs" />
     <Compile Include="Events\CompleteNavigationEvent.cs" />
     <Compile Include="Events\ExecutingActionNavigationEvent.cs" />

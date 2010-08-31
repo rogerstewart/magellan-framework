@@ -14,20 +14,33 @@ namespace Magellan.Controls
         /// Dependency property for the FieldBuilder property.
         /// </summary>
         public static readonly DependencyProperty FieldBuilderProperty = DependencyProperty.RegisterAttached("FieldBuilder", typeof(IFieldConvention), typeof(Form), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
-        
+
+        /// <summary>
+        /// Initializes the <see cref="Form"/> class.
+        /// </summary>
         static Form()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Form), new FrameworkPropertyMetadata(typeof(Form)));
         }
 
-        public static IFieldConvention GetFieldBuilder(DependencyObject obj)
+        /// <summary>
+        /// Gets the field builder associated with the given element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static IFieldConvention GetFieldBuilder(DependencyObject element)
         {
-            return (IFieldConvention)obj.GetValue(FieldBuilderProperty);
+            return (IFieldConvention)element.GetValue(FieldBuilderProperty);
         }
 
-        public static void SetFieldBuilder(DependencyObject obj, IFieldConvention value)
+        /// <summary>
+        /// Sets the field builder associated with the given element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetFieldBuilder(DependencyObject element, IFieldConvention value)
         {
-            obj.SetValue(FieldBuilderProperty, value);
+            element.SetValue(FieldBuilderProperty, value);
         }
     }
 }

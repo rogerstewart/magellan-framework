@@ -25,7 +25,7 @@
         </Border>
 
         <Border Grid.Row="1" KeyboardNavigation.TabIndex="1" Background="#FFFFFF" Padding="10">
-            <ZonePlaceHolder Name="Content" />
+            <ZonePlaceHolder Name="MainContent" />
         </Border>
 
         <Border Grid.Row="2" DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" Padding="10">

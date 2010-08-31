@@ -18,6 +18,7 @@ namespace Magellan.Framework
         /// Initializes a new instance of the <see cref="FrameworkElementViewEngineResult"/> class.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
+        /// <param name="options">The options.</param>
         protected FrameworkElementViewEngineResult(ControllerContext controllerContext, ViewResultOptions options) : base(true, new string[0])
         {
             _controllerContext = controllerContext;
