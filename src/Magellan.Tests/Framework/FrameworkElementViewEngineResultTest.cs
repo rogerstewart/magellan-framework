@@ -25,7 +25,7 @@ namespace Magellan.Tests.Framework
             public override void Render()
             {
                 View = new TView();
-                WireModelToView(View);
+                ViewInitializer.Prepare(View, Model, ControllerContext.Request);
             }
 
             public TView View { get; private set; }

@@ -37,10 +37,9 @@ namespace Magellan.Framework
         public DefaultViewInitializer(Func<IEnumerable<MethodInfo>, MethodInfo> initializeMethodSelector, ModelBinderDictionary modelBinders)
         {
             Guard.ArgumentNotNull(initializeMethodSelector, "initializeMethodSelector");
-            Guard.ArgumentNotNull(modelBinders, "modelBinders");
-
+            
             _initializeMethodSelector = initializeMethodSelector;
-            _modelBinders = modelBinders;
+            _modelBinders = modelBinders ?? new ModelBinderDictionary(new DefaultModelBinder());
         }
 
         /// <summary>
