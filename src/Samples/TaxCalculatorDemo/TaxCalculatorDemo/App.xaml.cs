@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using Magellan;
 using Magellan.Framework;
-using TaxCalculatorDemo.Areas.Home;
-using TaxCalculatorDemo.Areas.Tax;
+using TaxCalculatorDemo.Features.Home;
+using TaxCalculatorDemo.Features.Tax;
 
 namespace TaxCalculatorDemo
 {
@@ -14,7 +14,6 @@ namespace TaxCalculatorDemo
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
 
             var controllerFactory = new AsyncControllerFactory();
             controllerFactory.Register("Home", () => new HomeController());

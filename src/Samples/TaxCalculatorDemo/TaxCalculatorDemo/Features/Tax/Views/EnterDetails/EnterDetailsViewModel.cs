@@ -2,9 +2,9 @@
 using System.Windows.Input;
 using Magellan;
 using Magellan.Framework;
-using TaxCalculatorDemo.Model;
+using TaxCalculatorDemo.Features.Tax.Model;
 
-namespace TaxCalculatorDemo.Areas.Tax.Views.EnterDetails
+namespace TaxCalculatorDemo.Features.Tax.Views.EnterDetails
 {
     public class EnterDetailsViewModel : ViewModel
     {

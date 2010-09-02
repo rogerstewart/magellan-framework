@@ -60,15 +60,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Areas\Home\Views\About\AboutView.xaml">
+    <Page Include="Features\Home\Views\About\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\Home\Views\Index\IndexView.xaml">
+    <Page Include="Features\Home\Views\Index\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\Tax\Views\EnterDetails\EnterDetailsView.xaml">
+    <Page Include="Features\Tax\Views\EnterDetails\EnterDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,20 +80,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Areas\Home\HomeController.cs" />
-    <Compile Include="Areas\Home\Views\About\AboutView.xaml.cs">
+    <Compile Include="Features\Home\HomeController.cs" />
+    <Compile Include="Features\Home\Views\About\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Home\Views\About\AboutViewModel.cs" />
-    <Compile Include="Areas\Home\Views\Index\IndexViewModel.cs" />
-    <Compile Include="Areas\Home\Views\Index\IndexView.xaml.cs">
+    <Compile Include="Features\Home\Views\About\AboutViewModel.cs" />
+    <Compile Include="Features\Home\Views\Index\IndexViewModel.cs" />
+    <Compile Include="Features\Home\Views\Index\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Tax\TaxController.cs" />
-    <Compile Include="Areas\Tax\Views\EnterDetails\EnterDetailsView.xaml.cs">
+    <Compile Include="Features\Tax\TaxController.cs" />
+    <Compile Include="Features\Tax\Views\EnterDetails\EnterDetailsView.xaml.cs">
       <DependentUpon>EnterDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Tax\Views\EnterDetails\EnterDetailsViewModel.cs" />
+    <Compile Include="Features\Tax\Views\EnterDetails\EnterDetailsViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -128,7 +128,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\TaxPeriod.cs" />
+    <Compile Include="Features\Tax\Model\TaxPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,7 +153,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Tax\Views\Return\" />
+    <Folder Include="Features\Tax\Views\Return\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Resources\Layouts\" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TaxCalculatorDemo.Areas.Home.Views.About
+namespace TaxCalculatorDemo.Features.Home.Views.About
 {
     public partial class AboutView : Window
     {

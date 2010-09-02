@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TaxCalculatorDemo.Areas.Tax.Views.EnterDetails
+namespace TaxCalculatorDemo.Features.Tax.Views.EnterDetails
 {
     public partial class EnterDetailsView : Page
     {

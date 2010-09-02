@@ -1,8 +1,7 @@
-﻿using System;
-using Magellan.Framework;
-using TaxCalculatorDemo.Areas.Tax.Views.EnterDetails;
+﻿using Magellan.Framework;
+using TaxCalculatorDemo.Features.Tax.Views.EnterDetails;
 
-namespace TaxCalculatorDemo.Areas.Tax
+namespace TaxCalculatorDemo.Features.Tax
 {
     public class TaxController : Controller
     {

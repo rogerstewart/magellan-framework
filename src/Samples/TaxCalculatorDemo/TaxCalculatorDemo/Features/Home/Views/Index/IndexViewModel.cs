@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Magellan;
 using Magellan.Framework;
-using TaxCalculatorDemo.Areas.Tax;
+using TaxCalculatorDemo.Features.Tax;
 
-namespace TaxCalculatorDemo.Areas.Home.Views.Index
+namespace TaxCalculatorDemo.Features.Home.Views.Index
 {
     public class IndexViewModel : ViewModel
     {

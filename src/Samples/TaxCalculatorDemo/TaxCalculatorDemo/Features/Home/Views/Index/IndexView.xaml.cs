@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TaxCalculatorDemo.Areas.Home.Views.Index
+namespace TaxCalculatorDemo.Features.Home.Views.Index
 {
     public partial class IndexView : Page
     {

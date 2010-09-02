@@ -1,8 +1,8 @@
 ﻿using Magellan.Framework;
-using TaxCalculatorDemo.Areas.Home.Views.About;
-using TaxCalculatorDemo.Areas.Home.Views.Index;
+using TaxCalculatorDemo.Features.Home.Views.About;
+using TaxCalculatorDemo.Features.Home.Views.Index;
 
-namespace TaxCalculatorDemo.Areas.Home
+namespace TaxCalculatorDemo.Features.Home
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using Magellan.ComponentModel;
 
-namespace TaxCalculatorDemo.Model
+namespace TaxCalculatorDemo.Features.Tax.Model
 {
     public enum TaxPeriod
     {
