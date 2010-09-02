@@ -123,6 +123,7 @@ namespace Magellan.Framework
             if (dependencyObject != null)
             {
                 NavigationProperties.SetNavigator(dependencyObject, navigator);
+                NavigationProperties.SetCurrentRequest(dependencyObject, request);
             }
         }
 
