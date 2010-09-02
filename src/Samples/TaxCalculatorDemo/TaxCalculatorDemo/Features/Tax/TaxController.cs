@@ -1,5 +1,6 @@
 ﻿using Magellan.Framework;
 using TaxCalculatorDemo.Features.Tax.Views.EnterDetails;
+using TaxCalculatorDemo.Features.Tax.Views.Submit;
 
 namespace TaxCalculatorDemo.Features.Tax
 {
@@ -10,10 +11,10 @@ namespace TaxCalculatorDemo.Features.Tax
             return Page("EnterDetails", new EnterDetailsViewModel());
         }
 
-        public ActionResult Submit(EnterDetailsViewModel model)
+        public ActionResult Submit(EnterDetailsViewModel details)
         {
-
-            return DoNothing();
+            return Page("Submit", new SubmitViewModel(details.GrossIncome));
         }
     }
 }
+
