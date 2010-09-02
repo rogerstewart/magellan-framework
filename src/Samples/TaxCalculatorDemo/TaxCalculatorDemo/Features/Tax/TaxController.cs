@@ -10,7 +10,7 @@ namespace TaxCalculatorDemo.Features.Tax
             return Page("EnterDetails", new EnterDetailsViewModel());
         }
 
-        public ActionResult Submit()
+        public ActionResult Submit(EnterDetailsViewModel model)
         {
 
             return DoNothing();

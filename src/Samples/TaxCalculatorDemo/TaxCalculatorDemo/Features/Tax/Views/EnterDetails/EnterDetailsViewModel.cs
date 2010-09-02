@@ -22,7 +22,7 @@ namespace TaxCalculatorDemo.Features.Tax.Views.EnterDetails
 
         private void SubmitExecuted()
         {
-            Navigator.Navigate<TaxController>(x => x.Submit());
+            Navigator.Navigate<TaxController>(x => x.Submit(this));
         }
     }
 }
