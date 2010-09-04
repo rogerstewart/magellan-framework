@@ -93,6 +93,7 @@
     <Compile Include="Features\Home\Views\Index\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\Tax\Model\TaxReturn.cs" />
     <Compile Include="Features\Tax\TaxController.cs" />
     <Compile Include="Features\Tax\Views\EnterDetails\EnterDetailsView.xaml.cs">
       <DependentUpon>EnterDetailsView.xaml</DependentUpon>

@@ -114,7 +114,7 @@ namespace Magellan
             {
                 var parameter = parameters[i].Name;
                 var argument = arguments[i];
-                var lambda = Expression.Lambda<Func<TController, object>>(argument, actionSelector.Parameters.ToList());
+                var lambda = Expression.Lambda<Func<TController, object>>(Expression.Convert(argument, typeof(object)), actionSelector.Parameters.ToList());
                 var compiled = lambda.Compile();
                 var value = compiled(default(TController));
 

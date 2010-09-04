@@ -1,14 +1,20 @@
 ﻿using Magellan.Framework;
+using TaxCalculator.Features.Tax.Model;
 
 namespace TaxCalculator.Features.Tax.Views.Submit
 {
     public class SubmitViewModel : ViewModel
     {
-        public SubmitViewModel(decimal taxableIncome)
+        private readonly TaxEstimate _estimate;
+
+        public SubmitViewModel(TaxEstimate estimate)
         {
-            TaxableIncome = taxableIncome;
+            _estimate = estimate;
         }
 
-        public decimal TaxableIncome { get; set; }
+        public TaxEstimate Estimate
+        {
+            get { return _estimate; }
+        }
     }
 }
