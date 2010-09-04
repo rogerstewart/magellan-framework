@@ -168,9 +168,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\Play-64.png" />
     <Resource Include="Resources\Images\LeftArrow-64.png" />
