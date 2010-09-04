@@ -9,7 +9,7 @@
     TextOptions.TextFormattingMode="Display"
     >
     <Layout>
-        <Zone ZonePlaceHolderName="Content">
+        <Zone ZonePlaceHolderName="MainContent">
             <StackPanel>
 
                 <StackPanel.Resources>

@@ -25,6 +25,12 @@ namespace Magellan.Framework
             NamingConvention = this;
         }
 
+        /// <summary>
+        /// Gets the alternative names for a given view.
+        /// </summary>
+        /// <param name="controllerContext">The controller context.</param>
+        /// <param name="baseName">Name of the base.</param>
+        /// <returns></returns>
         public IEnumerable<string> GetAlternativeNames(ControllerContext controllerContext, string baseName)
         {
             return new[] { baseName, baseName + "View", baseName + "Window", baseName + "Dialog", baseName + "ViewWindow", baseName + "ViewDialog" };

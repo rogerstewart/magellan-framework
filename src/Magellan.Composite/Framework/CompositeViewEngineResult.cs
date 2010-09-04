@@ -43,7 +43,7 @@ namespace Magellan.Composite.Framework
 
                     // Create the view
                     var instance = (FrameworkElement)_viewActivator.Instantiate(_type);
-                    WireModelToView(instance);
+                    ViewInitializer.Prepare(instance, Model, ControllerContext.Request);
 
                     // Figure out which region to use
                     var region = Options.GetRegion();

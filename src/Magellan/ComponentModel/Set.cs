@@ -19,7 +19,11 @@ namespace Magellan.ComponentModel
     {
         private readonly List<T> _innerList = new List<T>();
         private readonly object _lock = new object();
-        
+
+        /// <summary>
+        /// Executes a batch of operations on the underlying item list, whilst holding a lock.
+        /// </summary>
+        /// <param name="configurator">The configurator.</param>
         protected void Edit(Action<List<T>> configurator)
         {
             lock (_lock)

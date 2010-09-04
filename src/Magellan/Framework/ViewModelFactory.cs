@@ -21,9 +21,8 @@ namespace Magellan.Framework
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
         /// </summary>
-        public ViewModelFactory()
+        public ViewModelFactory() 
         {
-            
         }
 
         /// <summary>
@@ -52,53 +51,6 @@ namespace Magellan.Framework
             _viewBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewType);
         }
 
-        private void Initialize(ResolvedNavigationRequest request, object instance)
-        {
-            if (instance is INavigationAware)
-            {
-                ((INavigationAware) instance).Navigator = request.Navigator;
-            }
-
-            var initializers = instance.GetType().GetMethods().Where(x => x.Name == "Initialize");
-            foreach (var initializer in initializers)
-            {
-                var arguments = new List<object>();
-                foreach (var parameter in initializer.GetParameters())
-                {
-                    var targetType = parameter.ParameterType;
-                    var source = request.RouteValues.GetOrDefault<object>(parameter.Name);
-
-                    arguments.Add(Convert(source, targetType));
-                }
-                initializer.Invoke(instance, arguments.ToArray());
-            }
-        }
-
-        private object Convert(object source, Type targetType)
-        {
-            if (source == null)
-            {
-                return targetType.IsValueType
-                    ? Activator.CreateInstance(targetType)
-                    : null;
-            }
-
-            var sourceType = source.GetType();
-            if (targetType.IsAssignableFrom(sourceType))
-                return source;
-
-            var targetConverter = TypeDescriptor.GetConverter(targetType);
-            if (targetConverter.CanConvertFrom(sourceType))
-            {
-                return targetConverter.ConvertFrom(source);
-            }
-
-            var sourceConverter = TypeDescriptor.GetConverter(sourceType);
-            return sourceConverter.CanConvertTo(targetType)
-                ? sourceConverter.ConvertTo(source, targetType)
-                : source;
-        }
-
         /// <summary>
         /// Creates a view and view model to handle the given navigation request.
         /// </summary>
@@ -112,14 +64,11 @@ namespace Magellan.Framework
             var name = viewModelName.ToUpper(CultureInfo.InvariantCulture);
             if (!_modelBuilders.ContainsKey(name))
             {
-                throw new Exception("TODO");
+                throw new ArgumentException(string.Format("A view model by the name {0} is not registered in this ViewModelFactory.", name));
             }
             
             var model = _modelBuilders[name]();
             var view = _viewBuilders[name]();
-
-            Initialize(request, view);
-            Initialize(request, model);
 
             return new ViewModelFactoryResult(view, model);
         }

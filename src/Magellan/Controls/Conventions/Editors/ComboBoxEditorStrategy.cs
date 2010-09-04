@@ -49,9 +49,21 @@ namespace Magellan.Controls.Conventions.Editors
             return comboBox;
         }
 
+        /// <summary>
+        /// Wraps an enum value and display name.
+        /// </summary>
         public class EnumOption
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
+            /// <value>The value.</value>
             public object Value { get; set; }
+            
+            /// <summary>
+            /// Gets or sets the display name.
+            /// </summary>
+            /// <value>The display name.</value>
             public object DisplayName { get; set; }
         }
     }

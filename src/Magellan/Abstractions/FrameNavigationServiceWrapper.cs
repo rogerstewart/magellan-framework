@@ -78,6 +78,10 @@ namespace Magellan.Abstractions
             _navigationService.GoForward();
         }
 
+        /// <summary>
+        /// Gets the current content.
+        /// </summary>
+        /// <value>The content.</value>
         public object Content
         {
             get { return _navigationService.Content; }

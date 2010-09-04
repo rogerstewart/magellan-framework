@@ -16,7 +16,7 @@ namespace Magellan.Tests.Framework
     {
         #region SUT
 
-        public class DummyView : Page, IView
+        public class DummyView : Page, IModelBound
         {
             public object Model { get; set; }
         }
@@ -92,7 +92,7 @@ namespace Magellan.Tests.Framework
             var result = CreateResult(typeof(DummyView), null, "Hello");
             result.Render();
             Assert.AreEqual(null, result.RenderedInstance.DataContext);
-            Assert.AreEqual("Hello", ((IView)result.RenderedInstance).Model);
+            Assert.AreEqual("Hello", ((IModelBound)result.RenderedInstance).Model);
             Navigator.Verify(x => x.NavigateDirectToContent(It.IsAny<DummyView>(), It.IsAny<ResolvedNavigationRequest>()));
         }
 

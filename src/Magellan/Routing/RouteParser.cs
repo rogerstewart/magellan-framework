@@ -30,6 +30,14 @@ namespace Magellan.Routing
             get { return _recognisers; }
         }
 
+        /// <summary>
+        /// Parses the given route specification, producing a <see cref="ParsedRoute"/>.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        /// <param name="routeSpecification">The route specification.</param>
+        /// <param name="defaults">The defaults.</param>
+        /// <param name="constraints">The constraints.</param>
+        /// <returns></returns>
         public ParsedRoute Parse(IRoute route, string routeSpecification, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
             var parts = routeSpecification.SplitUrlPath();

@@ -47,9 +47,9 @@ namespace Magellan.Framework
             var arguments = new List<object>();
             foreach (var parameterInfo in _method.GetParameters())
             {
-                var bindingContext = new ModelBindingContext(parameterInfo.Name, parameterInfo.ParameterType, controllerContext.Request.RouteValues);
+                var bindingContext = new ModelBindingContext(parameterInfo.Name, Method, parameterInfo.ParameterType, controllerContext.Request.RouteValues);
                 var binder = modelBinders.GetBinder(parameterInfo.ParameterType);
-                var argument = binder.BindModel(controllerContext, bindingContext);
+                var argument = binder.BindModel(controllerContext.Request, bindingContext);
                 arguments.Add(argument);
             }
 

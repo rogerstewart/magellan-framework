@@ -18,11 +18,20 @@ namespace Magellan.Framework
         /// Initializes a new instance of the <see cref="FrameworkElementViewEngineResult"/> class.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
-        protected FrameworkElementViewEngineResult(ControllerContext controllerContext, ViewResultOptions options) : base(true, new string[0])
+        /// <param name="options">The options.</param>
+        protected FrameworkElementViewEngineResult(ControllerContext controllerContext, ViewResultOptions options) 
+            : base(true, new string[0])
         {
             _controllerContext = controllerContext;
             _options = options;
+            ViewInitializer = new DefaultViewInitializer(controllerContext.ModelBinders);
         }
+
+        /// <summary>
+        /// Gets or sets the view initializer.
+        /// </summary>
+        /// <value>The view initializer.</value>
+        public IViewInitializer ViewInitializer { get; set; }
 
         /// <summary>
         /// Gets the controller context.
@@ -34,79 +43,21 @@ namespace Magellan.Framework
         }
 
         /// <summary>
+        /// Gets the model.
+        /// </summary>
+        /// <value>The model.</value>
+        public object Model
+        {
+            get { return Options.GetModel(); }
+        }
+
+        /// <summary>
         /// Gets the options.
         /// </summary>
         /// <value>The options.</value>
         public ViewResultOptions Options
         {
             get { return _options; }
-        }
-
-        /// <summary>
-        /// Wires the model to view, either by setting the DataContext, or if the view implements IView, by 
-        /// setting the model property. It also sets the NavigationContext if the view or model implement 
-        /// <see cref="INavigationAware"/>.
-        /// </summary>
-        /// <param name="view">The view.</param>
-        protected virtual void WireModelToView(FrameworkElement view)
-        {
-            // Connect the model to the view
-            var model = Options.GetModel();
-            if (view is IView)
-            {
-                TraceSources.MagellanSource.TraceVerbose("The view '{0}' implements the IView interface, so the model is being set as the Model on the IView.", view.GetType().Name);
-                ((IView)view).Model = model;
-            }
-            else
-            {
-                TraceSources.MagellanSource.TraceVerbose("The view '{0}' does not implement the IView interface, so the model is being set as the DataContext.", view.GetType().Name);
-                view.DataContext = model;
-            }
-
-            // Make the navigation context available if supported
-            var navigator = _controllerContext.Request.Navigator;
-            if (navigator != null)
-            {
-                var navigationAwareModel = model as INavigationAware;
-                var navigationAwareView = view as INavigationAware;
-                var viewAsDependencyObject = view as DependencyObject;
-
-                if (navigationAwareModel != null)
-                {
-                    TraceSources.MagellanSource.TraceVerbose("The model '{0}' implements the INavigationAware interface, so it is being provided with a navigator.", navigationAwareModel.GetType().Name);
-                    navigationAwareModel.Navigator = navigator;
-                }
-                if (navigationAwareView != null)
-                {
-                    TraceSources.MagellanSource.TraceVerbose("The view '{0}' implements the INavigationAware interface, so it is being provided with a navigator.", navigationAwareView.GetType().Name);
-                    navigationAwareView.Navigator = navigator;
-                }
-                NavigationProperties.SetNavigator(viewAsDependencyObject, navigator);
-            }
-
-            // Notify the view model that the view is attached
-            var viewAware = model as IViewAware;
-            if (viewAware != null)
-            {
-                viewAware.ViewAttached(view);
-
-                RoutedEventHandler setLoaded = null;
-                setLoaded = new RoutedEventHandler((sender, e) =>
-                {
-                    viewAware.Loaded();
-                    view.Loaded -= setLoaded;
-                });
-
-                if (view.IsLoaded)
-                {
-                    viewAware.Loaded();
-                }
-                else
-                {
-                    view.Loaded += setLoaded;
-                }
-
-            }
         }
     }
 }
