@@ -7,32 +7,6 @@
     <Root>$(MSBuildStartupDirectory)</Root>
     <nunitconsoleexe>$(Root)\lib\NUnit\exe\nunit-console-x86.exe</nunitconsoleexe>
   </PropertyGroup>
-
-  <Target Name="Publish" DependsOnTargets="Package">
-    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-	  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries"
-	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
-	  Labels="Featured;Type-Archive"
-      >
-      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
-    </GoogleCodeUpload>
-
-    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-	  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries with Transitionals and Blend Behaviors extensions"
-	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
-	  Labels="Featured;Type-Archive"
-      >
-      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
-    </GoogleCodeUpload>
-
-    <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-	  Summary="Magellan $(build_version)$(build_versiontag) source code (includes sample applications)"
-	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
-	  Labels="Featured;Type-Source"
-      >
-      <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
-    </GoogleCodeUpload>
-  </Target>
   
   <Target Name="Package">
 
@@ -141,6 +115,12 @@
       <GemFiles Include="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\magellan-framework-$(build_number).gem" />
     </ItemGroup>
     <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries" />
+
+	<!-- Publish VSIX -->
+	<ItemGroup>
+      <VSIXFiles Include="$(Root)\src\Templates\Magellan.ProjectTemplates\bin\Release\Magellan.ProjectTemplates.vsix" />
+    </ItemGroup>
+    <Copy SourceFiles="@(VSIXFiles)" DestinationFiles="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-VSTemplates.vsix" />
 
     <!-- Test -->
     <ItemGroup>
