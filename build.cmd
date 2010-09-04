@@ -16,6 +16,6 @@ color 0A
 echo Building...
 color
 
-"%SystemDrive%\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" build\Local.proj /t:Package /p:build_version=2.0.1 /p:build_number=2.0.1.1 /verbosity:quiet /nologo
+"%SystemDrive%\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" build\Local.proj /t:Package /p:build_version=2.0.1 /verbosity:minimal /p:build_number=2.0.1.1 /nologo
 
 pause

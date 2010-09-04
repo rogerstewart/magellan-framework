@@ -10,25 +10,25 @@
 
   <Target Name="Publish" DependsOnTargets="Package">
     <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-		  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries"
-		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
-		  Labels="Featured;Type-Archive"
+	  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries"
+	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+	  Labels="Featured;Type-Archive"
       >
       <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
     </GoogleCodeUpload>
 
     <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-		  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries with Transitionals and Blend Behaviors extensions"
-		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
-		  Labels="Featured;Type-Archive"
+	  Summary="Magellan $(build_version)$(build_versiontag) .NET 4.0 binaries with Transitionals and Blend Behaviors extensions"
+	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
+	  Labels="Featured;Type-Archive"
       >
       <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
     </GoogleCodeUpload>
 
     <GoogleCodeUpload Project="magellan-framework" Username="$(googlecode_username)" Password="$(googlecode_password)"
-		  Summary="Magellan $(build_version)$(build_versiontag) source code (includes sample applications)"
-		  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
-		  Labels="Featured;Type-Source"
+	  Summary="Magellan $(build_version)$(build_versiontag) source code (includes sample applications)"
+	  File="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
+	  Labels="Featured;Type-Source"
       >
       <Output PropertyName="FileUrl" TaskParameter="FileUrl" />
     </GoogleCodeUpload>
@@ -43,6 +43,7 @@
     <Message Text="Version tag:     $(build_versiontag)" />
     <Message Text="Build dir:       $(MSBuildProjectDirectory)" />
     <Message Text="Project root:    $(Root)" />
+    <Message Text="Ruby bin path:   $(rubypath)" />
     <Message Text="NUnit Console:   $(nunitconsoleexe)" />
 
     <!-- Clean up -->
@@ -132,7 +133,8 @@
     <WriteLinesToFile File="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\VERSION" Lines="$(build_number)" Overwrite="true" />
 	
     <!-- Build Gem -->
-	<Exec Command="gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+	<Exec Condition="$(rubypath) != ''" Command="$(rubypath)\gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+	<Exec Condition="$(rubypath) == ''" Command="gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
 
     <!-- Publish Gem -->
 	<ItemGroup>
