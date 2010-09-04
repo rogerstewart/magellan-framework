@@ -9,7 +9,22 @@
 	Title="Submit"
     Style="{DynamicResource Page.Normal}"
     >
-    <Grid Margin="7">
-        <TextBlock Margin="7" Text="{Binding Path=TaxableIncome}" /> 
-    </Grid>
+    <StackPanel Margin="7">
+        <TextBlock Margin="7" Text="Tax Estimate" Style="{DynamicResource Text.Heading}" />
+
+        <Form>
+            <Field Margin="7" Header="Gross income">
+                <TextBlock Text="{Binding Path=Estimate.Situation.GrossIncome, StringFormat='{}{0:c}'}" />
+            </Field>
+            <Field Margin="7" Header="Tax payable">
+                <TextBlock Text="{Binding Path=Estimate.TaxOnIncome, StringFormat='{}{0:c}'}" />
+            </Field>
+            <Field Margin="7" Header="Medicare levy">
+                <TextBlock Text="{Binding Path=Estimate.MedicareLevy, StringFormat='{}{0:c}'}" />
+            </Field>
+            <Field Margin="7" Header="Net income" FontWeight="Bold">
+                <TextBlock Text="{Binding Path=Estimate.NetIncome, StringFormat='{}{0:c}'}" />
+            </Field>
+        </Form>
+    </StackPanel>
 </Page>
