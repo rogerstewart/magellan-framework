@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Layouts\PageMaster.xaml.cs">
+      <DependentUpon>PageMaster.xaml</DependentUpon>
+    </Compile>
     <Page Include="Features\Home\Views\About\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Layouts\PageMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Pages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Resources\Layouts\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Play-64.png" />
@@ -186,6 +192,10 @@
       <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>
       <Name>Magellan</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\LeftArrow-64-Disabled.png" />
+    <Resource Include="Resources\Images\RightArrow-64-Disabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

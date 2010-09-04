@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     >
     
-    
+    <Style TargetType="Layout">
+        <Setter Property="Source" Value="/Resources/Layouts/PageMaster.xaml" />
+    </Style>
     
 </ResourceDictionary>

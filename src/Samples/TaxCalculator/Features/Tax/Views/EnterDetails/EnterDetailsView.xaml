@@ -9,16 +9,19 @@
 	Title="Home"
     Style="{DynamicResource Page.Normal}"
     >
-    <StackPanel Margin="7">
-        <TextBlock Margin="7" Text="Enter your tax details" Style="{DynamicResource Text.Heading}" />
-        
-        <Form>
-            <Field Margin="7" For="{Binding Path=GrossIncome}" />
-            <Field Margin="7" For="{Binding Path=Period}" Description="Select the financial year in which the income was earned." />
-            <Field Margin="7">
-                <Button Command="{Binding Path=Submit}" Content="Submit" HorizontalAlignment="Left" Width="100" />
-            </Field>
-        </Form>
-        
-    </StackPanel>
+    <Layout>
+        <Zone ZonePlaceHolderName="ContentZone">
+            <StackPanel Margin="7">
+                <TextBlock Margin="7" Text="Enter your tax details" Style="{DynamicResource Text.Heading}" />
+
+                <Form>
+                    <Field Margin="7" For="{Binding Path=GrossIncome}" />
+                    <Field Margin="7" For="{Binding Path=Period}" Description="Select the financial year in which the income was earned." />
+                    <Field Margin="7">
+                        <Button Command="{Binding Path=Submit}" Content="Submit" HorizontalAlignment="Left" Width="100" />
+                    </Field>
+                </Form>
+            </StackPanel>
+        </Zone>
+    </Layout>
 </Page>
