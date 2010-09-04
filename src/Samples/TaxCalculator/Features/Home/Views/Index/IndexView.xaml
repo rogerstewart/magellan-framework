@@ -9,26 +9,31 @@
 	Title="Home"
     Style="{DynamicResource Page.Normal}"
     >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="400" />
-        </Grid.ColumnDefinitions>
+    <Layout>
+        <Zone ZonePlaceHolderName="ContentZone">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1">
-            <Image Width="400" Height="300" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="7,-80,-30,0" Source="/Resources/Images/Welcome-400x300.jpg" />
-            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,75,55,0" Width="220" TextWrapping="Wrap" TextAlignment="Center" FontSize="20pt">
-                <Hyperlink Foreground="Black" Command="{Binding Path=About}">
-                    <Run Text="About the Tax Calculator" />
-                </Hyperlink>
-            </TextBlock>
-        </Grid>
+                <Grid Grid.Column="1">
+                    <Image Width="400" Height="300" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="7,-80,-30,0" Source="/Resources/Images/Welcome-400x300.jpg" />
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,75,55,0" Width="220" TextWrapping="Wrap" TextAlignment="Center" FontSize="20pt">
+                        <Hyperlink Foreground="Black" Command="{Binding Path=About}">
+                            <Run Text="About the Tax Calculator" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
 
-        <StackPanel Margin="7">
-            <TextBlock Style="{DynamicResource Text.Heading}" Text="Welcome to the Tax Calculator!" Margin="7" />
-            <TextBlock Text="This project template sets up an example Visual Studio project that uses Magellan." Margin="7" TextWrapping="Wrap" />
-            
-            <Button Command="{Binding Path=Start}" Width="170" Content="Begin a tax calculation" HorizontalAlignment="Left" Margin="7" />
-        </StackPanel>
-    </Grid>
+                <StackPanel Margin="7">
+                    <TextBlock Style="{DynamicResource Text.Heading}" Text="Welcome to the Tax Calculator!" Margin="7" />
+                    <TextBlock Text="This project template sets up an example Visual Studio project that uses Magellan." Margin="7" TextWrapping="Wrap" />
+
+                    <Button Command="{Binding Path=Start}" Width="170" Content="Begin a tax calculation" HorizontalAlignment="Left" Margin="7" />
+                </StackPanel>
+            </Grid>
+        </Zone>
+    </Layout>
+    
 </Page>

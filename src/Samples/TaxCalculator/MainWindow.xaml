@@ -12,18 +12,9 @@
     <Grid>
         <DockPanel>
             <ToolBar DockPanel.Dock="Top" FocusManager.IsFocusScope="True">
-                <Button Style="{DynamicResource Button.Image}" Command="BrowseBack" CommandTarget="{Binding ElementName=MainFrame}">
-                    <Image Cursor="Hand" Width="32" Height="32" Margin="5,0,5,0" Source="/Resources/Images/LeftArrow-64.png" ToolTip="Back" />
-                </Button>
-                <Button Style="{DynamicResource Button.Image}" Command="BrowseForward" CommandTarget="{Binding ElementName=MainFrame}">
-                    <Image Cursor="Hand" Width="32" Height="32" Margin="5,0,5,0" Source="/Resources/Images/RightArrow-64.png" ToolTip="Back" />
-                </Button>
-
+                <Button Style="{DynamicResource Button.Forward}" Command="BrowseBack" CommandTarget="{Binding ElementName=MainFrame}" />
+                <Button Style="{DynamicResource Button.Back}" Command="BrowseForward" CommandTarget="{Binding ElementName=MainFrame}" />
                 <TextBox Width="400" Margin="5,0,5,0" IsReadOnly="True" Text="{Binding ElementName=MainFrame, Path=Content.(NavigationProperties.CurrentRequest).Uri, Mode=OneWay}" />
-
-                <Button Style="{DynamicResource Button.Image}" IsDefault="True" Command="Search">
-                    <Image Cursor="Hand" Width="32" Height="32" Margin="5,0,5,0" Source="/Resources/Images/Play-64.png" ToolTip="Back" />
-                </Button>
             </ToolBar>
 
             <Frame x:Name="MainFrame" ClipToBounds="True" />

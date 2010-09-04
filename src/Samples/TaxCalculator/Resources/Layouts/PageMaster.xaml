@@ -1,0 +1,15 @@
+﻿<UserControl 
+    x:Class="TaxCalculator.Resources.Layouts.PageMaster"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="900"
+    >
+    <Grid>
+        <ZonePlaceHolder Name="ContentZone" />
+        
+        <!-- Put any other XAML here that you would like to see on each page -->
+    </Grid>
+</UserControl>
