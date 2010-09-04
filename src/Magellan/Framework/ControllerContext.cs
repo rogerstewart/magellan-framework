@@ -44,6 +44,15 @@ namespace Magellan.Framework
         }
 
         /// <summary>
+        /// Gets the model binders.
+        /// </summary>
+        /// <value>The model binders.</value>
+        public ModelBinderDictionary ModelBinders
+        {
+            get { return _modelBinders; }
+        }
+
+        /// <summary>
         /// Gets the active controller.
         /// </summary>
         /// <value>The controller.</value>

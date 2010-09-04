@@ -13,6 +13,9 @@ namespace Magellan.Controls
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(TextBox))]
     public class Field : ContentControl
     {
+        /// <summary>
+        /// A static default value for fields that haven't been set (as opposed to explicitly set to null).
+        /// </summary>
         public static readonly object UnsetField = new object();
         /// <summary>
         /// Dependency property for the <see cref="Header"/> property.

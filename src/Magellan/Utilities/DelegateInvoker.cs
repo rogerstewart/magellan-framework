@@ -23,11 +23,15 @@ namespace Magellan.Utilities
             parameterTypes.Add(method.ReturnType);
 
             var invokerType = _invokerTypes.SingleOrDefault(x => x.GetGenericArguments().Length == parameterTypes.Count);
-            if (invokerType == null) throw new Exception("Foo");
+            if (invokerType == null) 
+                throw new ArgumentException(string.Format("Could not create an invoker for the method '{0}'. This type of method is not supported.", method));
+            
             invokerType = invokerType.MakeGenericType(parameterTypes.ToArray());
 
             var invokerWrapperType = _invokerWrapperTypes.SingleOrDefault(x => x.GetGenericArguments().Length == parameterTypes.Count);
-            if (invokerWrapperType == null) throw new Exception("Foo");
+            if (invokerWrapperType == null)
+                throw new ArgumentException(string.Format("Could not create an invoker for the method '{0}'. This type of method is not supported.", method));
+            
             invokerWrapperType = invokerWrapperType.MakeGenericType(parameterTypes.ToArray());
 
             var invoker = Delegate.CreateDelegate(invokerType, target, method);

@@ -84,6 +84,11 @@ namespace Magellan.Controls.Conventions
             get { return _propertyDescriptor; }
         }
 
+        /// <summary>
+        /// A helper that executes a delegate when the property has a given attribute type.
+        /// </summary>
+        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <param name="hasAttributeCallback">The callback executed if the attribute existed. The argument is the attribute instance.</param>
         public void WhenHasAttribute<TAttribute>(Action<TAttribute> hasAttributeCallback) where TAttribute : Attribute
         {
             var attributes = _propertyDescriptor.Attributes.OfType<TAttribute>().ToList();

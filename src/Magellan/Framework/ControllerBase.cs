@@ -10,7 +10,6 @@ namespace Magellan.Framework
     public abstract class ControllerBase : IController
     {
         private IActionInvoker _actionInvoker;
-        private ModelBinderDictionary _modelBinders;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="Controller"/> class.
@@ -47,8 +46,7 @@ namespace Magellan.Framework
         /// </summary>
         public ModelBinderDictionary ModelBinders
         {
-            get { return _modelBinders = _modelBinders ?? Framework.ModelBinders.CreateDefaults(); }
-            set { _modelBinders = value; }
+            get { return ControllerContext == null ? Framework.ModelBinders.CreateDefaults() : ControllerContext.ModelBinders; }
         }
 
         /// <summary>

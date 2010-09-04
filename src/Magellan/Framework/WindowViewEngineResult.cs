@@ -55,7 +55,8 @@ namespace Magellan.Framework
                     
                     // Prepare the window
                     RenderedInstance = (Window)_viewActivator.Instantiate(_viewType);
-                    WireModelToView(RenderedInstance);
+
+                    ViewInitializer.Prepare(RenderedInstance, Model, ControllerContext.Request);
 
                     // Decide how to show it
                     var dialog = Options.GetViewType() == "Dialog";

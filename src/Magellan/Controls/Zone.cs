@@ -49,6 +49,13 @@ namespace Magellan.Controls
             set { SetValue(ZonePlaceHolderNameProperty, value); }
         }
 
+        /// <summary>
+        /// Makes the <see cref="T:System.Windows.Freezable"/> object unmodifiable or tests whether it can be made unmodifiable.
+        /// </summary>
+        /// <param name="isChecking">true to return an indication of whether the object can be frozen (without actually freezing it); false to actually freeze the object.</param>
+        /// <returns>
+        /// If <paramref name="isChecking"/> is true, this method returns true if the <see cref="T:System.Windows.Freezable"/> can be made unmodifiable, or false if it cannot be made unmodifiable. If <paramref name="isChecking"/> is false, this method returns true if the if the specified <see cref="T:System.Windows.Freezable"/> is now unmodifiable, or false if it cannot be made unmodifiable.
+        /// </returns>
         [DebuggerNonUserCode]
         protected override bool FreezeCore(bool isChecking)
         {
@@ -68,6 +75,10 @@ namespace Magellan.Controls
             }
         }
 
+        /// <summary>
+        /// When implemented in a derived class, creates a new instance of the <see cref="T:System.Windows.Freezable"/> derived class.
+        /// </summary>
+        /// <returns>The new instance.</returns>
         protected override Freezable CreateInstanceCore()
         {
             return new Zone();

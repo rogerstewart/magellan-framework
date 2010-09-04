@@ -3,7 +3,7 @@
     /// <summary>
     /// Implemented by views that wish to make use of a custom model property instead of DataContext.
     /// </summary>
-    public interface IView
+    public interface IModelBound
     {
         /// <summary>
         /// Gets or sets the model.

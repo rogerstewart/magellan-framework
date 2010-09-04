@@ -65,7 +65,7 @@ namespace Magellan.Tests.Framework
             Controller.Instance.ActionInvoker = new AsyncActionInvoker();
             Controller.Instance.Execute(request.BuildControllerContext(Controller.Instance));
 
-            Thread.Sleep(200);
+            Thread.Sleep(400);
 
             var ex = Assert.Throws<AsyncControllerExecutionException>(dispatcher.Pump);
             Assert.IsInstanceOf<DivideByZeroException>(ex.InnerException);

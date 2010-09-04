@@ -58,7 +58,8 @@ namespace Magellan.Framework
 
                     // Prepare the page
                     RenderedInstance = (FrameworkElement)_viewActivator.Instantiate(_viewType);
-                    WireModelToView(RenderedInstance);
+
+                    ViewInitializer.Prepare(RenderedInstance, Model, ControllerContext.Request);
 
                     // Navigate to the page
                     var navigationService = ControllerContext.Request.Navigator;
