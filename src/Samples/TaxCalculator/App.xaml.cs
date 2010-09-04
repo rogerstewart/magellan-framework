@@ -22,7 +22,7 @@ namespace TaxCalculator
                 TaxPeriod.FY2009, 
                 new TaxEstimator(
                     new TaxBracketSelector(
-                        new TaxBracket(decimal.MinValue, 6000M, 0, 0),
+                        new TaxBracket(-1, 6000M, 0, 0),
                         new TaxBracket(6000M, 35000M, 0, 0.15M),
                         new TaxBracket(35000M, 80000M, 4350, 0.30M),
                         new TaxBracket(80000M, 180000M, 17850, 0.38M),
@@ -34,7 +34,7 @@ namespace TaxCalculator
                 TaxPeriod.FY2010,
                 new TaxEstimator(
                     new TaxBracketSelector(
-                        new TaxBracket(decimal.MinValue, 6000M, 0, 0),
+                        new TaxBracket(-1, 6000M, 0, 0),
                         new TaxBracket(6000M, 37000M, 0, 0.15M),
                         new TaxBracket(37000M, 80000M, 4650, 0.30M),
                         new TaxBracket(80000M, 180000M, 17550, 0.37M),
