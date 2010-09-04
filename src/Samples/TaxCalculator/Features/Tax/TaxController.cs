@@ -11,14 +11,17 @@ namespace TaxCalculator.Features.Tax
 
         public TaxController(ITaxEstimatorSelector estimatorSelector)
         {
+        	// Inject the TaxEstimateSelector so it can be used by the Submit() action
             _estimatorSelector = estimatorSelector;
         }
 
+        // Route: /Tax/EnterDetails
         public ActionResult EnterDetails()
         {
             return Page("EnterDetails", new EnterDetailsViewModel());
         }
 
+        // Route: /Tax/Submit
         public ActionResult Submit(TaxPeriod period, decimal grossIncome)
         {
             var situation = new Situation(grossIncome);

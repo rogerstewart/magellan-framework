@@ -60,6 +60,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Features\Tax\Model\ITaxEstimator.cs" />
+    <Compile Include="Features\Tax\Model\ITaxEstimatorSelector.cs" />
+    <Compile Include="Features\Tax\Model\ITaxModifier.cs" />
+    <Compile Include="Features\Tax\Model\MedicareLevy.cs" />
+    <Compile Include="Features\Tax\Model\Situation.cs" />
+    <Compile Include="Features\Tax\Model\TaxBracketSelector.cs" />
+    <Compile Include="Features\Tax\Model\TaxEstimate.cs" />
+    <Compile Include="Features\Tax\Model\TaxEstimator.cs" />
+    <Compile Include="Features\Tax\Model\TaxEstimatorSelector.cs" />
     <Compile Include="Resources\Layouts\PageMaster.xaml.cs">
       <DependentUpon>PageMaster.xaml</DependentUpon>
     </Compile>
@@ -96,7 +105,7 @@
     <Compile Include="Features\Home\Views\Index\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Features\Tax\Model\TaxReturn.cs" />
+    <Compile Include="Features\Tax\Model\TaxBracket.cs" />
     <Compile Include="Features\Tax\TaxController.cs" />
     <Compile Include="Features\Tax\Views\EnterDetails\EnterDetailsView.xaml.cs">
       <DependentUpon>EnterDetailsView.xaml</DependentUpon>
