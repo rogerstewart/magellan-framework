@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magellan.Behaviors", "Magellan.Behaviors\Magellan.Behaviors.csproj", "{14620616-8CD2-4B10-81F7-1E0EAD136659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculatorDemo", "Samples\TaxCalculatorDemo\TaxCalculatorDemo\TaxCalculatorDemo.csproj", "{F3BFAAF9-8F6D-407E-B4DE-BD3390D70453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator", "Samples\TaxCalculator\TaxCalculator.csproj", "{F3BFAAF9-8F6D-407E-B4DE-BD3390D70453}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
