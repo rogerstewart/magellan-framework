@@ -28,12 +28,7 @@ namespace Magellan.Diagnostics
 
         private static TraceSource CreateTraceSource(string name)
         {
-            var source = new TraceSource(name);
-#if SILVERLIGHT
-            source.Switch.Level = SourceLevels.Off;
-#else
-            source.Switch.Level = SourceLevels.Warning;
-#endif
+            var source = new TraceSource(name, SourceLevels.Warning);
             return source;
         }
     }
