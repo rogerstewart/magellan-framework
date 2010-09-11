@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Threading;
 using System.Windows.Markup;
-using System.Xml;
+using System.Windows.Threading;
 
 namespace Magellan.Tests.Helpers
 {

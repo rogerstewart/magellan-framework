@@ -26,9 +26,9 @@ namespace Magellan.ComponentModel
         protected ValueDictionary(IDictionary items)
         {
             if (items == null) return;
-            foreach (var key in items.Keys)
+            foreach (var key in items.Keys.Cast<object>().Where(key => key != null))
             {
-                Add((key ?? string.Empty).ToString(), items[key]);
+                Add((key).ToString(), items[key]);
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using Magellan.Diagnostics;
-using Magellan.Views;
-
+﻿
 namespace Magellan.Framework
 {
     /// <summary>

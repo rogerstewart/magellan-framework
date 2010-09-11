@@ -1,10 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
-using Magellan;
 using Magellan.Framework;
 using Moq;
 using NUnit.Framework;
-using System.ComponentModel;
 
 namespace Magellan.Tests.Framework
 {

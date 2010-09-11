@@ -1,10 +1,7 @@
-﻿using System;
-using System.Windows;
-using Magellan;
+﻿using System.Windows;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Magellan.Views;
-using Moq;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

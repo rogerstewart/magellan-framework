@@ -1,5 +1,4 @@
-﻿using System;
-using Magellan.Routing;
+﻿using Magellan.Routing;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Routing

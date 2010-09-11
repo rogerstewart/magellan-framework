@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-
+﻿
 namespace Magellan.Framework
 {
     /// <summary>

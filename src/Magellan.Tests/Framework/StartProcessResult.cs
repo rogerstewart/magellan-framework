@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;

@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Sample.Features.Search.ServiceProxies;
 
 namespace Sample.Features.Search
 {

@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Magellan;
 using Magellan.Routing;
 using NUnit.Framework;
-using System;
 
 namespace Magellan.Tests.Framework
 {

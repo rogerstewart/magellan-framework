@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
-using Magellan;
 using Magellan.Framework;
-using Magellan.Routing;
 using NUnit.Framework;
 
 namespace Magellan.Tests.Framework

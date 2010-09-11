@@ -1,5 +1,4 @@
-﻿using Magellan;
-
+﻿
 namespace Magellan.Events
 {
     /// <summary>

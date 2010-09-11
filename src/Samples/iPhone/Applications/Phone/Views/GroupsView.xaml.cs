@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Magellan.Views;
 
 namespace iPhone.Applications.Phone.Views
 {

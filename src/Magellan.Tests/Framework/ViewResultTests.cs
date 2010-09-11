@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Magellan;
 using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;

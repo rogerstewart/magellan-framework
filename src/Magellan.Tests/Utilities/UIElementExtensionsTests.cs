@@ -34,7 +34,7 @@ namespace Magellan.Tests.Utilities
             window.Close();
         }
 
-        private static void CheckMouseEvent(TestWindow window, Button button, RoutedEvent routedEvent, bool shouldBeHandled)
+        private static void CheckMouseEvent(TestWindow window, IInputElement button, RoutedEvent routedEvent, bool shouldBeHandled)
         {
             var args = new MouseButtonEventArgs(Mouse.PrimaryDevice, (int) DateTime.Now.Ticks, MouseButton.Left);
             args.RoutedEvent = routedEvent;
