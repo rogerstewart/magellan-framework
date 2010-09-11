@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Magellan.ComponentModel;
+﻿using Magellan.ComponentModel;
 
 namespace Magellan.Framework
 {

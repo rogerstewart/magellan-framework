@@ -1,5 +1,4 @@
-﻿using Magellan;
-using Magellan.Framework;
+﻿using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Moq;
 using NUnit.Framework;

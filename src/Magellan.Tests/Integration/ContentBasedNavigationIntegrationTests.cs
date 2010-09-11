@@ -1,11 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
 using Magellan.Events;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Progress;
-using Magellan.Routing;
 using Magellan.Tests.Helpers;
 using Moq;
 using NUnit.Framework;

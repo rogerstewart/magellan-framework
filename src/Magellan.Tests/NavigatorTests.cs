@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Magellan.Abstractions;
-using Magellan;
 using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Routing;

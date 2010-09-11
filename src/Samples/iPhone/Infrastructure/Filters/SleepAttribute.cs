@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Magellan.Framework;
 
 namespace iPhone.Infrastructure.Filters

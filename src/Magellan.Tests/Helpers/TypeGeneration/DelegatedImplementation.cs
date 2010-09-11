@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using System.Reflection;
 
 namespace Magellan.Tests.Helpers.TypeGeneration
@@ -9,10 +8,6 @@ namespace Magellan.Tests.Helpers.TypeGeneration
     public class RuntimeImplementation : IImplementation
     {
         private readonly List<Registration> _registrations = new List<Registration>();
-
-        public RuntimeImplementation()
-        {
-        }
 
         public void RegisterCallback(string methodName, MethodInfo method, Func<object[], object> callback)
         {
@@ -25,7 +20,7 @@ namespace Magellan.Tests.Helpers.TypeGeneration
             return implementation.Callback(arguments);
         }
 
-        private Registration FindRegistration(string methodName, object[] arguments)
+        private Registration FindRegistration(string methodName, IEnumerable<object> arguments)
         {
             var implementations = _registrations.Where(x => x.Name == methodName);
             if (implementations.Count() == 0)

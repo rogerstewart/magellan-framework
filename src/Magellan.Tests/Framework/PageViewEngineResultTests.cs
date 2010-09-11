@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
-using Magellan.Abstractions;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Routing;
+using Magellan.Tests.Helpers;
 using Magellan.Views;
 using Moq;
 using NUnit.Framework;
-using Magellan.Tests.Helpers;
 
 namespace Magellan.Tests.Framework
 {

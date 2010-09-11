@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using iPhone.Applications.Phone.Model;
+﻿using iPhone.Applications.Phone.Model;
 using iPhone.Applications.Phone.Repositories;
 using iPhone.Applications.Phone.Views;
 using iPhone.Infrastructure.Filters;

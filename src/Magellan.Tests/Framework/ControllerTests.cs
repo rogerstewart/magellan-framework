@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using NUnit.Framework;
-using System.Data;
 
 namespace Magellan.Tests.Framework
 {

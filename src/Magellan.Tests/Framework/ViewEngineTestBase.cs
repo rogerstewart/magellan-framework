@@ -1,15 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using Magellan.Abstractions;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Progress;
 using Magellan.Routing;
-using Magellan.Tests.Helpers;
 using Magellan.Tests.Helpers.TypeGeneration;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace Magellan.Tests.Framework
 {

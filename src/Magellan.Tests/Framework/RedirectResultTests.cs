@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
-using Magellan.Framework;
+﻿using Magellan.Framework;
 using Magellan.Routing;
+using Magellan.Tests.Helpers;
 using Moq;
 using NUnit.Framework;
-using Magellan;
-using Magellan.Tests.Helpers;
 
 namespace Magellan.Tests.Framework
 {

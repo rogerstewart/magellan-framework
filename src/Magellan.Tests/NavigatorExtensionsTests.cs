@@ -1,7 +1,4 @@
-﻿using Magellan.Abstractions;
-using Magellan;
-using Magellan.Framework;
-using Magellan.Routing;
+﻿using Magellan.Framework;
 using Moq;
 using NUnit.Framework;
 

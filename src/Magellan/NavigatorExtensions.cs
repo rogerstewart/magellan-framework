@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Magellan.Exceptions;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Routing;
 

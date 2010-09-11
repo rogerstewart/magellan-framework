@@ -1,6 +1,5 @@
 using Magellan.Exceptions;
 using Magellan.Framework;
-using Magellan.Routing;
 using Moq;
 using NUnit.Framework;
 

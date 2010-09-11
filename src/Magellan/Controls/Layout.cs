@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Markup;
+using System.Windows.Media;
 using Magellan.Diagnostics;
-using System.Diagnostics;
 
 namespace Magellan.Controls
 {
@@ -34,7 +34,7 @@ namespace Magellan.Controls
         /// </summary>
         public Layout()
         {
-            Loaded += Master_Loaded;
+            Loaded += MasterLoaded;
             Zones = new ZoneCollection();
         }
 
@@ -92,7 +92,7 @@ namespace Magellan.Controls
             @this.LoadLayoutFromSource();
         }
  
-        private void Master_Loaded(object sender, RoutedEventArgs e)
+        private void MasterLoaded(object sender, RoutedEventArgs e)
         {
             LoadLayoutFromSource();
         }
@@ -174,7 +174,7 @@ namespace Magellan.Controls
         }
 
         [DebuggerNonUserCode]
-        private void Zones_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ZonesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             // Ensure zone names are unique
             var names = Zones.GroupBy(x => x.ZonePlaceHolderName).Where(x => x.Count() > 1).Select(x => x.Key);

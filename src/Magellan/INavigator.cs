@@ -1,7 +1,5 @@
-﻿using System;
-using Magellan.Abstractions;
+﻿using Magellan.Abstractions;
 using Magellan.Progress;
-using Magellan.Routing;
 
 namespace Magellan
 {

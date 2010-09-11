@@ -5,7 +5,7 @@ namespace TaxCalculator
 {
     public partial class MainWindow : Window
     {
-        public MainWindow(NavigatorFactory navigation)
+        public MainWindow(INavigatorFactory navigation)
         {
             InitializeComponent();
 

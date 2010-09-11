@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
-using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Magellan.Behaviors")]
 [assembly: AssemblyDescription("Magellan is a library that makes it easy to build WPF navigation applications")]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Tests.Helpers;
 using Magellan.Views;

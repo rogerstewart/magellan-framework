@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Magellan;
 using Magellan.Exceptions;
 using Magellan.Framework;
 using Magellan.Routing;
@@ -15,7 +14,7 @@ namespace Magellan.Tests.Framework
         protected object Bind(string parameterName, Type parameterType, object parameters)
         {
             var modelBinder = new DefaultModelBinder();
-            var result = modelBinder.BindModel(RequestBuilder.CreateRequest().BuildRequest(), new ModelBindingContext("foo", MethodInfo.GetCurrentMethod() as MethodInfo, parameterType, new RouteValueDictionary(parameters)));
+            var result = modelBinder.BindModel(RequestBuilder.CreateRequest().BuildRequest(), new ModelBindingContext("foo", MethodBase.GetCurrentMethod() as MethodInfo, parameterType, new RouteValueDictionary(parameters)));
             return result;
         }
 

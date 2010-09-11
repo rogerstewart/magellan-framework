@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Magellan.Abstractions;
-using Magellan;
 using Magellan.Framework;
 using Magellan.Progress;
 using Magellan.Routing;
