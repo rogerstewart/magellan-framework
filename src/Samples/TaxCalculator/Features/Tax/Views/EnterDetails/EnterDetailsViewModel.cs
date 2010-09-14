@@ -22,7 +22,7 @@ namespace TaxCalculator.Features.Tax.Views.EnterDetails
 
         private void SubmitExecuted()
         {
-            Navigator.Navigate<TaxController>(x => x.Submit(Period, GrossIncome));
+            Navigator.Navigate<TaxController>(x => x.Submit(this));
         }
     }
 }
