@@ -148,6 +148,7 @@
     <Compile Include="Exceptions\AsyncControllerExecutionException.cs" />
     <Compile Include="Framework\AsyncControllerFactory.cs" />
     <Compile Include="Framework\BackResult.cs" />
+    <Compile Include="ComponentModel\DispatchedObservableCollection.cs" />
     <Compile Include="Framework\DoNothingResult.cs" />
     <Compile Include="Framework\CommonViewResultOptions.cs" />
     <Compile Include="Framework\Controller.cs" />
@@ -188,6 +189,8 @@
     <Compile Include="Framework\IViewLifecycle.cs" />
     <Compile Include="Framework\IViewModelFactory.cs" />
     <Compile Include="Framework\PresentationObject.cs" />
+    <Compile Include="Framework\ValidationMessageCollection.cs" />
+    <Compile Include="Framework\ValidationMessageDictionary.cs" />
     <Compile Include="Framework\ViewModelFactoryResult.cs" />
     <Compile Include="Framework\RelayCommand.cs" />
     <Compile Include="Framework\ResultExecutedContext.cs" />
