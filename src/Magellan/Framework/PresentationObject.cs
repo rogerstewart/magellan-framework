@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// Serves as a base class for the "third object" in seperated presentation patterns - view models, 
     /// presenters, and so on.  
     /// </summary>
-    public abstract class PresentationObject : INotifyPropertyChanged, IDataErrorInfo
+    public abstract class PresentationObject : INotifyPropertyChanged, IDataErrorInfo, IStoreValidationMessages
     {
         private readonly BusyState _busyState = new BusyState();
         private readonly ValidationMessageDictionary _validationMessages = new ValidationMessageDictionary();
@@ -74,7 +74,7 @@ namespace Magellan.Framework
         /// Gets the validation messages associated with this object.
         /// </summary>
         /// <value>The validation messages.</value>
-        public ValidationMessageDictionary ValidationMessages
+        public virtual ValidationMessageDictionary ValidationMessages
         {
             get { return _validationMessages; }
         }
@@ -84,7 +84,7 @@ namespace Magellan.Framework
         /// by a newline.
         /// </summary>
         /// <value></value>
-        public string this[string columnName]
+        public virtual string this[string columnName]
         {
             get { return string.Join(Environment.NewLine, ValidationMessages[columnName].ToArray()); }
         }
@@ -94,7 +94,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <value></value>
         /// <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
-        public string Error
+        public virtual string Error
         {
             get { return string.Join(Environment.NewLine, ValidationMessages.AllMessages()); }
         }

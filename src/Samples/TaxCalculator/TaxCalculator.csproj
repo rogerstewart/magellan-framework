@@ -40,6 +40,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\..\lib\Fluent\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -69,6 +72,7 @@
     <Compile Include="Features\Tax\Model\TaxEstimate.cs" />
     <Compile Include="Features\Tax\Model\TaxEstimator.cs" />
     <Compile Include="Features\Tax\Model\TaxEstimatorSelector.cs" />
+    <Compile Include="Features\Tax\Views\EnterDetails\EnterDetailsValidator.cs" />
     <Compile Include="Resources\Layouts\PageMaster.xaml.cs">
       <DependentUpon>PageMaster.xaml</DependentUpon>
     </Compile>
@@ -195,6 +199,10 @@
     <Resource Include="Resources\Images\Welcome-400x300.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Magellan.Fluent\Magellan.Fluent.csproj">
+      <Project>{BA231D43-539E-4849-8375-4DFDE4BD8B73}</Project>
+      <Name>Magellan.Fluent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Magellan\Magellan.csproj">
       <Project>{AF447A33-1348-480A-B98E-CB0DC11893F5}</Project>
       <Name>Magellan</Name>
