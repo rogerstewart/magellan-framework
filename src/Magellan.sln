@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magellan.ProjectTemplates", "Templates\Magellan.ProjectTemplates\Magellan.ProjectTemplates.csproj", "{A10D06B3-1CE0-42D7-976C-19EC249EF3C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magellan.Fluent", "Magellan.Fluent\Magellan.Fluent.csproj", "{BA231D43-539E-4849-8375-4DFDE4BD8B73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,16 @@ Global
 		{A10D06B3-1CE0-42D7-976C-19EC249EF3C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A10D06B3-1CE0-42D7-976C-19EC249EF3C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A10D06B3-1CE0-42D7-976C-19EC249EF3C3}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +173,7 @@ Global
 		{55AE7230-4545-4B10-BAD2-B8E93305992C} = {5CD413AB-2AB3-4FFF-95FA-8A73BAAF4E36}
 		{2C8E481F-C694-4221-8F69-5EE7F77A5FEB} = {5CD413AB-2AB3-4FFF-95FA-8A73BAAF4E36}
 		{14620616-8CD2-4B10-81F7-1E0EAD136659} = {5CD413AB-2AB3-4FFF-95FA-8A73BAAF4E36}
+		{BA231D43-539E-4849-8375-4DFDE4BD8B73} = {5CD413AB-2AB3-4FFF-95FA-8A73BAAF4E36}
 		{A10D06B3-1CE0-42D7-976C-19EC249EF3C3} = {DC14C619-BA1C-4595-9F2F-684C0BB52FCA}
 	EndGlobalSection
 EndGlobal

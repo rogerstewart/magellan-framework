@@ -1,4 +1,5 @@
-﻿using Magellan.Framework;
+﻿using Magellan.Fluent;
+using Magellan.Framework;
 using TaxCalculator.Features.Tax.Model;
 using TaxCalculator.Features.Tax.Views.EnterDetails;
 using TaxCalculator.Features.Tax.Views.Submit;
@@ -22,12 +23,9 @@ namespace TaxCalculator.Features.Tax
         }
 
         // Route: /Tax/Submit
+        [ValidateParameter("model", typeof(EnterDetailsViewModelValidator))]
         public ActionResult Submit(EnterDetailsViewModel model)
         {
-            model.ValidationMessages.Clear();
-            model.ValidationMessages.Add("GrossIncome", "Bad gross income!");
-            return Cancel();
-
             var situation = new Situation(model.GrossIncome);
             var estimator = _estimatorSelector.Select(model.Period);
             var estimate = estimator.Estimate(situation);

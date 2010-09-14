@@ -171,6 +171,7 @@
     <Compile Include="Framework\IControllerFactory.cs" />
     <Compile Include="Framework\IModelBinder.cs" />
     <Compile Include="Framework\IResultFilter.cs" />
+    <Compile Include="Framework\IStoreValidationMessages.cs" />
     <Compile Include="Framework\IViewActivator.cs" />
     <Compile Include="Framework\IViewEngine.cs" />
     <Compile Include="Framework\IViewInitializer.cs" />
