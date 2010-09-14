@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace Magellan.Framework
 {
     /// <summary>
@@ -15,8 +17,24 @@ namespace Magellan.Framework
         void ViewAttached(object view);
 
         /// <summary>
-        /// Notifies the target that the view has been loaded.
+        /// Notifies the target that the view is going to be activated.
         /// </summary>
-        void Loaded();
+        void Activating();
+
+        /// <summary>
+        /// Notifies the target that the view is now active.
+        /// </summary>
+        void Activated();
+
+        /// <summary>
+        /// Notifies the target that the view is being deactivated, giving the target a chance to 
+        /// cancel deactivation.
+        /// </summary>
+        void Deactivating(CancelEventArgs e);
+
+        /// <summary>
+        /// Notifies the target that the view is no longer active.
+        /// </summary>
+        void Deactivated();
     }
 }

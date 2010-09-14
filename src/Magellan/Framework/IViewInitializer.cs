@@ -1,4 +1,5 @@
-﻿using Magellan.Routing;
+﻿using System.ComponentModel;
+using Magellan.Routing;
 
 namespace Magellan.Framework
 {
@@ -15,5 +16,11 @@ namespace Magellan.Framework
         /// <param name="model">The model.</param>
         /// <param name="request">The request.</param>
         void Prepare(object view, object model, ResolvedNavigationRequest request);
+
+        void NotifyActivated(object view);
+        
+        void NotifyDeactivating(object view, CancelEventArgs e);
+        
+        void NotifyDeactivated(object view);
     }
 }

@@ -1,4 +1,7 @@
-﻿
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+
 namespace Magellan.Abstractions
 {
     /// <summary>
@@ -6,6 +9,32 @@ namespace Magellan.Abstractions
     /// </summary>
     public interface INavigationService
     {
+        /// <summary>
+        /// Occurs when the navigation service is navigating. The <see cref="Content"/> property will contain the previous
+        /// (current) page. 
+        /// </summary>
+        event CancelEventHandler Navigating;
+
+        /// <summary>
+        /// Occurs when the navigation service has completed navigating. The <see cref="Content"/> property will 
+        /// contain the new content.
+        /// </summary>
+        event EventHandler Navigated;
+
+        /// <summary>
+        /// Gets the value of a dependency property from the underlying wrapped navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <returns></returns>
+        object GetValue(DependencyProperty property);
+
+        /// <summary>
+        /// Sets the value of a dependency property on the underlying navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The value.</param>
+        void SetValue(DependencyProperty property, object value);
+
         /// <summary>
         /// Gets a value indicating whether the back button should be enabled.
         /// </summary>

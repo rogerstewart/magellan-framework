@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Magellan.Abstractions;
 using Magellan.Exceptions;
@@ -100,22 +101,6 @@ namespace Magellan
         }
 
         /// <summary>
-        /// Creates an <see cref="INavigator"/> bound to the specified navigation service. This method can
-        /// be called multiple times for the same <paramref name="navigationService"/>.
-        /// </summary>
-        /// <param name="navigationService">The navigation service which will be used if the view renders
-        /// page information.</param>
-        /// <returns>
-        /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
-        /// </returns>
-        public INavigator CreateNavigator(NavigationService navigationService)
-        {
-            Guard.ArgumentNotNull(navigationService, "navigationService");
-
-            return CreateNavigator(() => new FrameNavigationServiceWrapper(System.Windows.Threading.Dispatcher.CurrentDispatcher, navigationService));
-        }
-
-        /// <summary>
         /// Creates an <see cref="INavigator"/> bound to the specified frame. This method can
         /// be called multiple times for the same <paramref name="frame"/>.
         /// </summary>
@@ -127,7 +112,7 @@ namespace Magellan
         {
             Guard.ArgumentNotNull(frame, "frame");
 
-            return CreateNavigator(() => new FrameNavigationServiceWrapper(frame.Dispatcher, frame.NavigationService));
+            return CreateNavigator(() => new FrameNavigationServiceWrapper(frame.Dispatcher, frame));
         }
 
         /// <summary>
@@ -175,12 +160,22 @@ namespace Magellan
 
             Func<INavigationService> lazyFrameGetter = () =>
             {
-                var realService = NavigationService.GetNavigationService(sourceElement);
-                if (realService == null)
+                var frame = null as Frame;
+                DependencyObject parent = sourceElement;
+                while (parent != null)
+                {
+                    frame = parent as Frame;
+                    if (frame != null)
+                        break;
+                    parent = VisualTreeHelper.GetParent(parent);
+                }
+
+                if (frame == null)
                 {
                     throw new ImpossibleNavigationRequestException("The Navigator for this UI element is not avaialable. Please ensure the current view has been loaded into a frame, or that the NavigationProperties.Navigator attached property has been set.");
                 }
-                var wrapper = new FrameNavigationServiceWrapper(sourceElement.Dispatcher, realService);
+
+                var wrapper = new FrameNavigationServiceWrapper(sourceElement.Dispatcher, frame);
                 return wrapper;
             };
 

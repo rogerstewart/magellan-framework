@@ -7,7 +7,7 @@ namespace Magellan.Framework
     /// Serves as a base class for the "third object" in seperated presentation patterns - view models, 
     /// presenters, and so on.  
     /// </summary>
-    public abstract class PresentationObject : INotifyPropertyChanged, INavigationAware
+    public abstract class PresentationObject : INotifyPropertyChanged
     {
         private readonly BusyState _busyState = new BusyState();
 
@@ -23,12 +23,6 @@ namespace Magellan.Framework
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Gets the dispatcher that owns this presentation object.
-        /// </summary>
-        /// <value>The dispatcher.</value>
-        public IDispatcher Dispatcher { get { return Navigator.Dispatcher; } }
 
         /// <summary>
         /// Gets the <see cref="BusyState"/> that tracks whether background operations are running within 
@@ -48,12 +42,6 @@ namespace Magellan.Framework
         {
             get { return BusyState.IsBusy; }
         }
-
-        /// <summary>
-        /// Gets or sets the navigator that can be used for performing subsequent navigation actions.
-        /// </summary>
-        /// <value></value>
-        public INavigator Navigator { get; set; }
 
         /// <summary>
         /// Raises a property changed events for a given set of properties.

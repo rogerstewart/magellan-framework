@@ -1,4 +1,7 @@
 using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
@@ -12,17 +15,65 @@ namespace Magellan.Abstractions
     public class FrameNavigationServiceWrapper : INavigationService
     {
         private readonly Dispatcher _dispatcher;
+        private readonly Frame _frame;
         private readonly NavigationService _navigationService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameNavigationServiceWrapper"/> class.
         /// </summary>
         /// <param name="dispatcher">The dispatcher.</param>
-        /// <param name="navigationService">The navigation service.</param>
-        public FrameNavigationServiceWrapper(Dispatcher dispatcher, NavigationService navigationService)
+        /// <param name="frame">The frame.</param>
+        public FrameNavigationServiceWrapper(Dispatcher dispatcher, Frame frame)
         {
             _dispatcher = dispatcher;
-            _navigationService = navigationService;
+            _frame = frame;
+            _navigationService = _frame.NavigationService;
+            _navigationService.Navigating += NavigationServiceNavigating;
+            _navigationService.Navigated += NavigationServiceNavigated;
+        }
+
+        private void NavigationServiceNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            var handler = Navigating;
+            if (handler != null) handler(this, e);
+        }
+
+        private void NavigationServiceNavigated(object sender, NavigationEventArgs e)
+        {
+            var handler = Navigated;
+            if (handler != null) handler(this, e);
+        }
+
+        /// <summary>
+        /// Occurs when the navigation service is navigating. The <see cref="Content"/> property will contain the previous
+        /// (current) page.
+        /// </summary>
+        public event CancelEventHandler Navigating;
+
+        /// <summary>
+        /// Occurs when the navigation service has completed navigating. The <see cref="Content"/> property will
+        /// contain the new content.
+        /// </summary>
+        public event EventHandler Navigated;
+
+        /// <summary>
+        /// Gets the value of a dependency property from the underlying wrapped navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <returns></returns>
+        public object GetValue(DependencyProperty property)
+        {
+            return _frame.GetValue(property);
+        }
+
+        /// <summary>
+        /// Sets the value of a dependency property on the underlying navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The value.</param>
+        public void SetValue(DependencyProperty property, object value)
+        {
+            _frame.SetValue(property, value);
         }
 
         /// <summary>

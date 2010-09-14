@@ -43,7 +43,7 @@ namespace Magellan.Tests.Integration
         [Test]
         public void NavigateWithTransitions()
         {
-            var navigator = new FrameNavigationServiceWrapper(Frame.Dispatcher, Frame.NavigationService);
+            var navigator = new FrameNavigationServiceWrapper(Frame.Dispatcher, Frame);
 
             navigator.NavigateDirectToContent(new Button());
             Assert.IsNull(TransitionSelector.CurrentTransition);

@@ -1,12 +1,28 @@
 ﻿
+using System;
+using System.ComponentModel;
+using Magellan.Abstractions;
+
 namespace Magellan.Framework
 {
     /// <summary>
     /// A base class for view models in the MVVM pattern.
     /// </summary>
-    public abstract class ViewModel : PresentationObject, IViewAware
+    public abstract class ViewModel : PresentationObject, IViewAware, INavigationAware
     {
         private object _view;
+
+        /// <summary>
+        /// Gets the dispatcher that owns this presentation object.
+        /// </summary>
+        /// <value>The dispatcher.</value>
+        public IDispatcher Dispatcher { get { return Navigator.Dispatcher; } }
+
+        /// <summary>
+        /// Gets or sets the navigator that can be used for performing subsequent navigation actions.
+        /// </summary>
+        /// <value></value>
+        public INavigator Navigator { get; set; }
 
         /// <summary>
         /// Gets the View that is attached to this ViewModel.
@@ -28,7 +44,7 @@ namespace Magellan.Framework
         /// <summary>
         /// Called when the view attached to this ViewModel raises the Loaded event.
         /// </summary>
-        protected virtual void Loaded()
+        protected virtual void Activating()
         {
             
         }
@@ -39,9 +55,24 @@ namespace Magellan.Framework
             ViewAttached(view);
         }
 
-        void IViewAware.Loaded()
+        void IViewAware.Activating()
         {
-            Loaded();
+            Activating();
+        }
+
+        void IViewAware.Activated()
+        {
+            
+        }
+
+        void IViewAware.Deactivating(CancelEventArgs e)
+        {
+            
+        }
+
+        void IViewAware.Deactivated()
+        {
+            
         }
     }
 }
