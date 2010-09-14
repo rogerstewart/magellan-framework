@@ -59,7 +59,7 @@
       <SubType>Code</SubType>
     </Compile>
     <AppDesigner Include="Properties\" />
-    <Compile Include="ValidateAttribute.cs" />
+    <Compile Include="ValidateParameterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Magellan\Magellan.csproj">

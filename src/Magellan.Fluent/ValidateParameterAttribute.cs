@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using FluentValidation;
 using Magellan.Framework;
 
@@ -51,6 +50,13 @@ namespace Magellan.Fluent
 
             if (!result.IsValid)
             {
+                var flasher = model as IFlasher;
+                if (flasher != null)
+                {
+                    flasher.ClearFlashes();
+                    flasher.Flash("Please ensure all fields have been entered correctly.");
+                }
+
                 context.OverrideResult = new DoNothingResult();
             }
         }
