@@ -19,11 +19,6 @@ namespace Magellan.Framework
         /// <summary>
         /// Notifies the target that the view is going to be activated.
         /// </summary>
-        void Activating();
-
-        /// <summary>
-        /// Notifies the target that the view is now active.
-        /// </summary>
         void Activated();
 
         /// <summary>
