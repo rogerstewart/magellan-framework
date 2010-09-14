@@ -31,16 +31,6 @@ namespace Magellan.Tests
         }
 
         [Test]
-        public void CanCreateNavigatorForNavigationService()
-        {
-            var frame = new Frame();
-            var resolver = new Mock<IRouteResolver>();
-            var factory = new NavigatorFactory(resolver.Object);
-            var navigator = factory.CreateNavigator(frame.NavigationService);
-            navigator.CanGoBack.ToString();
-        }
-
-        [Test]
         public void CanCreateNavigatorForFrame()
         {
             var frame = new Frame();

@@ -29,17 +29,6 @@ namespace Magellan
         INavigator CreateNavigator(INavigationService navigationService);
 
         /// <summary>
-        /// Creates an <see cref="INavigator"/> bound to the specified navigation service. This method can 
-        /// be called multiple times for the same <paramref name="navigationService"/>.
-        /// </summary>
-        /// <param name="navigationService">The navigation service which will be used if the view renders 
-        /// page information.</param>
-        /// <returns>
-        /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
-        /// </returns>
-        INavigator CreateNavigator(NavigationService navigationService);
-
-        /// <summary>
         /// Creates an <see cref="INavigator"/> bound to the navigation service that owns a given source 
         /// element. This method can  be called multiple times for the same <paramref name="sourceElement"/>.
         /// </summary>

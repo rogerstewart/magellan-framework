@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -55,6 +57,67 @@ namespace Magellan.Framework
             AssignNavigator(view, request);
             AssignNavigator(model, request);
             WireUpLoadedEvent(model, view);
+        }
+
+        private object GetModelFromView(object view)
+        {
+            if (view is IModelBound)
+            {
+                return ((IModelBound)view).Model;
+            }
+            if (view is FrameworkElement)
+            {
+                return ((FrameworkElement)view).DataContext;
+            }
+            return null;
+        }
+
+        public void NotifyActivated(object view)
+        {
+            NotifyActivatedInternal(view);
+            NotifyActivatedInternal(GetModelFromView(view));
+        }
+
+        private static void NotifyActivatedInternal(object target)
+        {
+            var aware = target as IViewAware;
+            if (aware == null)
+                return;
+
+            aware.Activated();
+        }
+
+        public void NotifyDeactivating(object view, CancelEventArgs e)
+        {
+            NotifyDeactivatingInternal(e, view);
+            NotifyDeactivatingInternal(e, GetModelFromView(view));
+        }
+
+        private static void NotifyDeactivatingInternal(CancelEventArgs e, object target)
+        {
+            if (e.Cancel)
+                return;
+
+            var aware = target as IViewAware;
+            if (aware == null)
+                return;
+
+            aware.Deactivating(e);
+        }
+
+        public void NotifyDeactivated(object view)
+        {
+            NotifyDeactivatedInternal(view);
+            NotifyDeactivatedInternal(GetModelFromView(view));
+        }
+
+        private static void NotifyDeactivatedInternal(object target)
+        {
+            var aware = target as IViewAware;
+            if (aware == null)
+                return;
+
+            aware.Deactivated();
         }
 
         /// <summary>
@@ -168,22 +231,8 @@ namespace Magellan.Framework
             }
 
             viewAware.ViewAttached(view);
-
-            RoutedEventHandler setLoaded = null;
-            setLoaded = new RoutedEventHandler((sender, e) =>
-            {
-                viewAware.Loaded();
-                element.Loaded -= setLoaded;
-            });
-
-            if (element.IsLoaded)
-            {
-                viewAware.Loaded();
-            }
-            else
-            {
-                element.Loaded += setLoaded;
-            }
         }
+
+
     }
 }

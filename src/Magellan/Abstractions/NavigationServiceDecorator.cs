@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows;
 
 namespace Magellan.Abstractions
 {
@@ -30,6 +32,36 @@ namespace Magellan.Abstractions
                     return _inner ?? (_inner = _innerAccessor());
                 }
             }
+        }
+
+        /// <summary>
+        /// Occurs when the navigation service is navigating. The <see cref="Content"/> property will contain the previous
+        /// (current) page.
+        /// </summary>
+        public event CancelEventHandler Navigating
+        {
+            add { Inner.Navigating += value; }
+            remove { Inner.Navigating -= value; }
+        }
+
+        /// <summary>
+        /// Occurs when the navigation service has completed navigating. The <see cref="Content"/> property will
+        /// contain the new content.
+        /// </summary>
+        public event EventHandler Navigated
+        {
+            add { Inner.Navigated += value; }   
+            remove { Inner.Navigated -= value; }   
+        }
+
+        public object GetValue(DependencyProperty property)
+        {
+            return Inner.GetValue(property);
+        }
+
+        public void SetValue(DependencyProperty property, object value)
+        {
+            Inner.SetValue(property, value);
         }
 
         /// <summary>

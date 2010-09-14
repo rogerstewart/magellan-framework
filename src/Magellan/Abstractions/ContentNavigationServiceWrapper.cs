@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Magellan.Abstractions
 {
@@ -16,6 +19,28 @@ namespace Magellan.Abstractions
         public ContentNavigationServiceWrapper(ContentControl content)
         {
             _frame = content;
+        }
+
+        /// <summary>
+        /// Occurs when the navigation service is navigating. The <see cref="Content"/> property will contain the previous
+        /// (current) page.
+        /// </summary>
+        public event CancelEventHandler Navigating;
+
+        /// <summary>
+        /// Occurs when the navigation service has completed navigating. The <see cref="Content"/> property will
+        /// contain the new content.
+        /// </summary>
+        public event EventHandler Navigated;
+
+        public object GetValue(DependencyProperty property)
+        {
+            return _frame.GetValue(property);
+        }
+
+        public void SetValue(DependencyProperty property, object value)
+        {
+            _frame.SetValue(property, value);
         }
 
         /// <summary>
@@ -99,6 +124,18 @@ namespace Magellan.Abstractions
         /// </summary>
         public void ResetHistory()
         {
+        }
+
+        protected virtual void OnNavigating(CancelEventArgs e)
+        {
+            var handler = Navigating;
+            if (handler != null) handler(this, e);
+        }
+
+        protected virtual void OnNavigated(EventArgs e)
+        {
+            var handler = Navigated;
+            if (handler != null) handler(this, e);
         }
     }
 }
