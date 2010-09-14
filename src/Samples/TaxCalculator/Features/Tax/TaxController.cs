@@ -22,10 +22,14 @@ namespace TaxCalculator.Features.Tax
         }
 
         // Route: /Tax/Submit
-        public ActionResult Submit(TaxPeriod period, decimal grossIncome)
+        public ActionResult Submit(EnterDetailsViewModel model)
         {
-            var situation = new Situation(grossIncome);
-            var estimator = _estimatorSelector.Select(period);
+            model.ValidationMessages.Clear();
+            model.ValidationMessages.Add("GrossIncome", "Bad gross income!");
+            return Cancel();
+
+            var situation = new Situation(model.GrossIncome);
+            var estimator = _estimatorSelector.Select(model.Period);
             var estimate = estimator.Estimate(situation);
 
             return Page("Submit", new SubmitViewModel(estimate));
