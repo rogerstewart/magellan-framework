@@ -58,6 +58,10 @@ namespace Magellan.Framework
 
                     ViewInitializer.Prepare(RenderedInstance, Model, ControllerContext.Request);
 
+                    RenderedInstance.Loaded += (s, e) => ViewInitializer.NotifyActivated(RenderedInstance);
+                    RenderedInstance.Closing += (s, e) => ViewInitializer.NotifyDeactivating(RenderedInstance, e);
+                    RenderedInstance.Closed += (s, e) => ViewInitializer.NotifyDeactivated(RenderedInstance);
+
                     // Decide how to show it
                     var dialog = Options.GetViewType() == "Dialog";
                     if (dialog)
