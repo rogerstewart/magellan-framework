@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using System.ComponentModel;
 using Magellan.Abstractions;
 
@@ -7,9 +7,42 @@ namespace Magellan.Framework
     /// <summary>
     /// A base class for view models in the MVVM pattern.
     /// </summary>
-    public abstract class ViewModel : PresentationObject, IViewAware, INavigationAware
+    public abstract class ViewModel : PresentationObject, IViewAware, INavigationAware, IFlasher
     {
         private object _view;
+        private FlashCollection _flashes;
+        private IScheduler _scheduler = new Scheduler();
+
+        public FlashCollection Flashes
+        {
+            get { return _flashes ?? (_flashes = new FlashCollection(Scheduler)); }
+        }
+
+        public IScheduler Scheduler
+        {
+            get { return _scheduler ?? (_scheduler = new Scheduler()); }
+            set { _scheduler = value; }
+        }
+
+        public void Flash(string message)
+        {
+            Flash(new Flash(message, null, true, null));
+        }
+
+        public void Flash(string message, TimeSpan disappears)
+        {
+            Flash(new Flash(message, null, true, disappears));
+        }
+
+        public void Flash(Flash flash)
+        {
+            Flashes.Add(flash);
+        }
+
+        public void ClearFlashes()
+        {
+            Flashes.Clear();
+        }
 
         /// <summary>
         /// Gets the dispatcher that owns this presentation object.
