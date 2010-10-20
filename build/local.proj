@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="lib\MSBuild.Community.Tasks.Targets" />
+  <Import Project="lib\MSBuild.Deployment.Tasks.Targets" />
+
+  <PropertyGroup>
+    <Root>$(MSBuildStartupDirectory)</Root>
+    <nunitconsoleexe>$(Root)\lib\NUnit\exe\nunit-console-x86.exe</nunitconsoleexe>
+  </PropertyGroup>
+  
+  <Target Name="Package">
+
+    <!-- Diagnostics -->
+    <Message Text="Diagnostics:"/>
+    <Message Text="Build Number:    $(build_number)" />
+    <Message Text="Version number:  $(build_version)" />
+    <Message Text="Version tag:     $(build_versiontag)" />
+    <Message Text="Build dir:       $(MSBuildProjectDirectory)" />
+    <Message Text="Project root:    $(Root)" />
+    <Message Text="Ruby bin path:   $(rubypath)" />
+    <Message Text="NUnit Console:   $(nunitconsoleexe)" />
+
+    <!-- Clean up -->
+    <ItemGroup>
+      <FilesToDelete Include="$(Root)\src\**\bin\**\*.*" />
+      <FilesToDelete Include="$(Root)\src\**\obj\**\*.*" />
+      <FilesToDelete Include="$(Root)\build\Artifacts\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" ContinueOnError="true" />
+
+    <!-- Ensure directories exists -->
+    <MakeDir Directories="$(MSBuildProjectDirectory)\Artifacts" Condition="!Exists('$(MSBuildProjectDirectory)\Artifacts')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\Artifacts\Binaries" Condition="!Exists('$(MSBuildProjectDirectory)\Artifacts\Binaries')" />
+
+    <!-- Version Info -->
+    <AssemblyInfo
+      CodeLanguage="CS"
+      OutputFile="$(Root)\src\Magellan\Properties\VersionInfo.cs"
+      AssemblyVersion="$(build_version)"
+      AssemblyFileVersion="$(build_number)"
+      />
+
+    <!-- Zip source -->
+    <ItemGroup>
+      <SourceFilesToZip Include="$(Root)\src\**\*.*" />
+      <SourceFilesToZip Include="$(Root)\lib\**\*.dll" Exclude="$(Root)\lib\NUnit\Exe\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(SourceFilesToZip)"
+      WorkingDirectory="$(Root)"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
+      ZipLevel="10"
+      />
+
+    <!-- Compile -->
+    <ItemGroup>
+      <ProjectToBuild Include="$(Root)\src\Magellan.sln" />
+    </ItemGroup>
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Build" Properties="Configuration=Release">
+      <Output TaskParameter="TargetOutputs" ItemName="AssembliesBuiltByChildProjects" />
+    </MSBuild>
+
+    <!-- Zip binaries (.NET 4.0, Magellan only) -->
+    <ItemGroup>
+      <BinaryFiles Include="$(Root)\src\Magellan\bin\Release\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <InfoFiles Include="$(Root)\Changelog.txt" />
+      <InfoFiles Include="$(Root)\License.txt" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\Assemblies" />
+    <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
+    <ItemGroup>
+      <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(BinaryFilesToZip)"
+      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+      ZipLevel="10"
+      />
+    
+    <!-- Zip binaries (.NET 4.0, Magellan with Extensions) -->
+    <ItemGroup>
+      <ExtensionFiles Include="$(Root)\src\Magellan.Behaviors\bin\Release\*.*" />
+      <ExtensionFiles Include="$(Root)\src\Magellan.Transitionals\bin\Release\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <ExtensionInfoFiles Include="$(Root)\Changelog.txt" />
+      <ExtensionInfoFiles Include="$(Root)\License.txt" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\Assemblies" />
+    <Copy SourceFiles="@(ExtensionInfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex" />
+    <ItemGroup>
+      <BinaryFilesToZip2 Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(BinaryFilesToZip2)"
+      WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
+      ZipLevel="10"
+      />
+
+	<!-- Setup ruby gem -->
+	<ItemGroup>
+      <GemSpecs Include="$(MSBuildProjectDirectory)\magellan-framework.gemspec" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GemSpecs)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\lib" />
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\VERSION" Lines="$(build_number)" Overwrite="true" />
+	
+    <!-- Build Gem -->
+	<Exec Condition="$(rubypath) != ''" Command="$(rubypath)\gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+	<Exec Condition="$(rubypath) == ''" Command="gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+
+    <!-- Publish Gem -->
+	<ItemGroup>
+      <GemFiles Include="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\magellan-framework-$(build_number).gem" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries" />
+
+	<!-- Publish VSIX -->
+	<ItemGroup>
+      <VSIXFiles Include="$(Root)\src\Templates\Magellan.ProjectTemplates\bin\Release\Magellan.ProjectTemplates.vsix" />
+    </ItemGroup>
+    <Copy SourceFiles="@(VSIXFiles)" DestinationFiles="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-VSTemplates.vsix" />
+
+    <!-- Test -->
+    <ItemGroup>
+      <TestAssemblies Include="$(Root)\src\Magellan.Tests\bin\Release\Magellan.Tests.dll"/>
+    </ItemGroup>
+    <Exec Condition="$(teamcity_dotnet_nunitlauncher) != ''" Command="$(teamcity_dotnet_nunitlauncher) v4.0 x86 NUnit-2.5.0 @(TestAssemblies)" />
+    <Exec Condition="$(teamcity_dotnet_nunitlauncher) == ''" Command="$(nunitconsoleexe) @(TestAssemblies)" />
+
+  </Target>
+</Project>
