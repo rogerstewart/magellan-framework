@@ -20,7 +20,7 @@ namespace Magellan.Framework
         /// This method can be used for cancelling the current request; in effect, it is a 'no-op' result.
         /// </summary>
         /// <returns>A <see cref="DoNothingResult"/>.</returns>
-        public virtual DoNothingResult Cancel()
+        protected virtual DoNothingResult Cancel()
         {
             return new DoNothingResult();
         }
@@ -29,7 +29,7 @@ namespace Magellan.Framework
         /// This method can be used for cancelling the current request; in effect, it is a 'no-op' result.
         /// </summary>
         /// <returns>A <see cref="DoNothingResult"/>.</returns>
-        public virtual DoNothingResult DoNothing()
+        protected virtual DoNothingResult DoNothing()
         {
             return new DoNothingResult();
         }
@@ -38,7 +38,7 @@ namespace Magellan.Framework
         /// Returns to the previous page in the navigation journal.
         /// </summary>
         /// <returns>A <see cref="BackResult"/>.</returns>
-        public BackResult Back()
+        protected BackResult Back()
         {
             return Back(false);
         }
@@ -48,7 +48,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="removeFromJournal">if set to <c>true</c> the page will also be removed from the navigation journal (so 'forward' won't be enabled).</param>
         /// <returns>A <see cref="BackResult"/>.</returns>
-        public virtual BackResult Back(bool removeFromJournal)
+        protected virtual BackResult Back(bool removeFromJournal)
         {
             return new BackResult(removeFromJournal);
         }
@@ -60,7 +60,7 @@ namespace Magellan.Framework
         /// (see the <see cref="PageViewEngine"/> for details).
         /// </summary>
         /// <returns>A <see cref="PageResult"/>.</returns>
-        public PageResult Page()
+        protected PageResult Page()
         {
             return Page(null, null);
         }
@@ -75,7 +75,7 @@ namespace Magellan.Framework
         /// example, a <paramref name="viewName"/> of "Add" will match "AddPage", "AddView", and so on.
         /// </param>
         /// <returns>A <see cref="PageResult"/>.</returns>
-        public PageResult Page(string viewName)
+        protected PageResult Page(string viewName)
         {
             return Page(viewName, null);
         }
@@ -88,7 +88,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="PageResult"/>.</returns>
-        public PageResult Page(object model)
+        protected PageResult Page(object model)
         {
             return Page(null, model);
         }
@@ -104,7 +104,7 @@ namespace Magellan.Framework
         /// </param>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="PageResult"/>.</returns>
-        public virtual PageResult Page(string viewName, object model)
+        protected virtual PageResult Page(string viewName, object model)
         {
             return new PageResult(viewName, model, ViewEngines);
         }
@@ -116,7 +116,7 @@ namespace Magellan.Framework
         /// <see cref="WindowViewEngine"/> for details).
         /// </summary>
         /// <returns>A <see cref="WindowResult"/>.</returns>
-        public WindowResult Window()
+        protected WindowResult Window()
         {
             return Window(null, null);
         }
@@ -131,7 +131,7 @@ namespace Magellan.Framework
         /// example, a <paramref name="viewName"/> of "Add" will match "AddWindow", "AddView", and so on.
         /// </param>
         /// <returns>A <see cref="WindowResult"/>.</returns>
-        public WindowResult Window(string viewName)
+        protected WindowResult Window(string viewName)
         {
             return Window(viewName, null);
         }
@@ -144,7 +144,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="WindowResult"/>.</returns>
-        public WindowResult Window(object model)
+        protected WindowResult Window(object model)
         {
             return Window(null, model);
         }
@@ -160,7 +160,7 @@ namespace Magellan.Framework
         /// </param>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="WindowResult"/>.</returns>
-        public virtual WindowResult Window(string viewName, object model)
+        protected virtual WindowResult Window(string viewName, object model)
         {
             return new WindowResult(viewName, model, ViewEngines);
         }
@@ -172,7 +172,7 @@ namespace Magellan.Framework
         /// <see cref="WindowViewEngine"/> for details).
         /// </summary>
         /// <returns>A <see cref="DialogResult"/>.</returns>
-        public DialogResult Dialog()
+        protected DialogResult Dialog()
         {
             return Dialog(null, null);
         }
@@ -187,7 +187,7 @@ namespace Magellan.Framework
         /// example, a <paramref name="viewName"/> of "Add" will match "AddDialog", "AddView", and so on.
         /// </param>
         /// <returns>A <see cref="DialogResult"/>.</returns>
-        public DialogResult Dialog(string viewName)
+        protected DialogResult Dialog(string viewName)
         {
             return Dialog(viewName, null);
         }
@@ -200,7 +200,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="DialogResult"/>.</returns>
-        public DialogResult Dialog(object model)
+        protected DialogResult Dialog(object model)
         {
             return Dialog(null, model);
         }
@@ -216,7 +216,7 @@ namespace Magellan.Framework
         /// </param>
         /// <param name="model">The view model that will be set as the DataContext for the view.</param>
         /// <returns>A <see cref="DialogResult"/>.</returns>
-        public virtual DialogResult Dialog(string viewName, object model)
+        protected virtual DialogResult Dialog(string viewName, object model)
         {
             return new DialogResult(viewName, model, ViewEngines);
         }
@@ -226,7 +226,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="actionName">Name of the action.</param>
         /// <returns>A <see cref="RedirectResult"/>.</returns>
-        public RedirectResult Redirect(string actionName)
+        protected RedirectResult Redirect(string actionName)
         {
             var controllerName = ControllerContext == null ? "" : ControllerContext.ControllerName;
             return Redirect(controllerName, actionName);
@@ -238,7 +238,7 @@ namespace Magellan.Framework
         /// <param name="actionName">Name of the action.</param>
         /// <param name="actionParameters">The action parameters.</param>
         /// <returns>A <see cref="RedirectResult"/>.</returns>
-        public RedirectResult Redirect(string actionName, object actionParameters)
+        protected RedirectResult Redirect(string actionName, object actionParameters)
         {
             var controllerName = ControllerContext == null ? "" : ControllerContext.ControllerName;
             return Redirect(controllerName, actionName, actionParameters);
@@ -250,7 +250,7 @@ namespace Magellan.Framework
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <returns>A <see cref="RedirectResult"/>.</returns>
-        public RedirectResult Redirect(string controllerName, string actionName)
+        protected RedirectResult Redirect(string controllerName, string actionName)
         {
             return Redirect(controllerName, actionName, null);
         }
@@ -262,7 +262,7 @@ namespace Magellan.Framework
         /// <param name="actionName">Name of the action.</param>
         /// <param name="actionParameters">The action parameters.</param>
         /// <returns>A <see cref="RedirectResult"/>.</returns>
-        public RedirectResult Redirect(string controllerName, string actionName, object actionParameters)
+        protected RedirectResult Redirect(string controllerName, string actionName, object actionParameters)
         {
             var request = new RouteValueDictionary(actionParameters);
             request["controller"] = controllerName;
@@ -275,7 +275,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public virtual RedirectResult Redirect(RouteValueDictionary request)
+        protected virtual RedirectResult Redirect(RouteValueDictionary request)
         {
             Guard.ArgumentNotNull(request, "request");
             return new RedirectResult(request);
@@ -286,7 +286,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="processName">Full file path or name of the process.</param>
         /// <returns></returns>
-        public StartProcessResult StartProcess(string processName)
+        protected StartProcessResult StartProcess(string processName)
         {
             return StartProcess(new ProcessStartInfo(processName), false);
         }
@@ -297,7 +297,7 @@ namespace Magellan.Framework
         /// <param name="processName">Full file path or name of the process.</param>
         /// <param name="arguments">The arguments.</param>
         /// <returns></returns>
-        public StartProcessResult StartProcess(string processName, string arguments)
+        protected StartProcessResult StartProcess(string processName, string arguments)
         {
             return StartProcess(new ProcessStartInfo(processName, arguments), false);
         }
@@ -308,7 +308,7 @@ namespace Magellan.Framework
         /// <param name="processName">Full file path or name of the process.</param>
         /// <param name="waitForExit">if set to <c>true</c> the result will wait for the process to exit.</param>
         /// <returns></returns>
-        public StartProcessResult StartProcess(string processName, bool waitForExit)
+        protected StartProcessResult StartProcess(string processName, bool waitForExit)
         {
             return StartProcess(new ProcessStartInfo(processName), waitForExit);
         }
@@ -320,7 +320,7 @@ namespace Magellan.Framework
         /// <param name="arguments">The arguments.</param>
         /// <param name="waitForExit">if set to <c>true</c> the result will wait for the process to exit.</param>
         /// <returns></returns>
-        public StartProcessResult StartProcess(string processName, string arguments, bool waitForExit)
+        protected StartProcessResult StartProcess(string processName, string arguments, bool waitForExit)
         {
             return StartProcess(new ProcessStartInfo(processName, arguments), waitForExit);
         }
@@ -330,7 +330,7 @@ namespace Magellan.Framework
         /// </summary>
         /// <param name="startInfo">The process start information.</param>
         /// <returns></returns>
-        public StartProcessResult StartProcess(ProcessStartInfo startInfo)
+        protected StartProcessResult StartProcess(ProcessStartInfo startInfo)
         {
             return StartProcess(startInfo, false);
         }
@@ -341,7 +341,7 @@ namespace Magellan.Framework
         /// <param name="startInfo">The process start information.</param>
         /// <param name="waitForExit">if set to <c>true</c> the result will wait for the process to exit.</param>
         /// <returns></returns>
-        public virtual StartProcessResult StartProcess(ProcessStartInfo startInfo, bool waitForExit)
+        protected virtual StartProcessResult StartProcess(ProcessStartInfo startInfo, bool waitForExit)
         {
             Guard.ArgumentNotNull(startInfo, "startInfo");
             return new StartProcessResult(startInfo, waitForExit);

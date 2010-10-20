@@ -147,6 +147,8 @@
     <Compile Include="Framework\AsyncController.cs" />
     <Compile Include="Exceptions\AsyncControllerExecutionException.cs" />
     <Compile Include="Framework\AsyncControllerFactory.cs" />
+    <Compile Include="Framework\BackgroundOperationCollection.cs" />
+    <Compile Include="Framework\BackgroundOperationException.cs" />
     <Compile Include="Framework\BackResult.cs" />
     <Compile Include="ComponentModel\DispatchedObservableCollection.cs" />
     <Compile Include="Framework\DoNothingResult.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Framework\IControllerFactory.cs" />
     <Compile Include="Framework\IFlasher.cs" />
     <Compile Include="Framework\IModelBinder.cs" />
+    <Compile Include="Framework\IOperation.cs" />
     <Compile Include="Framework\IResultFilter.cs" />
     <Compile Include="Framework\IScheduler.cs" />
     <Compile Include="Framework\IStoreValidationMessages.cs" />

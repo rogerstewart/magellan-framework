@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class ControllerBase : IController
     {
-        private IActionInvoker _actionInvoker;
+        private IActionInvoker actionInvoker;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="Controller"/> class.
@@ -26,7 +26,7 @@ namespace Magellan.Framework
         /// <summary>
         /// Gets the request context.
         /// </summary>
-        public ResolvedNavigationRequest Request
+        protected ResolvedNavigationRequest Request
         {
             get { return ControllerContext == null ? null : ControllerContext.Request; }
         }
@@ -36,14 +36,14 @@ namespace Magellan.Framework
         /// </summary>
         public IActionInvoker ActionInvoker
         {
-            get { return _actionInvoker ?? new DefaultActionInvoker(); }
-            set { _actionInvoker = value; }
+            get { return actionInvoker ?? new DefaultActionInvoker(); }
+            set { actionInvoker = value; }
         }
 
         /// <summary>
         /// Gets or sets the model binders that are used to map navigation parameters to method parameters.
         /// </summary>
-        public ModelBinderDictionary ModelBinders
+        protected ModelBinderDictionary ModelBinders
         {
             get { return ControllerContext == null ? Framework.ModelBinders.CreateDefaults() : ControllerContext.ModelBinders; }
         }
@@ -52,7 +52,7 @@ namespace Magellan.Framework
         /// Gets or sets the view engines that will be used when resolving views.
         /// </summary>
         /// <value>The view engines.</value>
-        public ViewEngineCollection ViewEngines
+        protected ViewEngineCollection ViewEngines
         {
             get { return ControllerContext == null ? Framework.ViewEngines.CreateDefaults() : ControllerContext.ViewEngines; }
         }

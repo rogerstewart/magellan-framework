@@ -4,6 +4,7 @@ using Magellan.Abstractions;
 using Magellan.Framework;
 using Magellan.Progress;
 using Magellan.Routing;
+using Magellan.Testability;
 using Moq;
 
 namespace Magellan.Tests.Helpers
@@ -25,7 +26,7 @@ namespace Magellan.Tests.Helpers
             Controller = new Mock<IController>();
             Path = "TestPath";
             ProgressListeners = new List<INavigationProgressListener>();
-            Dispatcher = new TestDispatcher();
+            Dispatcher = new SingleThreadDispatcher();
         }
 
         public static RequestBuilder CreateRequest()

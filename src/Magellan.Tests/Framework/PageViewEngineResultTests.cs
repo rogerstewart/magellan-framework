@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Magellan.Framework;
 using Magellan.Routing;
+using Magellan.Testability;
 using Magellan.Tests.Helpers;
 using Magellan.Views;
 using Moq;
@@ -31,7 +32,7 @@ namespace Magellan.Tests.Framework
         {
             var request = RequestBuilder.CreateRequest("X", "Y", parameters);
             request.Navigator = Navigator;
-            request.Navigator.SetupGet(x => x.Dispatcher).Returns(new TestDispatcher());
+            request.Navigator.SetupGet(x => x.Dispatcher).Returns(new SingleThreadDispatcher());
             
             var options = new ViewResultOptions(parameters);
             options.SetModel(model);
@@ -48,7 +49,7 @@ namespace Magellan.Tests.Framework
         {
             var request = RequestBuilder.CreateRequest("X", "Y", parameters);
             request.Navigator = Navigator;
-            request.Navigator.SetupGet(x => x.Dispatcher).Returns(new TestDispatcher());
+            request.Navigator.SetupGet(x => x.Dispatcher).Returns(new SingleThreadDispatcher());
 
             var options = new ViewResultOptions(parameters);
             options.SetModel(model);

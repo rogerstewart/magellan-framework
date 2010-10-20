@@ -103,7 +103,6 @@
     <Compile Include="Framework\ControllerRouteValidatorTests.cs" />
     <Compile Include="Framework\DefaultViewNamingConventionTests.cs" />
     <Compile Include="Framework\ViewModelRouteValidatorTests.cs" />
-    <Compile Include="Helpers\ManualPumpDispatcher.cs" />
     <Compile Include="Integration\ContentBasedNavigationIntegrationTests.cs" />
     <Compile Include="NavigatorExtensionsTests.cs" />
     <Compile Include="Framework\AsyncActionInvokerTests.cs" />
@@ -137,7 +136,6 @@
     <Compile Include="Helpers\RequestBuilder.cs" />
     <Compile Include="Helpers\RouteCollectionExtensions.cs" />
     <Compile Include="Helpers\RouteMatchExtensions.cs" />
-    <Compile Include="Helpers\TestDispatcher.cs" />
     <Compile Include="Helpers\TestRouteCatalog.cs" />
     <Compile Include="Helpers\TestRouteHandler.cs" />
     <Compile Include="Helpers\TestWindow.cs" />
@@ -201,6 +199,10 @@
     <ProjectReference Include="..\Magellan.Composite\Magellan.Composite.csproj">
       <Project>{2C8E481F-C694-4221-8F69-5EE7F77A5FEB}</Project>
       <Name>Magellan.Composite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Magellan.Testability\Magellan.Testability.csproj">
+      <Project>{FB529B00-89B5-4744-9EAC-DCD57A336C6D}</Project>
+      <Name>Magellan.Testability</Name>
     </ProjectReference>
     <ProjectReference Include="..\Magellan.Transitionals\Magellan.Transitionals.csproj">
       <Project>{55AE7230-4545-4B10-BAD2-B8E93305992C}</Project>

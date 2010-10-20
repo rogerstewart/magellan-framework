@@ -12,6 +12,16 @@ namespace Magellan.Framework
         private object _view;
         private FlashCollection _flashes;
         private IScheduler _scheduler = new Scheduler();
+        private BackgroundOperationCollection _operations;
+        private IDispatcher dispatcher;
+
+        public BackgroundOperationCollection Operations
+        {
+            get
+            {
+                return _operations = _operations ?? new BackgroundOperationCollection(BusyState, Dispatcher);
+            }
+        }
 
         public FlashCollection Flashes
         {
@@ -48,7 +58,11 @@ namespace Magellan.Framework
         /// Gets the dispatcher that owns this presentation object.
         /// </summary>
         /// <value>The dispatcher.</value>
-        public IDispatcher Dispatcher { get { return Navigator.Dispatcher; } }
+        public IDispatcher Dispatcher
+        {
+            get { return dispatcher = dispatcher ?? Navigator.Dispatcher; }
+            set { dispatcher = value; }
+        }
 
         /// <summary>
         /// Gets or sets the navigator that can be used for performing subsequent navigation actions.

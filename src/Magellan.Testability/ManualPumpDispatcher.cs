@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Magellan.Abstractions;
 
-namespace Magellan.Tests.Helpers
+namespace Magellan.Testability
 {
     /// <summary>
     /// Represents an <see cref="IDispatcher"/> used for tests. Since test frameworks
@@ -56,6 +56,20 @@ namespace Magellan.Tests.Helpers
             return
                 Thread.CurrentThread != _creationThread
                 && _dispatcherThreads.Contains(Thread.CurrentThread) == false;
+        }
+
+        public void ExecuteOnNewBackgroundThreadWithExceptionsOnUIThread(Action backgroundThreadCallback)
+        {
+            ThreadPool.QueueUserWorkItem(
+                delegate
+                {
+                    backgroundThreadCallback();
+                });
+        }
+
+        public void ExecuteOnCurrentThreadWithExceptionsOnUIThread(Action backgroundThreadCallback)
+        {
+            backgroundThreadCallback();
         }
     }
 }

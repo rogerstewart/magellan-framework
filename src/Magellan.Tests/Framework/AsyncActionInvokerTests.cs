@@ -2,6 +2,7 @@
 using System.Threading;
 using Magellan.Exceptions;
 using Magellan.Framework;
+using Magellan.Testability;
 using Magellan.Tests.Helpers;
 using Magellan.Tests.Helpers.TypeGeneration;
 using NUnit.Framework;

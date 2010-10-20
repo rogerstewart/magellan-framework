@@ -1,7 +1,10 @@
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Threading;
 using System.Windows;
+using Magellan.Diagnostics;
+using Magellan.Framework;
 
 namespace Magellan.Abstractions
 {
@@ -74,6 +77,61 @@ namespace Magellan.Abstractions
         public bool DispatchRequired()
         {
             return !_dispatcher.CheckAccess();
+        }
+
+
+        /// <summary>
+        /// Executes a task on new background thread, but any exceptions will be marshalled back to the UI
+        /// thread using this dispatcher.
+        /// </summary>
+        /// <param name="backgroundThreadCallback">A code block to execute on the background thread.</param>
+        public void ExecuteOnNewBackgroundThreadWithExceptionsOnUIThread(Action backgroundThreadCallback)
+        {
+            ThreadPool.QueueUserWorkItem(
+                delegate
+                {
+                    ExecuteOnCurrentThreadWithExceptionsOnUIThread(backgroundThreadCallback);
+                });
+        }
+
+        /// <summary>
+        /// Executes an operation on the current thread (assuming the current thread is a background thread),
+        /// but marshalls any exceptions back to the UI thread for you.
+        /// </summary>
+        /// <param name="backgroundThreadCallback">A code block to execute on the background thread.</param>
+        public void ExecuteOnCurrentThreadWithExceptionsOnUIThread(Action backgroundThreadCallback)
+        {
+            try
+            {
+                backgroundThreadCallback();
+            }
+            catch (Exception ex)
+            {
+                TraceSources.MagellanSource.TraceError("Exeption thrown on worker thread: " + ex);
+                var rethrower = new Rethrower("An unexpected error occurred when executing a background operation.", ex);
+                Dispatch(rethrower.Rethrow);
+            }
+        }
+
+        /// <summary>
+        /// Used to rethrow an exception on the UI thread that was caught on the background thread.
+        /// </summary>
+        [DebuggerNonUserCode] // Prevents breakpoints from stopping in this class
+        private class Rethrower
+        {
+            private readonly string _message;
+            private readonly Exception _ex;
+
+            public Rethrower(string message, Exception ex)
+            {
+                _message = message;
+                _ex = ex;
+            }
+
+            public void Rethrow()
+            {
+                throw new BackgroundOperationException(_message, _ex);
+            }
         }
     }
 }
