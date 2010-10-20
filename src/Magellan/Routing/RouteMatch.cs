@@ -7,10 +7,10 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class RouteMatch
     {
-        private readonly bool _success;
-        private readonly IRoute _route;
-        private readonly string _failReason;
-        private readonly RouteValueDictionary _values;
+        private readonly bool success;
+        private readonly IRoute route;
+        private readonly string failReason;
+        private readonly RouteValueDictionary values;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteMatch"/> class.
@@ -21,10 +21,10 @@ namespace Magellan.Routing
         /// <param name="failReason">The fail reason.</param>
         private RouteMatch(bool success, IRoute route, IDictionary parameterValues, string failReason)
         {
-            _success = success;
-            _route = route;
-            _failReason = failReason;
-            _values = new RouteValueDictionary(parameterValues);
+            this.success = success;
+            this.route = route;
+            this.failReason = failReason;
+            values = new RouteValueDictionary(parameterValues);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if success; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Magellan.Routing
         /// <value>The route.</value>
         public IRoute Route
         {
-            get { return _route; }
+            get { return route; }
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Magellan.Routing
         /// <value>The values.</value>
         public RouteValueDictionary Values
         {
-            get { return _values; }
+            get { return values; }
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Magellan.Routing
         /// <value>The fail reason.</value>
         public string FailReason
         {
-            get { return _failReason; }
+            get { return failReason; }
         }
     }
 }

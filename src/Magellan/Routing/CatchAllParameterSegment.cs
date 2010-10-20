@@ -9,9 +9,9 @@ namespace Magellan.Routing
     /// </summary>
     internal class CatchAllParameterSegment : Segment
     {
-        private readonly string _parameterName;
-        private readonly object _defaultValue;
-        private readonly IRouteConstraint _constraint;
+        private readonly string parameterName;
+        private readonly object defaultValue;
+        private readonly IRouteConstraint constraint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatchAllParameterSegment"/> class.
@@ -22,24 +22,24 @@ namespace Magellan.Routing
         public CatchAllParameterSegment(string parameterName, object defaultValue, object constraint)
         {
             Guard.ArgumentNotNullOrEmpty(parameterName, "parameterName");
-            _parameterName = parameterName;
-            _defaultValue = defaultValue;
+            this.parameterName = parameterName;
+            this.defaultValue = defaultValue;
             
             if (constraint is string)
             {
-                _constraint = new RegexConstraint((string)constraint);
+                this.constraint = new RegexConstraint((string)constraint);
             }
             else if (constraint is IRouteConstraint)
             {
-                _constraint = (IRouteConstraint)constraint;
+                this.constraint = (IRouteConstraint)constraint;
             }
             else if (constraint is Regex)
             {
-                _constraint = new RegexConstraint((Regex)constraint);
+                this.constraint = new RegexConstraint((Regex)constraint);
             }
             else if (constraint == UrlParameter.NotSpecified)
             {
-                _constraint = null;
+                this.constraint = null;
             }
             else if (constraint != null)
             {
@@ -54,7 +54,7 @@ namespace Magellan.Routing
         /// <value>The name of the parameter.</value>
         public string ParameterName
         {
-            get { return _parameterName; }
+            get { return parameterName; }
         }
 
         /// <summary>
@@ -68,17 +68,17 @@ namespace Magellan.Routing
             var values = new RouteValueDictionary();
             var path = reader.ReadAll();
 
-            values[_parameterName] = path;
+            values[parameterName] = path;
             if (path.Length == 0)
             {
-                if (_defaultValue != UrlParameter.NotSpecified)
+                if (defaultValue != UrlParameter.NotSpecified)
                 {
-                    values[_parameterName] = _defaultValue;
+                    values[parameterName] = defaultValue;
                 }
             }
-            else if (_constraint != null && !_constraint.IsValid(route, path, _parameterName))
+            else if (constraint != null && !constraint.IsValid(route, path, parameterName))
             {
-                return SegmentPathMatch.Failure(string.Format("Segment '{0}' did not match constraint for parameter '{1}'", path, _parameterName));
+                return SegmentPathMatch.Failure(string.Format("Segment '{0}' did not match constraint for parameter '{1}'", path, parameterName));
             }
             return SegmentPathMatch.Successful(values);
         }
@@ -93,12 +93,12 @@ namespace Magellan.Routing
         /// </returns>
         public override SegmentValueMatch MatchValues(IRoute route, RouteValueBag values)
         {
-            var value = values.Take(_parameterName);
+            var value = values.Take(parameterName);
             if (value == UrlParameter.NotSpecified)
             {
-                if (_defaultValue != UrlParameter.NotSpecified)
+                if (defaultValue != UrlParameter.NotSpecified)
                 {
-                    return SegmentValueMatch.Successful(_defaultValue);
+                    return SegmentValueMatch.Successful(defaultValue);
                 }
                 return SegmentValueMatch.Successful();
             }

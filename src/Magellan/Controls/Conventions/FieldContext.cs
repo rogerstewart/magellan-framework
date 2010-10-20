@@ -12,11 +12,11 @@ namespace Magellan.Controls.Conventions
     /// </summary>
     public class FieldContext
     {
-        private readonly Field _field;
-        private readonly Binding _binding;
-        private readonly object _sourceItem;
-        private readonly string _propertyName;
-        private readonly PropertyDescriptor _propertyDescriptor;
+        private readonly Field field;
+        private readonly Binding binding;
+        private readonly object sourceItem;
+        private readonly string propertyName;
+        private readonly PropertyDescriptor propertyDescriptor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FieldContext"/> class.
@@ -28,11 +28,11 @@ namespace Magellan.Controls.Conventions
         /// <param name="propertyDescriptor">The property descriptor.</param>
         public FieldContext(Field field, Binding binding, object sourceItem, string propertyName, PropertyDescriptor propertyDescriptor)
         {
-            _field = field;
-            _binding = binding;
-            _sourceItem = sourceItem;
-            _propertyName = propertyName;
-            _propertyDescriptor = propertyDescriptor;
+            this.field = field;
+            this.binding = binding;
+            this.sourceItem = sourceItem;
+            this.propertyName = propertyName;
+            this.propertyDescriptor = propertyDescriptor;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Magellan.Controls.Conventions
         /// <value>The field.</value>
         public Field Field
         {
-            get { return _field; }
+            get { return field; }
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Magellan.Controls.Conventions
         /// <value>The binding.</value>
         public Binding Binding
         {
-            get { return _binding; }
+            get { return binding; }
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Magellan.Controls.Conventions
         /// <value>The source item.</value>
         public object SourceItem
         {
-            get { return _sourceItem; }
+            get { return sourceItem; }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Magellan.Controls.Conventions
         /// <value>The name of the property.</value>
         public string PropertyName
         {
-            get { return _propertyName; }
+            get { return propertyName; }
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Magellan.Controls.Conventions
         /// <value>The property descriptor.</value>
         public PropertyDescriptor PropertyDescriptor
         {
-            get { return _propertyDescriptor; }
+            get { return propertyDescriptor; }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Magellan.Controls.Conventions
         /// <param name="hasAttributeCallback">The callback executed if the attribute existed. The argument is the attribute instance.</param>
         public void WhenHasAttribute<TAttribute>(Action<TAttribute> hasAttributeCallback) where TAttribute : Attribute
         {
-            var attributes = _propertyDescriptor.Attributes.OfType<TAttribute>().ToList();
+            var attributes = propertyDescriptor.Attributes.OfType<TAttribute>().ToList();
             foreach (var att in attributes)
             {
                 hasAttributeCallback(att);

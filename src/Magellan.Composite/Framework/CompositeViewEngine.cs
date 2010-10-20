@@ -12,7 +12,7 @@ namespace Magellan.Composite.Framework
     /// </summary>
     public class CompositeViewEngine : ReflectionBasedViewEngine, IViewNamingConvention
     {
-        private readonly IViewActivator _viewActivator;
+        private readonly IViewActivator viewActivator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeViewEngine"/> class.
@@ -31,7 +31,7 @@ namespace Magellan.Composite.Framework
         public CompositeViewEngine(IViewActivator viewActivator, params Assembly[] additionalViewAssemblies) 
             : base(additionalViewAssemblies)
         {
-            _viewActivator = viewActivator ?? new ServiceLocatorViewActivator();
+            this.viewActivator = viewActivator ?? new ServiceLocatorViewActivator();
             NamingConvention = this;
         }
 
@@ -84,7 +84,7 @@ namespace Magellan.Composite.Framework
         /// <returns></returns>
         protected override ViewEngineResult CreateViewResult(ControllerContext controllerContext, ViewResultOptions options, Type type)
         {
-            return new CompositeViewEngineResult(controllerContext, options, type, _viewActivator);
+            return new CompositeViewEngineResult(controllerContext, options, type, viewActivator);
         }
     }
 }

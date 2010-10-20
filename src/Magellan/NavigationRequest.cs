@@ -8,8 +8,8 @@ namespace Magellan
     /// </summary>
     public class NavigationRequest
     {
-        private readonly Uri _uri;
-        private readonly RouteValueDictionary _routeData;
+        private readonly Uri uri;
+        private readonly RouteValueDictionary routeData;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationRequest"/> class.
@@ -34,8 +34,8 @@ namespace Magellan
         /// <param name="routeData">The route data.</param>
         public NavigationRequest(Uri uri, RouteValueDictionary routeData)
         {
-            _uri = uri;
-            _routeData = routeData;
+            this.uri = uri;
+            this.routeData = routeData;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Magellan
         /// <value>The URI.</value>
         public Uri Uri
         {
-            get { return _uri; }
+            get { return uri; }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Magellan
         /// <value>The route data.</value>
         public RouteValueDictionary RouteData
         {
-            get { return _routeData; }
+            get { return routeData; }
         }
     }
 }

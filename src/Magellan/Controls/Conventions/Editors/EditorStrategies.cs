@@ -5,15 +5,15 @@
     /// </summary>
     public static class EditorStrategies
     {
-        private static readonly EditorStrategyCollection _editors = new EditorStrategyCollection(new TextBoxEditorStrategy());
+        private static readonly EditorStrategyCollection editors = new EditorStrategyCollection(new TextBoxEditorStrategy());
 
         /// <summary>
         /// Initializes the <see cref="EditorStrategies"/> class.
         /// </summary>
         static EditorStrategies()
         {
-            _editors.Add(new CheckBoxEditorStrategy());
-            _editors.Add(new ComboBoxEditorStrategy());
+            editors.Add(new CheckBoxEditorStrategy());
+            editors.Add(new ComboBoxEditorStrategy());
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// <value>The editors.</value>
         public static EditorStrategyCollection Strategies
         {
-            get { return _editors; }
+            get { return editors; }
         }
     }
 }

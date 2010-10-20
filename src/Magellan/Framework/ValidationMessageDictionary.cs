@@ -10,8 +10,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ValidationMessageDictionary
     {
-        private readonly Dictionary<string, ValidationMessageCollection> _items = new Dictionary<string, ValidationMessageCollection>();
-        private readonly object _lock = new object();
+        private readonly Dictionary<string, ValidationMessageCollection> items = new Dictionary<string, ValidationMessageCollection>();
+        private readonly object sync = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationMessageDictionary"/> class.
@@ -33,14 +33,14 @@ namespace Magellan.Framework
         {
             get
             {
-                lock (_lock)
+                lock (sync)
                 {
-                    if (!_items.ContainsKey(key))
+                    if (!items.ContainsKey(key))
                     {
-                        _items[key] = new ValidationMessageCollection();
-                        _items[key].CollectionChanged += (x, y) => OnErrorsChanged(EventArgs.Empty);
+                        items[key] = new ValidationMessageCollection();
+                        items[key].CollectionChanged += (x, y) => OnErrorsChanged(EventArgs.Empty);
                     }
-                    return _items[key];
+                    return items[key];
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace Magellan.Framework
         /// <returns></returns>
         public IEnumerable<object> AllMessages()
         {
-            return _items.Values.SelectMany(x => x);
+            return items.Values.SelectMany(x => x);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Magellan.Framework
         /// <value>The keys.</value>
         public string[] Keys
         {
-            get { return _items.Keys.ToArray(); }
+            get { return items.Keys.ToArray(); }
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Magellan.Framework
         public void Clear()
         {
             List<ValidationMessageCollection> items;
-            lock (_lock)
+            lock (sync)
             {
-                items = _items.Values.ToList();
-                _items.Clear();
+                items = this.items.Values.ToList();
+                this.items.Clear();
             }
 
             foreach (var item in items)

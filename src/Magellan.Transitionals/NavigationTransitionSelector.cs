@@ -11,8 +11,8 @@ namespace Magellan.Transitionals
     /// </summary>
     public class NavigationTransitionSelector : TransitionSelector
     {
-        private readonly NavigationService _navigationService;
-        private readonly NavigationTransitionRegistry _transitionRegistry;
+        private readonly NavigationService navigationService;
+        private readonly NavigationTransitionRegistry transitionRegistry;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationTransitionSelector"/> class.
@@ -23,10 +23,10 @@ namespace Magellan.Transitionals
         {
             BackStack = new Stack<NavigationTransition>();
             ForwardStack = new Stack<NavigationTransition>();
-            _transitionRegistry = transitionRegistry;
-            _navigationService = navigationService;
-            _navigationService.Navigating += HandleContentNavigating;
-            _navigationService.Navigated += HandleContentNavigated;
+            this.transitionRegistry = transitionRegistry;
+            this.navigationService = navigationService;
+            this.navigationService.Navigating += HandleContentNavigating;
+            this.navigationService.Navigated += HandleContentNavigated;
         }
 
         /// <summary>
@@ -76,12 +76,12 @@ namespace Magellan.Transitionals
             if (e.ExtraData is ResolvedNavigationRequest)
             {
                 var transitionName = ((ResolvedNavigationRequest)e.ExtraData).RouteValues.GetOrDefault<string>("Transition");
-                CurrentTransition = _transitionRegistry.Get(transitionName);
+                CurrentTransition = transitionRegistry.Get(transitionName);
             }
-            else if (e.ExtraData is string && _transitionRegistry.Get(e.ExtraData.ToString()) != null)
+            else if (e.ExtraData is string && transitionRegistry.Get(e.ExtraData.ToString()) != null)
             {
                 var transitionName = e.ExtraData.ToString();
-                CurrentTransition = _transitionRegistry.Get(transitionName);
+                CurrentTransition = transitionRegistry.Get(transitionName);
             }
             else
             {
@@ -97,7 +97,7 @@ namespace Magellan.Transitionals
             {
                 var original = BackStack.Pop();
                 ForwardStack.Push(original);
-                var reverseTransition = original == null ? null : _transitionRegistry.Get(original.Reverse);
+                var reverseTransition = original == null ? null : transitionRegistry.Get(original.Reverse);
                 CurrentTransition = reverseTransition;
             }
             else if (e.NavigationMode == NavigationMode.Forward)

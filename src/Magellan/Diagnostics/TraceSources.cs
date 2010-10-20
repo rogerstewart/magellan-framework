@@ -7,7 +7,7 @@ namespace Magellan.Diagnostics
     /// </summary>
     public static class TraceSources
     {
-        private static TraceSource _magellanSource;
+        private static TraceSource magellanSource;
 
         /// <summary>
         /// Refreshes the trace settings from configuration.
@@ -23,7 +23,7 @@ namespace Magellan.Diagnostics
         /// <value>The magellan source.</value>
         public static TraceSource MagellanSource
         {
-            get { return _magellanSource ?? (_magellanSource = CreateTraceSource("Magellan")); }
+            get { return magellanSource ?? (magellanSource = CreateTraceSource("Magellan")); }
         }
 
         private static TraceSource CreateTraceSource(string name)

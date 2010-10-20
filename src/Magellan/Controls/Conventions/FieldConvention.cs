@@ -13,8 +13,8 @@ namespace Magellan.Controls.Conventions
     /// </summary>
     public class FieldConvention : IFieldConvention
     {
-        private readonly EditorStrategyCollection _editorStrategies;
-        private readonly List<KeyValuePair<Type, Action<Field, Attribute>>> _attributeMatchers = new List<KeyValuePair<Type, Action<Field, Attribute>>>();
+        private readonly EditorStrategyCollection editorStrategies;
+        private readonly List<KeyValuePair<Type, Action<Field, Attribute>>> attributeMatchers = new List<KeyValuePair<Type, Action<Field, Attribute>>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FieldConvention"/> class.
@@ -22,7 +22,7 @@ namespace Magellan.Controls.Conventions
         /// <param name="editorStrategies">The editor strategies.</param>
         public FieldConvention(EditorStrategyCollection editorStrategies)
         {
-            _editorStrategies = editorStrategies;
+            this.editorStrategies = editorStrategies;
 
             WhenPropertyHas<DisplayNameAttribute>((fld, att) => fld.InferredHeader = att.DisplayName);
             WhenPropertyHas<DescriptionAttribute>((fld, att) => fld.InferredDescription = att.Description);
@@ -39,7 +39,7 @@ namespace Magellan.Controls.Conventions
         /// <param name="setterCallback">The setter callback.</param>
         public void WhenPropertyHas<TAttribute>(Action<Field, TAttribute> setterCallback) where TAttribute : Attribute
         {
-            _attributeMatchers.Add(new KeyValuePair<Type, Action<Field, Attribute>>(typeof(TAttribute), (f, a) => setterCallback(f, (TAttribute)a)));
+            attributeMatchers.Add(new KeyValuePair<Type, Action<Field, Attribute>>(typeof(TAttribute), (f, a) => setterCallback(f, (TAttribute)a)));
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Magellan.Controls.Conventions
             var attributes = fieldInfo.PropertyDescriptor.Attributes.Cast<Attribute>().ToList();
             foreach (var attribute in attributes)
             {
-                foreach (var recognizer in _attributeMatchers)
+                foreach (var recognizer in attributeMatchers)
                 {
                     if (recognizer.Key.IsAssignableFrom(attribute.GetType()))
                     {
@@ -65,7 +65,7 @@ namespace Magellan.Controls.Conventions
                 fieldInfo.Field.InferredHeader = fieldInfo.PropertyName;
             }
             
-            var editor = _editorStrategies.GetEditor(fieldInfo);
+            var editor = editorStrategies.GetEditor(fieldInfo);
             if (fieldInfo.Field.Content == null)
             {
                 fieldInfo.Field.Content = editor;

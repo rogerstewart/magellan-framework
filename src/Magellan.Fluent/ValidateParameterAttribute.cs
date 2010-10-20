@@ -7,23 +7,23 @@ namespace Magellan.Fluent
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ValidateParameterAttribute : Attribute, IActionFilter
     {
-        private readonly string _routeName;
-        private readonly Type _validatorType;
+        private readonly string routeName;
+        private readonly Type validatorType;
 
         public ValidateParameterAttribute(string routeName, Type validatorType)
         {
-            _routeName = routeName;
-            _validatorType = validatorType;
+            this.routeName = routeName;
+            this.validatorType = validatorType;
         }
 
         public Type ValidatorType
         {
-            get { return _validatorType; }
+            get { return validatorType; }
         }
 
         public string RouteName
         {
-            get { return _routeName; }
+            get { return routeName; }
         }
 
         protected virtual IValidator CreateValidator()

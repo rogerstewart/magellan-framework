@@ -14,7 +14,7 @@ namespace Magellan.Framework
     /// </summary>
     public class ControllerFactory : IControllerFactory
     {
-        private readonly Dictionary<string, Func<IController>> _controllerBuilders = new Dictionary<string, Func<IController>>();
+        private readonly Dictionary<string, Func<IController>> controllerBuilders = new Dictionary<string, Func<IController>>();
 
         /// <summary>
         /// Registers the specified controller using a delegate to create it.
@@ -28,11 +28,11 @@ namespace Magellan.Framework
 
             TraceSources.MagellanSource.TraceVerbose("Registering controller '{0}'", controllerName);
             
-            if (_controllerBuilders.ContainsKey(controllerName.ToUpper(CultureInfo.InvariantCulture)))
+            if (controllerBuilders.ContainsKey(controllerName.ToUpper(CultureInfo.InvariantCulture)))
             {
                 throw new ArgumentException(string.Format("A controller with the name '{0}' has already been added.", controllerName));
             }
-            _controllerBuilders.Add(controllerName.ToUpper(CultureInfo.InvariantCulture), controllerBuilder);
+            controllerBuilders.Add(controllerName.ToUpper(CultureInfo.InvariantCulture), controllerBuilder);
         }
 
         /// <summary>
@@ -49,13 +49,13 @@ namespace Magellan.Framework
             TraceSources.MagellanSource.TraceVerbose("Resolving controller '{0}' for request '{1}'", controllerName, request);
 
             controllerName = controllerName.ToUpper(CultureInfo.InvariantCulture);
-            if (!_controllerBuilders.ContainsKey(controllerName))
+            if (!controllerBuilders.ContainsKey(controllerName))
             {
                 TraceSources.MagellanSource.TraceError("Failed to resolve controller '{0}' for request '{1}'", controllerName, request);
                 throw new ArgumentException(string.Format("A controller by the name of '{0}' could not be found. Please ensure the controller has been registered.", controllerName), "controllerName");
             }
 
-            var controller = _controllerBuilders[controllerName]();
+            var controller = controllerBuilders[controllerName]();
             return new ControllerFactoryResult(controller, 
                 () =>
                     {

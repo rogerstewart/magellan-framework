@@ -8,7 +8,7 @@ namespace Magellan.ComponentModel
     [AttributeUsage(AttributeTargets.Field)]
     public class EnumDisplayNameAttribute : Attribute
     {
-        private readonly string _displayName;
+        private readonly string displayName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumDisplayNameAttribute"/> class.
@@ -16,7 +16,7 @@ namespace Magellan.ComponentModel
         /// <param name="displayName">The display name.</param>
         public EnumDisplayNameAttribute(string displayName)
         {
-            _displayName = displayName;
+            this.displayName = displayName;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Magellan.ComponentModel
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return _displayName; }
+            get { return displayName; }
         }
     }
 }

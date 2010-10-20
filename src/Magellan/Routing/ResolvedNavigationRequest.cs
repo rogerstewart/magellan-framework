@@ -12,14 +12,14 @@ namespace Magellan.Routing
     /// </summary>
     public class ResolvedNavigationRequest
     {
-        private readonly Guid _requestId = Guid.NewGuid();
-        private readonly Uri _uri;
-        private readonly string _path;
-        private readonly bool _hasNonUriData;
-        private readonly INavigator _navigator;
-        private readonly IRoute _route;
-        private readonly RouteValueDictionary _routeData;
-        private readonly IEnumerable<INavigationProgressListener> _progressListeners;
+        private readonly Guid requestId = Guid.NewGuid();
+        private readonly Uri uri;
+        private readonly string path;
+        private readonly bool hasNonUriData;
+        private readonly INavigator navigator;
+        private readonly IRoute route;
+        private readonly RouteValueDictionary routeData;
+        private readonly IEnumerable<INavigationProgressListener> progressListeners;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResolvedNavigationRequest"/> class.
@@ -37,13 +37,13 @@ namespace Magellan.Routing
             Guard.ArgumentNotNull(navigator, "navigator");
             Guard.ArgumentNotNull(route, "route");
 
-            _uri = uri;
-            _path = path;
-            _hasNonUriData = hasNonUriData;
-            _navigator = navigator;
-            _route = route;
-            _routeData = routeData ?? new RouteValueDictionary();
-            _progressListeners = (progressListeners ?? new INavigationProgressListener[0]).ToList();
+            this.uri = uri;
+            this.path = path;
+            this.hasNonUriData = hasNonUriData;
+            this.navigator = navigator;
+            this.route = route;
+            this.routeData = routeData ?? new RouteValueDictionary();
+            this.progressListeners = (progressListeners ?? new INavigationProgressListener[0]).ToList();
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Magellan.Routing
         /// <value>The URI.</value>
         public Uri Uri
         {
-            get { return _uri; }
+            get { return uri; }
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Magellan.Routing
         /// <value>The request ID.</value>
         public Guid RequestId
         {
-            get { return _requestId; }
+            get { return requestId; }
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Magellan.Routing
         /// <value>The navigator.</value>
         public INavigator Navigator
         {
-            get { return _navigator; }
+            get { return navigator; }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Magellan.Routing
         /// <value>The path.</value>
         public string Path
         {
-            get { return _path; }
+            get { return path; }
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Magellan.Routing
         /// <value>The route.</value>
         public IRoute Route
         {
-            get { return _route; }
+            get { return route; }
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Magellan.Routing
         /// <value>The route values.</value>
         public RouteValueDictionary RouteValues
         {
-            get { return _routeData; }
+            get { return routeData; }
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Magellan.Routing
         public void ReportProgress(NavigationEvent navigationEvent)
         {
             ((INavigationEvent) navigationEvent).Request = this;
-            foreach (var listener in _progressListeners)
+            foreach (var listener in progressListeners)
             {
                 listener.UpdateProgress(navigationEvent);
             }
@@ -121,7 +121,7 @@ namespace Magellan.Routing
         /// </value>
         public bool HasNonUriData
         {
-            get { return _hasNonUriData; }
+            get { return hasNonUriData; }
         }
 
         /// <summary>

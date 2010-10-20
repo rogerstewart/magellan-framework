@@ -5,11 +5,11 @@ namespace Magellan.Routing
 {
     internal sealed class QueryValueCollectionDebuggerView
     {
-        private readonly QueryValueCollection _collection;
+        private readonly QueryValueCollection collection;
 
         public QueryValueCollectionDebuggerView(QueryValueCollection collection)
         {
-            _collection = collection;
+            this.collection = collection;
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
@@ -17,8 +17,8 @@ namespace Magellan.Routing
         {
             get
             {
-                var array = new KeyValuePair<string, string>[_collection.Count];
-                _collection.CopyTo(array, 0);
+                var array = new KeyValuePair<string, string>[collection.Count];
+                collection.CopyTo(array, 0);
                 return array;
             }
         }

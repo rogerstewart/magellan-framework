@@ -9,7 +9,7 @@ namespace Magellan.Routing
     /// </summary>
     public class RouteParser : IRouteParser
     {
-        private readonly List<SegmentRecognizer> _recognisers = new List<SegmentRecognizer>();
+        private readonly List<SegmentRecognizer> recognisers = new List<SegmentRecognizer>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteParser"/> class.
@@ -17,7 +17,7 @@ namespace Magellan.Routing
         /// <param name="recognizers">The recognizers.</param>
         public RouteParser(params SegmentRecognizer[] recognizers)
         {
-            if (recognizers != null) _recognisers.AddRange(recognizers);
+            if (recognizers != null) recognisers.AddRange(recognizers);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Magellan.Routing
         /// <value>The recognizers.</value>
         public IList<SegmentRecognizer> Recognizers
         {
-            get { return _recognisers; }
+            get { return recognisers; }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Magellan.Routing
             var segments = new Segment[parts.Length];
             for (var i = 0; i < parts.Length; i++)
             {
-                var segment = _recognisers.Select(x => x.Recognise(parts[i], defaults, constraints)).FirstOrDefault(x => x != null);
+                var segment = recognisers.Select(x => x.Recognise(parts[i], defaults, constraints)).FirstOrDefault(x => x != null);
                 if (segment == null)
                 {
                     throw new InvalidRouteException(

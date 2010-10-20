@@ -12,9 +12,9 @@ namespace Magellan.Testability
     /// </summary>
     public class ManualPumpDispatcher : IDispatcher
     {
-        private readonly List<Thread> _dispatcherThreads = new List<Thread>();
-        private readonly Thread _creationThread = Thread.CurrentThread;
-        private readonly Queue<Action> _actionsToDispatch = new Queue<Action>();
+        private readonly List<Thread> dispatcherThreads = new List<Thread>();
+        private readonly Thread creationThread = Thread.CurrentThread;
+        private readonly Queue<Action> actionsToDispatch = new Queue<Action>();
 
         /// <summary>
         /// Dispatches the specified action to the thread.
@@ -22,7 +22,7 @@ namespace Magellan.Testability
         /// <param name="actionToInvoke">The action to invoke.</param>
         public void Dispatch(Action actionToInvoke)
         {
-            _actionsToDispatch.Enqueue(actionToInvoke);
+            actionsToDispatch.Enqueue(actionToInvoke);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Magellan.Testability
         /// </summary>
         public void Pump()
         {
-            foreach (var action in _actionsToDispatch)
+            foreach (var action in actionsToDispatch)
             {
                 action();
             }
@@ -54,8 +54,8 @@ namespace Magellan.Testability
         public bool DispatchRequired()
         {
             return
-                Thread.CurrentThread != _creationThread
-                && _dispatcherThreads.Contains(Thread.CurrentThread) == false;
+                Thread.CurrentThread != creationThread
+                && dispatcherThreads.Contains(Thread.CurrentThread) == false;
         }
 
         public void ExecuteOnNewBackgroundThreadWithExceptionsOnUIThread(Action backgroundThreadCallback)

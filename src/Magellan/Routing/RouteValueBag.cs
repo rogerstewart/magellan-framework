@@ -8,7 +8,7 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class RouteValueBag
     {
-        private readonly RouteValueDictionary _dictionary;
+        private readonly RouteValueDictionary dictionary;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteValueBag"/> class.
@@ -16,7 +16,7 @@ namespace Magellan.Routing
         /// <param name="dictionary">The dictionary.</param>
         public RouteValueBag(IDictionary dictionary)
         {
-            _dictionary = new RouteValueDictionary(dictionary);
+            this.dictionary = new RouteValueDictionary(dictionary);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if this instance is empty; otherwise, <c>false</c>.</value>
         public bool IsEmpty
         {
-            get { return _dictionary.Count == 0; }
+            get { return dictionary.Count == 0; }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Magellan.Routing
         /// <returns></returns>
         public RouteValueDictionary GetRemaining()
         {
-            return new RouteValueDictionary(_dictionary);
+            return new RouteValueDictionary(dictionary);
         }
 
         /// <summary>
@@ -44,10 +44,10 @@ namespace Magellan.Routing
         /// <returns></returns>
         public object Take(string key)
         {
-            if (_dictionary.ContainsKey(key))
+            if (dictionary.ContainsKey(key))
             {
-                var value = _dictionary[key];
-                _dictionary.Remove(key);
+                var value = dictionary[key];
+                dictionary.Remove(key);
                 return value;
             }
 

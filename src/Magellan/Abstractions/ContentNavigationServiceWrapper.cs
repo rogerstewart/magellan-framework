@@ -10,7 +10,7 @@ namespace Magellan.Abstractions
     /// </summary>
     public class ContentNavigationServiceWrapper : INavigationService
     {
-        private readonly ContentControl _frame;
+        private readonly ContentControl frame;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentNavigationServiceWrapper"/> class.
@@ -18,7 +18,7 @@ namespace Magellan.Abstractions
         /// <param name="content">The content.</param>
         public ContentNavigationServiceWrapper(ContentControl content)
         {
-            _frame = content;
+            frame = content;
         }
 
         /// <summary>
@@ -35,12 +35,12 @@ namespace Magellan.Abstractions
 
         public object GetValue(DependencyProperty property)
         {
-            return _frame.GetValue(property);
+            return frame.GetValue(property);
         }
 
         public void SetValue(DependencyProperty property, object value)
         {
-            _frame.SetValue(property, value);
+            frame.SetValue(property, value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Magellan.Abstractions
         /// <value>The content.</value>
         public object Content
         {
-            get { return _frame.Content; }
+            get { return frame.Content; }
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Magellan.Abstractions
         /// <returns></returns>
         public bool NavigateDirectToContent(object root, object navigationState)
         {
-            _frame.Content = root;
+            frame.Content = root;
             return true;
         }
 
@@ -116,7 +116,7 @@ namespace Magellan.Abstractions
         /// <value>The dispatcher.</value>
         public IDispatcher Dispatcher
         {
-            get { return new DispatcherWrapper(_frame.Dispatcher); }
+            get { return new DispatcherWrapper(frame.Dispatcher); }
         }
 
         /// <summary>

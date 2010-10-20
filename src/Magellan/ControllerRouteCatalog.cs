@@ -10,11 +10,11 @@ namespace Magellan
     /// </summary>
     public class ControllerRouteCatalog : RouteCatalog
     {
-        private readonly IControllerFactory _controllerFactory;
-        private readonly ViewEngineCollection _viewEngines;
-        private readonly ModelBinderDictionary _modelBinders;
-        private readonly ControllerRouteHandler _handler;
-        private IRouteValidator _validator;
+        private readonly IControllerFactory controllerFactory;
+        private readonly ViewEngineCollection viewEngines;
+        private readonly ModelBinderDictionary modelBinders;
+        private readonly ControllerRouteHandler handler;
+        private IRouteValidator validator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerRouteCatalog"/> class.
@@ -32,10 +32,10 @@ namespace Magellan
         public ControllerRouteCatalog(IControllerFactory controllerFactory, IViewActivator viewActivator)
         {
             Guard.ArgumentNotNull(controllerFactory, "controllerFactory");
-            _controllerFactory = controllerFactory;
-            _viewEngines = Framework.ViewEngines.CreateDefaults(viewActivator);
-            _modelBinders = Framework.ModelBinders.CreateDefaults();
-            _handler = new ControllerRouteHandler(_controllerFactory, _viewEngines, _modelBinders);
+            this.controllerFactory = controllerFactory;
+            viewEngines = Framework.ViewEngines.CreateDefaults(viewActivator);
+            modelBinders = Framework.ModelBinders.CreateDefaults();
+            handler = new ControllerRouteHandler(this.controllerFactory, viewEngines, modelBinders);
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace Magellan
         /// <value>The validator.</value>
         public IRouteValidator Validator
         {
-            get { return _validator = _validator ?? new ControllerRouteValidator(); }
-            set { _validator = value; }
+            get { return validator = validator ?? new ControllerRouteValidator(); }
+            set { validator = value; }
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Magellan
         /// <value>The model binders.</value>
         public ModelBinderDictionary ModelBinders
         {
-            get { return _modelBinders; }
+            get { return modelBinders; }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Magellan
         /// <value>The view engines.</value>
         public ViewEngineCollection ViewEngines
         {
-            get { return _viewEngines; }
+            get { return viewEngines; }
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Magellan
         /// </returns>
         public ControllerRouteCatalog MapRoute(string routeSpecification, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
-            Add(new Route(routeSpecification, () => _handler, defaults, constraints, Validator));
+            Add(new Route(routeSpecification, () => handler, defaults, constraints, Validator));
             return this;
         }
     }

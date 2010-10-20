@@ -7,7 +7,7 @@ namespace Magellan.Routing
     /// </summary>
     public abstract class RegexBasedSegmentRecognizer : SegmentRecognizer
     {
-        private readonly Regex _formatRegex;
+        private readonly Regex formatRegex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegexBasedSegmentRecognizer"/> class.
@@ -15,7 +15,7 @@ namespace Magellan.Routing
         /// <param name="formatRegex">The format regex.</param>
         protected RegexBasedSegmentRecognizer(Regex formatRegex)
         {
-            _formatRegex = formatRegex;
+            this.formatRegex = formatRegex;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Magellan.Routing
         /// </returns>
         public override Segment Recognise(string value, RouteValueDictionary defaults, RouteValueDictionary constraints)
         {
-            var match = _formatRegex.Match(value);
+            var match = formatRegex.Match(value);
             if (!match.Success)
                 return null;
 

@@ -13,8 +13,8 @@ namespace Magellan.ComponentModel
     /// <remarks>Borrowed from Caliburn :)</remarks>
     public class DispatchedObservableCollection<T> : ObservableCollection<T>
     {
-        private bool _raiseCollectionChanged = true;
-        private IDispatcher _dispatcher;
+        private bool raiseCollectionChanged = true;
+        private IDispatcher dispatcher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DispatchedObservableCollection&lt;T&gt;"/> class.
@@ -39,8 +39,8 @@ namespace Magellan.ComponentModel
         /// <value>The dispatcher.</value>
         public IDispatcher Dispatcher
         {
-            get { return _dispatcher ?? (_dispatcher = GetDefaultDispatcher()); }
-            set { _dispatcher = value; }
+            get { return dispatcher ?? (dispatcher = GetDefaultDispatcher()); }
+            set { dispatcher = value; }
         }
 
         private static IDispatcher GetDefaultDispatcher()
@@ -157,7 +157,7 @@ namespace Magellan.ComponentModel
         /// <param name="e">Arguments of the event being raised.</param>
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            if (_raiseCollectionChanged)
+            if (raiseCollectionChanged)
                 base.OnCollectionChanged(e);
         }
 
@@ -167,10 +167,10 @@ namespace Magellan.ComponentModel
         /// <param name="items">The items.</param>
         public void AddRange(IEnumerable<T> items)
         {
-            _raiseCollectionChanged = false;
+            raiseCollectionChanged = false;
             foreach (var item in items)
                 Add(item);
-            _raiseCollectionChanged = true;
+            raiseCollectionChanged = true;
 
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
@@ -181,10 +181,10 @@ namespace Magellan.ComponentModel
         /// <param name="items">The items.</param>
         public void RemoveRange(IEnumerable<T> items)
         {
-            _raiseCollectionChanged = false;
+            raiseCollectionChanged = false;
             foreach (var item in items)
                 Remove(item);
-            _raiseCollectionChanged = true;
+            raiseCollectionChanged = true;
 
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }

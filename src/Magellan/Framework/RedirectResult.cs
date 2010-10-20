@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// </summary>
     public class RedirectResult : ActionResult
     {
-        private readonly RouteValueDictionary _request;
+        private readonly RouteValueDictionary request;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RedirectResult"/> class.
@@ -16,7 +16,7 @@ namespace Magellan.Framework
         /// <param name="request">The request.</param>
         public RedirectResult(RouteValueDictionary request)
         {
-            _request = request;
+            this.request = request;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Magellan.Framework
         /// <value>The new request.</value>
         public RouteValueDictionary NewRequest
         {
-            get { return _request; }
+            get { return request; }
         }
 
         /// <summary>

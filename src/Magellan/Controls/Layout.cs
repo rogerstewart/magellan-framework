@@ -19,7 +19,7 @@ namespace Magellan.Controls
     [ContentProperty("Zones")]
     public class Layout : Control, IAddChild
     {
-        private bool _sourceLoaded;
+        private bool sourceLoaded;
 
         /// <summary>
         /// Initializes the <see cref="Layout"/> class.
@@ -88,7 +88,7 @@ namespace Magellan.Controls
         {
             var @this = (Layout)d;
 
-            @this._sourceLoaded = false;
+            @this.sourceLoaded = false;
             @this.LoadLayoutFromSource();
         }
  
@@ -101,8 +101,8 @@ namespace Magellan.Controls
         {
             if (string.IsNullOrEmpty(Source)) return;
             if (!IsLoaded) return;
-            if (_sourceLoaded) return;
-            _sourceLoaded = true;
+            if (sourceLoaded) return;
+            sourceLoaded = true;
 
             Content = (ContentControl)Application.LoadComponent(new Uri(Source, UriKind.RelativeOrAbsolute));
         }

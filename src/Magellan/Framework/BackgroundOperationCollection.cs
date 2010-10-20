@@ -14,10 +14,10 @@ namespace Magellan.Framework
     /// </summary>
     public class BackgroundOperationCollection : IEnumerable<IOperation>, INotifyCollectionChanged
     {
-        private readonly BusyState _busyState;
-        private readonly IDispatcher _dispatcher;
-        private readonly ObservableCollection<IOperation> _activeOperations = new ObservableCollection<IOperation>();
-        private readonly object _lock = new object();
+        private readonly BusyState busyState;
+        private readonly IDispatcher dispatcher;
+        private readonly ObservableCollection<IOperation> activeOperations = new ObservableCollection<IOperation>();
+        private readonly object sync = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BackgroundOperationCollection"/> class.
@@ -26,9 +26,9 @@ namespace Magellan.Framework
         /// <param name="dispatcher">The dispatcher.</param>
         public BackgroundOperationCollection(BusyState busyState, IDispatcher dispatcher)
         {
-            _busyState = busyState;
-            _dispatcher = dispatcher;
-            _activeOperations.CollectionChanged += (x, y) => OnCollectionChanged(y);
+            this.busyState = busyState;
+            this.dispatcher = dispatcher;
+            activeOperations.CollectionChanged += (x, y) => OnCollectionChanged(y);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Magellan.Framework
         /// <returns></returns>
         public IOperation Queue(Action<IOperation> executedOnBackgroundThread)
         {
-            return Queue(executedOnBackgroundThread, _dispatcher.ExecuteOnNewBackgroundThreadWithExceptionsOnUIThread);
+            return Queue(executedOnBackgroundThread, dispatcher.ExecuteOnNewBackgroundThreadWithExceptionsOnUIThread);
         }
 
         /// <summary>
@@ -54,19 +54,19 @@ namespace Magellan.Framework
         /// <returns></returns>
         public IOperation QueueFromBackground(Action<IOperation> executedOnBackgroundThread)
         {
-            return Queue(executedOnBackgroundThread, _dispatcher.ExecuteOnCurrentThreadWithExceptionsOnUIThread);
+            return Queue(executedOnBackgroundThread, dispatcher.ExecuteOnCurrentThreadWithExceptionsOnUIThread);
         }
 
         private IOperation Queue(Action<IOperation> executedOnBackgroundThread, Action<Action> queue)
         {
             var handle = new ManualResetEvent(false);
-            var operation = new Operation(_dispatcher, handle);
-            lock (_lock)
+            var operation = new Operation(dispatcher, handle);
+            lock (sync)
             {
-                _activeOperations.Add(operation);
+                activeOperations.Add(operation);
             }
 
-            var busyState = _busyState;
+            var busyState = this.busyState;
             var state = busyState.Enter();
             var executionCallback = new Action(
                 delegate
@@ -79,12 +79,12 @@ namespace Magellan.Framework
                     {
                         handle.Set();
 
-                        _dispatcher.Dispatch(() =>
+                        dispatcher.Dispatch(() =>
                         {
                             state.Dispose();
-                            lock (_lock)
+                            lock (sync)
                             {
-                                _activeOperations.Remove(operation);
+                                activeOperations.Remove(operation);
                             }
                         });
                     }
@@ -103,9 +103,9 @@ namespace Magellan.Framework
         /// </summary>
         public void CancelAll()
         {
-            lock (_lock)
+            lock (sync)
             {
-                foreach (var op in _activeOperations)
+                foreach (var op in activeOperations)
                 {
                     op.Cancel();
                 }
@@ -118,9 +118,9 @@ namespace Magellan.Framework
         /// </summary>
         public void WaitForCompletion()
         {
-            lock (_lock)
+            lock (sync)
             {
-                foreach (var op in _activeOperations)
+                foreach (var op in activeOperations)
                 {
                     op.WaitForCompletion();
                 }
@@ -135,9 +135,9 @@ namespace Magellan.Framework
         /// </returns>
         public IEnumerator<IOperation> GetEnumerator()
         {
-            lock (_activeOperations)
+            lock (activeOperations)
             {
-                return _activeOperations.ToList().GetEnumerator();
+                return activeOperations.ToList().GetEnumerator();
             }
         }
 
@@ -167,9 +167,9 @@ namespace Magellan.Framework
         /// </summary>
         private class Operation : IOperation
         {
-            private readonly IDispatcher _dispatcher;
-            private readonly WaitHandle _handle;
-            private bool _cancelled;
+            private readonly IDispatcher dispatcher;
+            private readonly WaitHandle handle;
+            private bool cancelled;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Operation"/> class.
@@ -178,8 +178,8 @@ namespace Magellan.Framework
             /// <param name="handle">The handle.</param>
             public Operation(IDispatcher dispatcher, WaitHandle handle)
             {
-                _dispatcher = dispatcher;
-                _handle = handle;
+                this.dispatcher = dispatcher;
+                this.handle = handle;
             }
 
             /// <summary>
@@ -188,7 +188,7 @@ namespace Magellan.Framework
             /// <value>The handle.</value>
             public WaitHandle Handle
             {
-                get { return _handle; }
+                get { return handle; }
             }
 
             /// <summary>
@@ -197,7 +197,7 @@ namespace Magellan.Framework
             /// <param name="action">The action.</param>
             public void Dispatch(Action action)
             {
-                _dispatcher.Dispatch(action);
+                dispatcher.Dispatch(action);
             }
 
             /// <summary>
@@ -206,7 +206,7 @@ namespace Magellan.Framework
             /// </summary>
             public void Cancel()
             {
-                _cancelled = true;
+                cancelled = true;
             }
 
             /// <summary>
@@ -215,7 +215,7 @@ namespace Magellan.Framework
             /// <value><c>true</c> if cancelled; otherwise, <c>false</c>.</value>
             public bool Cancelled
             {
-                get { return _cancelled; }
+                get { return cancelled; }
             }
 
             /// <summary>
@@ -223,7 +223,7 @@ namespace Magellan.Framework
             /// </summary>
             public void WaitForCompletion()
             {
-                _handle.WaitOne();
+                handle.WaitOne();
             }
         }
     }

@@ -9,9 +9,9 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class ViewResult : ActionResult
     {
-        private readonly ViewResultOptions _options = new ViewResultOptions();
-        private readonly string _viewName;
-        private readonly ViewEngineCollection _viewEngines;
+        private readonly ViewResultOptions options = new ViewResultOptions();
+        private readonly string viewName;
+        private readonly ViewEngineCollection viewEngines;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewResult"/> class.
@@ -21,8 +21,8 @@ namespace Magellan.Framework
         /// <param name="viewEngines">The set of view engines that can help to activate this view.</param>
         protected ViewResult(string viewName, object model, ViewEngineCollection viewEngines)
         {
-            _viewName = viewName;
-            _viewEngines = viewEngines;
+            this.viewName = viewName;
+            this.viewEngines = viewEngines;
             Options.SetModel(model);
         }
 
@@ -32,7 +32,7 @@ namespace Magellan.Framework
         /// <value>The name of the view.</value>
         public string ViewName
         {
-            get { return _viewName; }
+            get { return viewName; }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Magellan.Framework
         /// <value>The view parameters.</value>
         public ViewResultOptions Options
         {
-            get { return _options; }
+            get { return options; }
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Magellan.Framework
         {
             Guard.ArgumentNotNull(controllerContext, "controllerContext");
 
-            var viewName = _viewName ?? controllerContext.ActionName;
-            ViewEngineResult = _viewEngines.FindView(controllerContext, Options, viewName);
+            var viewName = this.viewName ?? controllerContext.ActionName;
+            ViewEngineResult = viewEngines.FindView(controllerContext, Options, viewName);
             if (ViewEngineResult.Success)
             {
                 ViewEngineResult.Render();

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,8 +13,8 @@ namespace Magellan.Framework
     /// </summary>
     public class PageViewEngineResult : FrameworkElementViewEngineResult
     {
-        private readonly Type _viewType;
-        private readonly IViewActivator _viewActivator;
+        private readonly Type viewType;
+        private readonly IViewActivator viewActivator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PageViewEngineResult"/> class.
@@ -27,8 +26,8 @@ namespace Magellan.Framework
         public PageViewEngineResult(Type viewType, ViewResultOptions options, ControllerContext controllerContext, IViewActivator viewActivator)
             : base(controllerContext, options)
         {
-            _viewType = viewType;
-            _viewActivator = viewActivator;
+            this.viewType = viewType;
+            this.viewActivator = viewActivator;
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Magellan.Framework
         /// <value>The type of the view.</value>
         public Type ViewType
         {
-            get { return _viewType; }
+            get { return viewType; }
         }
 
         /// <summary>
@@ -56,10 +55,10 @@ namespace Magellan.Framework
             dispatcher.Dispatch(
                 delegate
                 {
-                    TraceSources.MagellanSource.TraceInformation("The PageViewEngine is rendering the page '{0}'.", _viewType);
+                    TraceSources.MagellanSource.TraceInformation("The PageViewEngine is rendering the page '{0}'.", viewType);
 
                     // Prepare the page
-                    RenderedInstance = (FrameworkElement)_viewActivator.Instantiate(_viewType);
+                    RenderedInstance = (FrameworkElement)viewActivator.Instantiate(viewType);
 
                     ViewInitializer.Prepare(RenderedInstance, Model, ControllerContext.Request);
 
@@ -68,13 +67,13 @@ namespace Magellan.Framework
                     NavigationMonitor.EnsureBound(navigationService, ViewInitializer);
                     navigationService.NavigateDirectToContent(RenderedInstance, ControllerContext.Request);
 
-                    TraceSources.MagellanSource.TraceVerbose("The PageViewEngine has navigated to the page '{0}'.", _viewType);
+                    TraceSources.MagellanSource.TraceVerbose("The PageViewEngine has navigated to the page '{0}'.", viewType);
 
                     // Remove all back entries from the navigation journal if necessary
                     var clearHistory = Options.GetResetHistory();
                     if (clearHistory)
                     {
-                        TraceSources.MagellanSource.TraceVerbose("The PageViewEngine is clearing the navigation history.", _viewType);
+                        TraceSources.MagellanSource.TraceVerbose("The PageViewEngine is clearing the navigation history.", viewType);
                         navigationService.ResetHistory();
                     }
                 });

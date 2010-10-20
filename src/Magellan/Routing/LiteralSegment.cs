@@ -8,7 +8,7 @@ namespace Magellan.Routing
     /// </summary>
     internal class LiteralSegment : Segment
     {
-        private readonly string _literal;
+        private readonly string literal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteralSegment"/> class.
@@ -17,7 +17,7 @@ namespace Magellan.Routing
         public LiteralSegment(string literal)
         {
             Guard.ArgumentNotNullOrEmpty(literal, "literal");
-            _literal = literal;
+            this.literal = literal;
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace Magellan.Routing
         public override SegmentPathMatch MatchPath(IRoute route, PathIterator path)
         {
             var next = path.Next();
-            return String.Equals(next, _literal, StringComparison.InvariantCultureIgnoreCase)
+            return String.Equals(next, literal, StringComparison.InvariantCultureIgnoreCase)
                 ? SegmentPathMatch.Successful()
-                : SegmentPathMatch.Failure(string.Format("Expected segment '{0}'; got '{1}'", _literal, next));
+                : SegmentPathMatch.Failure(string.Format("Expected segment '{0}'; got '{1}'", literal, next));
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Magellan.Routing
         /// </returns>
         public override SegmentValueMatch MatchValues(IRoute route, RouteValueBag values)
         {
-            return SegmentValueMatch.Successful(_literal);
+            return SegmentValueMatch.Successful(literal);
         }
     }
 }

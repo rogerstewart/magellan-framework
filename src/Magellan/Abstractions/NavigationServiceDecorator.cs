@@ -10,9 +10,9 @@ namespace Magellan.Abstractions
     /// </summary>
     public class NavigationServiceDecorator : INavigationService
     {
-        private readonly Func<INavigationService> _innerAccessor;
-        private INavigationService _inner;
-        private readonly object _lock = new object();
+        private readonly Func<INavigationService> innerAccessor;
+        private INavigationService inner;
+        private readonly object sync = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationServiceDecorator"/> class.
@@ -20,16 +20,16 @@ namespace Magellan.Abstractions
         /// <param name="inner">The inner navigation service.</param>
         public NavigationServiceDecorator(Func<INavigationService> inner)
         {
-            _innerAccessor = inner;
+            innerAccessor = inner;
         }
 
         private INavigationService Inner
         {
             get
             {
-                lock (_lock)
+                lock (sync)
                 {
-                    return _inner ?? (_inner = _innerAccessor());
+                    return inner ?? (inner = innerAccessor());
                 }
             }
         }

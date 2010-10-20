@@ -9,29 +9,41 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class ViewModel : PresentationObject, IViewAware, INavigationAware, IFlasher
     {
-        private object _view;
-        private FlashCollection _flashes;
-        private IScheduler _scheduler = new Scheduler();
-        private BackgroundOperationCollection _operations;
+        private object view;
+        private FlashCollection flashes;
+        private IScheduler scheduler = new Scheduler();
+        private BackgroundOperationCollection operations;
         private IDispatcher dispatcher;
 
+        /// <summary>
+        /// Gets a collection of background thread operations, which also allows queuing of new operations.
+        /// </summary>
+        /// <value>The operations.</value>
         public BackgroundOperationCollection Operations
         {
             get
             {
-                return _operations = _operations ?? new BackgroundOperationCollection(BusyState, Dispatcher);
+                return operations = operations ?? new BackgroundOperationCollection(BusyState, Dispatcher);
             }
         }
 
+        /// <summary>
+        /// Gets a collection of user notification messages.
+        /// </summary>
+        /// <value>The flashes.</value>
         public FlashCollection Flashes
         {
-            get { return _flashes ?? (_flashes = new FlashCollection(Scheduler)); }
+            get { return flashes ?? (flashes = new FlashCollection(Scheduler)); }
         }
 
+        /// <summary>
+        /// Gets a scheduler for executing tasks after a short delay.
+        /// </summary>
+        /// <value>The scheduler.</value>
         public IScheduler Scheduler
         {
-            get { return _scheduler ?? (_scheduler = new Scheduler()); }
-            set { _scheduler = value; }
+            get { return scheduler ?? (scheduler = new Scheduler()); }
+            set { scheduler = value; }
         }
 
         public void Flash(string message)
@@ -76,7 +88,7 @@ namespace Magellan.Framework
         /// <value>The view.</value>
         protected object View
         {
-            get { return _view; }
+            get { return view; }
         }
 
         /// <summary>
@@ -116,7 +128,7 @@ namespace Magellan.Framework
 
         void IViewAware.ViewAttached(object view)
         {
-            _view = view;
+            this.view = view;
             ViewAttached(view);
         }
 

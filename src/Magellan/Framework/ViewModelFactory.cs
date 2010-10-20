@@ -13,8 +13,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ViewModelFactory : IViewModelFactory
     {
-        private readonly Dictionary<string, Func<object>> _modelBuilders = new Dictionary<string, Func<object>>();
-        private readonly Dictionary<string, Func<object>> _viewBuilders = new Dictionary<string, Func<object>>();
+        private readonly Dictionary<string, Func<object>> modelBuilders = new Dictionary<string, Func<object>>();
+        private readonly Dictionary<string, Func<object>> viewBuilders = new Dictionary<string, Func<object>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
@@ -36,17 +36,17 @@ namespace Magellan.Framework
 
             TraceSources.MagellanSource.TraceVerbose("Registering view/view model pair '{0}'", name);
 
-            if (_modelBuilders.ContainsKey(name.ToUpper(CultureInfo.InvariantCulture)))
+            if (modelBuilders.ContainsKey(name.ToUpper(CultureInfo.InvariantCulture)))
             {
                 throw new ArgumentException(string.Format("A view model with the name '{0}' has already been added.", name));
             }
-            _modelBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewModelType);
+            modelBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewModelType);
 
-            if (_viewBuilders.ContainsKey(name.ToUpper(CultureInfo.InvariantCulture)))
+            if (viewBuilders.ContainsKey(name.ToUpper(CultureInfo.InvariantCulture)))
             {
                 throw new ArgumentException(string.Format("A view with the name '{0}' has already been added.", name));
             }
-            _viewBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewType);
+            viewBuilders.Add(name.ToUpper(CultureInfo.InvariantCulture), viewType);
         }
 
         /// <summary>
@@ -60,13 +60,13 @@ namespace Magellan.Framework
         public ViewModelFactoryResult CreateViewModel(ResolvedNavigationRequest request, string viewModelName)
         {
             var name = viewModelName.ToUpper(CultureInfo.InvariantCulture);
-            if (!_modelBuilders.ContainsKey(name))
+            if (!modelBuilders.ContainsKey(name))
             {
                 throw new ArgumentException(string.Format("A view model by the name {0} is not registered in this ViewModelFactory.", name));
             }
             
-            var model = _modelBuilders[name]();
-            var view = _viewBuilders[name]();
+            var model = modelBuilders[name]();
+            var view = viewBuilders[name]();
 
             return new ViewModelFactoryResult(view, model);
         }

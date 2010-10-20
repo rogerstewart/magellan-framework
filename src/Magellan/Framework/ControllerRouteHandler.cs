@@ -8,9 +8,9 @@ namespace Magellan.Framework
     /// </summary>
     public class ControllerRouteHandler : IRouteHandler
     {
-        private readonly IControllerFactory _controllerFactory;
-        private readonly ModelBinderDictionary _modelBinders;
-        private readonly ViewEngineCollection _viewEngines;
+        private readonly IControllerFactory controllerFactory;
+        private readonly ModelBinderDictionary modelBinders;
+        private readonly ViewEngineCollection viewEngines;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerRouteHandler"/> class.
@@ -20,9 +20,9 @@ namespace Magellan.Framework
         /// <param name="modelBinders">The model binders.</param>
         public ControllerRouteHandler(IControllerFactory controllerFactory, ViewEngineCollection viewEngines, ModelBinderDictionary modelBinders)
         {
-            _controllerFactory = controllerFactory;
-            _modelBinders = modelBinders;
-            _viewEngines = viewEngines ?? ViewEngines.CreateDefaults();
+            this.controllerFactory = controllerFactory;
+            this.modelBinders = modelBinders;
+            this.viewEngines = viewEngines ?? ViewEngines.CreateDefaults();
         }
 
         /// <summary>
@@ -35,15 +35,15 @@ namespace Magellan.Framework
             
             request.ReportProgress(new BeginRequestNavigationEvent());
             request.ReportProgress(new ResolvingControllerNavigationEvent());
-            var controllerLease = _controllerFactory.CreateController(request, controllerName);
+            var controllerLease = controllerFactory.CreateController(request, controllerName);
             var controller = controllerLease.Controller;
 
             controller.Execute(
                 new ControllerContext(
                     controllerLease.Controller, 
                     request, 
-                    _viewEngines,
-                    _modelBinders,
+                    viewEngines,
+                    modelBinders,
                     () =>
                         {
                             controllerLease.Dispose();

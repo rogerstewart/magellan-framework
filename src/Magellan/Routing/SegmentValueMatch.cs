@@ -5,9 +5,9 @@
     /// </summary>
     public sealed class SegmentValueMatch
     {
-        private readonly bool _success;
-        private readonly object _segmentValue;
-        private readonly string _failReason;
+        private readonly bool success;
+        private readonly object segmentValue;
+        private readonly string failReason;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SegmentValueMatch"/> class.
@@ -17,9 +17,9 @@
         /// <param name="failReason">The fail reason.</param>
         private SegmentValueMatch(bool success, object segmentValue, string failReason)
         {
-            _success = success;
-            _segmentValue = segmentValue;
-            _failReason = failReason;
+            this.success = success;
+            this.segmentValue = segmentValue;
+            this.failReason = failReason;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@
         /// <value><c>true</c> if success; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -66,7 +66,7 @@
         /// <value>The segment value.</value>
         public object SegmentValue
         {
-            get { return _segmentValue; }
+            get { return segmentValue; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@
         /// <value>The fail reason.</value>
         public string FailReason
         {
-            get { return _failReason; }
+            get { return failReason; }
         }
     }
 }

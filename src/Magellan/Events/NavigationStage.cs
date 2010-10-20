@@ -7,7 +7,7 @@ namespace Magellan.Events
     /// </summary>
     public abstract class NavigationEvent : INavigationEvent
     {
-        private ResolvedNavigationRequest _request;
+        private ResolvedNavigationRequest request;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationEvent"/> class.
@@ -22,7 +22,7 @@ namespace Magellan.Events
         /// <value>The request.</value>
         public ResolvedNavigationRequest Request
         {
-            get { return _request; }
+            get { return request; }
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Magellan.Events
             }
             set
             {
-                _request = value;
+                request = value;
             }
         }
     }

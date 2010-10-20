@@ -10,8 +10,8 @@ namespace Magellan.Routing
     /// </summary>
     public class RouteValidator : IRouteValidator
     {
-        private readonly List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>> _rules = new List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>>();
-        private readonly HashSet<Type> _supportedSegmentTypes = new HashSet<Type>();
+        private readonly List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>> rules = new List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>>();
+        private readonly HashSet<Type> supportedSegmentTypes = new HashSet<Type>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteValidator"/> class.
@@ -33,7 +33,7 @@ namespace Magellan.Routing
         /// <value>The supported segment types.</value>
         protected HashSet<Type> SupportedSegmentTypes
         {
-            get { return _supportedSegmentTypes; }
+            get { return supportedSegmentTypes; }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Magellan.Routing
         /// <value>The rules.</value>
         protected List<Func<Segment[], RouteValueDictionary, RouteValueDictionary, RouteValidationResult>> Rules
         {
-            get { return _rules; }
+            get { return rules; }
         }
 
         /// <summary>

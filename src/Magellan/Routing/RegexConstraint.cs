@@ -8,7 +8,7 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class RegexConstraint : IRouteConstraint
     {
-        private readonly Regex _regex;
+        private readonly Regex regex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegexConstraint"/> class.
@@ -17,7 +17,7 @@ namespace Magellan.Routing
         public RegexConstraint(string regex)
         {
             Guard.ArgumentNotNullOrEmpty(regex, "regex");
-            _regex = new Regex(regex, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            this.regex = new Regex(regex, RegexOptions.IgnoreCase | RegexOptions.Singleline);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Magellan.Routing
         public RegexConstraint(Regex regex)
         {
             Guard.ArgumentNotNull(regex, "regex");
-            _regex = regex;
+            this.regex = regex;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Magellan.Routing
         /// </returns>
         public bool IsValid(IRoute route, string value, string parameterName)
         {
-            return _regex.Match(value).Success;
+            return regex.Match(value).Success;
         }
     }
 }

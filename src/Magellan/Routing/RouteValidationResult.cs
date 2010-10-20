@@ -7,8 +7,8 @@ namespace Magellan.Routing
     /// </summary>
     public class RouteValidationResult
     {
-        private readonly bool _success;
-        private readonly string[] _errors;
+        private readonly bool success;
+        private readonly string[] errors;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteValidationResult"/> class.
@@ -17,8 +17,8 @@ namespace Magellan.Routing
         /// <param name="errors">The errors.</param>
         protected RouteValidationResult(bool success, params string[] errors)
         {
-            _success = success;
-            _errors = errors;
+            this.success = success;
+            this.errors = errors;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if success; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Magellan.Routing
         /// <value>The errors.</value>
         public IList<string> Errors
         {
-            get { return _errors; }
+            get { return errors; }
         }
     }
 }

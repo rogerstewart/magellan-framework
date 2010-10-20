@@ -7,7 +7,7 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class PathIterator
     {
-        private readonly Queue<string> _partQueue = new Queue<string>();
+        private readonly Queue<string> partQueue = new Queue<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PathIterator"/> class.
@@ -18,7 +18,7 @@ namespace Magellan.Routing
             var parts = path.SplitUrlPath();
             foreach (var part in parts)
             {
-                _partQueue.Enqueue(part);
+                partQueue.Enqueue(part);
             }
         }
 
@@ -28,7 +28,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if this instance is at end; otherwise, <c>false</c>.</value>
         public bool IsAtEnd
         {
-            get { return _partQueue.Count == 0; }
+            get { return partQueue.Count == 0; }
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace Magellan.Routing
         /// <returns></returns>
         public string Next()
         {
-            return _partQueue.Count == 0 
+            return partQueue.Count == 0 
                 ? "" 
-                : _partQueue.Dequeue();
+                : partQueue.Dequeue();
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace Magellan.Routing
         /// <returns></returns>
         public string ReadAll()
         {
-            var result = string.Join("/", _partQueue.ToArray());
-            _partQueue.Clear();
+            var result = string.Join("/", partQueue.ToArray());
+            partQueue.Clear();
             return result;
         }
     }

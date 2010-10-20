@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// </summary>
     public class ControllerFactoryResult : IDisposable
     {
-        private readonly Action _releaseCallback;
+        private readonly Action releaseCallback;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerFactoryResult"/> class.
@@ -17,7 +17,7 @@ namespace Magellan.Framework
         /// <param name="releaseCallback">The cleanup callback. Can be null to do nothing.</param>
         public ControllerFactoryResult(IController controller, Action releaseCallback)
         {
-            _releaseCallback = releaseCallback;
+            this.releaseCallback = releaseCallback;
             Controller = controller;
         }
 
@@ -32,7 +32,7 @@ namespace Magellan.Framework
         /// </summary>
         public void Dispose()
         {
-            if (_releaseCallback != null) _releaseCallback();
+            if (releaseCallback != null) releaseCallback();
         }
     }
 }

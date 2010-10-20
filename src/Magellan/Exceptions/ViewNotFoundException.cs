@@ -11,8 +11,8 @@ namespace Magellan.Exceptions
     /// </summary>
     public class ViewNotFoundException : NavigationException
     {
-        private readonly string _viewName;
-        private readonly IEnumerable<string> _searchLocations;
+        private readonly string viewName;
+        private readonly IEnumerable<string> searchLocations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewNotFoundException"/> class.
@@ -24,8 +24,8 @@ namespace Magellan.Exceptions
         public ViewNotFoundException(string controllerName, string actionName, string viewName, IEnumerable<string> searchLocations)
             : base(BuildMessage(controllerName, actionName, viewName, searchLocations))
         {
-            _viewName = viewName;
-            _searchLocations = searchLocations;
+            this.viewName = viewName;
+            this.searchLocations = searchLocations;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Magellan.Exceptions
         /// <value>The name of the view.</value>
         public string ViewName
         {
-            get { return _viewName; }
+            get { return viewName; }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Magellan.Exceptions
         /// <value>The search locations.</value>
         public IEnumerable<string> SearchLocations
         {
-            get { return _searchLocations; }
+            get { return searchLocations; }
         }
 
         private static string BuildMessage(string controllerName, string actionName, string viewName, IEnumerable<string> searchLocations)

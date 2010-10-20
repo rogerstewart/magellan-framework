@@ -5,7 +5,7 @@
     /// </summary>
     public static class NavigationTransitions
     {
-        private static readonly NavigationTransitionRegistry _table = new NavigationTransitionRegistry();
+        private static readonly NavigationTransitionRegistry table = new NavigationTransitionRegistry();
 
         /// <summary>
         /// Initializes the <see cref="NavigationTransitions"/> class.
@@ -19,7 +19,7 @@
         /// </summary>
         public static NavigationTransitionRegistry Table
         {
-            get { return _table; }
+            get { return table; }
         }
     }
 }

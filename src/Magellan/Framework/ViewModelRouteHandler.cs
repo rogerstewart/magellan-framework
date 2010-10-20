@@ -7,8 +7,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ViewModelRouteHandler : IRouteHandler
     {
-        private readonly IViewModelFactory _factory;
-        private readonly IViewInitializer _initializer;
+        private readonly IViewModelFactory factory;
+        private readonly IViewInitializer initializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelRouteHandler"/> class.
@@ -17,8 +17,8 @@ namespace Magellan.Framework
         /// <param name="initializer">The initializer.</param>
         public ViewModelRouteHandler(IViewModelFactory factory, IViewInitializer initializer)
         {
-            _factory = factory;
-            _initializer = initializer;
+            this.factory = factory;
+            this.initializer = initializer;
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace Magellan.Framework
         {
             var modelName = request.RouteValues.GetOrDefault<string>("viewModel");
             
-            var pair = _factory.CreateViewModel(request, modelName);
+            var pair = factory.CreateViewModel(request, modelName);
 
-            _initializer.Prepare(pair.View, pair.ViewModel, request);
+            initializer.Prepare(pair.View, pair.ViewModel, request);
 
             request.Navigator.NavigateDirectToContent(pair.View, request);
         }

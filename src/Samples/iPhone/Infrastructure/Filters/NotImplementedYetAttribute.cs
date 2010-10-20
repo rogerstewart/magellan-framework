@@ -6,8 +6,8 @@ namespace iPhone.Infrastructure.Filters
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class NotImplementedYetAttribute : Attribute, IActionFilter
     {
-        private readonly string _message;
-        private IMessageService _messageService;
+        private readonly string message;
+        private IMessageService messageService;
 
         public NotImplementedYetAttribute() : this(null)
         {
@@ -15,22 +15,22 @@ namespace iPhone.Infrastructure.Filters
 
         public NotImplementedYetAttribute(string message)
         {
-            _message = message;
-            if (string.IsNullOrEmpty(_message))
+            this.message = message;
+            if (string.IsNullOrEmpty(this.message))
             {
-                _message = "This feature has not been implemented (this is just a demo after all).";
+                this.message = "This feature has not been implemented (this is just a demo after all).";
             }
         }
 
         public IMessageService MessageService
         {
-            get { return _messageService = _messageService ?? new MessageService(); }
-            set { _messageService = value; }
+            get { return messageService = messageService ?? new MessageService(); }
+            set { messageService = value; }
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            MessageService.ShowInformation(_message);
+            MessageService.ShowInformation(message);
             context.OverrideResult = new DoNothingResult();
         }
 
