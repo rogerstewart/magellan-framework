@@ -17,10 +17,23 @@ namespace Magellan.Framework
         /// <param name="request">The request.</param>
         void Prepare(object view, object model, ResolvedNavigationRequest request);
 
+        /// <summary>
+        /// Notifies the view that it has been activated.
+        /// </summary>
+        /// <param name="view">The view.</param>
         void NotifyActivated(object view);
-        
+
+        /// <summary>
+        /// Notifies the view that it is being deactivated.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         void NotifyDeactivating(object view, CancelEventArgs e);
-        
+
+        /// <summary>
+        /// Notifies the view that it has been deactivated.
+        /// </summary>
+        /// <param name="view">The view.</param>
         void NotifyDeactivated(object view);
     }
 }

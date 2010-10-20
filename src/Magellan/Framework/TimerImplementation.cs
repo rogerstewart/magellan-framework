@@ -80,6 +80,9 @@ namespace Magellan.Framework
             }
         }
 
+        /// <summary>
+        /// Cancels this task.
+        /// </summary>
         public void Cancel()
         {
             lock (sync)
@@ -89,6 +92,9 @@ namespace Magellan.Framework
             }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             lock (sync)

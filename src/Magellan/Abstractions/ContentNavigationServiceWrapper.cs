@@ -33,11 +33,21 @@ namespace Magellan.Abstractions
         /// </summary>
         public event EventHandler Navigated;
 
+        /// <summary>
+        /// Gets the value of a dependency property from the underlying wrapped navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <returns></returns>
         public object GetValue(DependencyProperty property)
         {
             return frame.GetValue(property);
         }
 
+        /// <summary>
+        /// Sets the value of a dependency property on the underlying navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The value.</param>
         public void SetValue(DependencyProperty property, object value)
         {
             frame.SetValue(property, value);
@@ -126,12 +136,20 @@ namespace Magellan.Abstractions
         {
         }
 
+        /// <summary>
+        /// Raises the <see cref="Navigating"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         protected virtual void OnNavigating(CancelEventArgs e)
         {
             var handler = Navigating;
             if (handler != null) handler(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="Navigated"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected virtual void OnNavigated(EventArgs e)
         {
             var handler = Navigated;
