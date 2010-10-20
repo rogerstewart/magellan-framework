@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// </summary>
     public class ResultExecutingContext
     {
-        private readonly ControllerContext _controllerContext;
+        private readonly ControllerContext controllerContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResultExecutingContext"/> class.
@@ -18,7 +18,7 @@ namespace Magellan.Framework
         public ResultExecutingContext(ControllerContext controllerContext, ActionResult result)
         {
             Result = result;
-            _controllerContext = controllerContext;
+            this.controllerContext = controllerContext;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Magellan.Framework
         /// <value>The controller context.</value>
         public ControllerContext ControllerContext
         {
-            get { return _controllerContext; }
+            get { return controllerContext; }
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Framework
         /// <value>The request.</value>
         public ResolvedNavigationRequest Request
         {
-            get { return _controllerContext.Request; }
+            get { return controllerContext.Request; }
         }
     }
 }

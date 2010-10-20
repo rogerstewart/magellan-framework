@@ -9,12 +9,12 @@ namespace Sample.Features.Search
 {
     public class SearchViewModel : ViewModel
     {
-        private readonly ISearchService _searchService;
-        private List<SearchResult> _results;
+        private readonly ISearchService searchService;
+        private List<SearchResult> results;
 
         public SearchViewModel(ISearchService searchService)
         {
-            _searchService = searchService;
+            this.searchService = searchService;
             Search = new RelayCommand(SearchExecuted);
             ShowDetails = new RelayCommand<SearchResult>(ShowDetailsExecuted);
             Results = new List<SearchResult>();
@@ -27,11 +27,11 @@ namespace Sample.Features.Search
 
         public List<SearchResult> Results 
         {
-            get { return _results; }
+            get { return results; }
             private set
             {
-                _results = value;
-                NoResultsFound = _results.Count == 0;
+                results = value;
+                NoResultsFound = results.Count == 0;
                 NotifyChanged("Results");
                 NotifyChanged("NoResultsFound");
             }
@@ -39,7 +39,7 @@ namespace Sample.Features.Search
             
         private void SearchExecuted()
         {
-            Results = _searchService.Search(SearchText);
+            Results = searchService.Search(SearchText);
         }
 
         private void ShowDetailsExecuted(SearchResult item)

@@ -9,7 +9,7 @@ namespace Magellan.Routing
     /// </summary>
     public abstract class RouteCatalog
     {
-        private readonly Set<IRoute> _routes = new Set<IRoute>();
+        private readonly Set<IRoute> routes = new Set<IRoute>();
 
         /// <summary>
         /// Registers the specified route.
@@ -19,7 +19,7 @@ namespace Magellan.Routing
         {
             Guard.ArgumentNotNull(route, "route");
             route.Validate();
-            _routes.Add(route);
+            routes.Add(route);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Magellan.Routing
         /// <param name="route">The route.</param>
         public virtual void Remove(IRoute route)
         {
-            _routes.Remove(route);
+            routes.Remove(route);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Magellan.Routing
         /// <returns></returns>
         public virtual IEnumerable<IRoute> GetRoutes()
         {
-            return _routes;
+            return routes;
         }
     }
 }

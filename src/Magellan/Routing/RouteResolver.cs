@@ -11,8 +11,8 @@ namespace Magellan.Routing
     /// </summary>
     public class RouteResolver : IRouteResolver
     {
-        private readonly Set<RouteCatalog> _catalogs = new Set<RouteCatalog>();
-        private readonly object _routesLock = new object();
+        private readonly Set<RouteCatalog> catalogs = new Set<RouteCatalog>();
+        private readonly object routesLock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteResolver"/> class.
@@ -20,15 +20,15 @@ namespace Magellan.Routing
         /// <param name="catalogs">The catalogs.</param>
         public RouteResolver(params RouteCatalog[] catalogs)
         {
-            _catalogs.AddRange(catalogs);
+            this.catalogs.AddRange(catalogs);
         }
 
         private List<IRoute> GetRoutes()
         {
             var results = new List<IRoute>();
-            lock (_routesLock)
+            lock (routesLock)
             {
-                foreach (var catalog in _catalogs)
+                foreach (var catalog in catalogs)
                 {
                     results.AddRange(catalog.GetRoutes());
                 }

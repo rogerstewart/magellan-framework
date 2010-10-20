@@ -8,7 +8,7 @@ namespace Magellan.Controls.Conventions.Editors
     /// </summary>
     public class EditorStrategyCollection : Set<IEditorStrategy>
     {
-        private readonly IEditorStrategy _fallback;
+        private readonly IEditorStrategy fallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditorStrategyCollection"/> class.
@@ -17,7 +17,7 @@ namespace Magellan.Controls.Conventions.Editors
         public EditorStrategyCollection(IEditorStrategy fallback)
         {
             Guard.ArgumentNotNull(fallback, "fallback");
-            _fallback = fallback;
+            this.fallback = fallback;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Magellan.Controls.Conventions.Editors
                     return editor;
                 }
             }
-            return _fallback.CreateEditor(context);
+            return fallback.CreateEditor(context);
         }
 
         /// <summary>

@@ -8,9 +8,9 @@ namespace Magellan.Routing
     /// </summary>
     public class ParsedRoute
     {
-        private readonly RouteValueDictionary _defaults;
-        private readonly RouteValueDictionary _constraints;
-        private readonly Segment[] _segments;
+        private readonly RouteValueDictionary defaults;
+        private readonly RouteValueDictionary constraints;
+        private readonly Segment[] segments;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ParsedRoute"/> class.
@@ -20,9 +20,9 @@ namespace Magellan.Routing
         /// <param name="segments">The segments.</param>
         public ParsedRoute(RouteValueDictionary defaults, RouteValueDictionary constraints, params Segment[] segments)
         {
-            _defaults = defaults;
-            _constraints = constraints;
-            _segments = segments;
+            this.defaults = defaults;
+            this.constraints = constraints;
+            this.segments = segments;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Magellan.Routing
         /// <value>The segments.</value>
         public Segment[] Segments
         {
-            get { return _segments; }
+            get { return segments; }
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Magellan.Routing
         /// <value>The defaults.</value>
         public RouteValueDictionary Defaults
         {
-            get { return _defaults; }
+            get { return defaults; }
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Routing
         /// <value>The constraints.</value>
         public RouteValueDictionary Constraints
         {
-            get { return _constraints; }
+            get { return constraints; }
         }
 
         /// <summary>

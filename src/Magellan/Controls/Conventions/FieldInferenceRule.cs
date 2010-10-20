@@ -13,17 +13,17 @@ namespace Magellan.Controls.Conventions
     /// </summary>
     internal class FieldInferenceRule : ValidationRule
     {
-        private readonly Field _field;
-        private readonly IFieldConvention _fieldBuilder;
-        private readonly Binding _editorBinding;
-        private Type _previousSourceItemType;
+        private readonly Field field;
+        private readonly IFieldConvention fieldBuilder;
+        private readonly Binding editorBinding;
+        private Type previousSourceItemType;
         
         public FieldInferenceRule(Field field, IFieldConvention fieldBuilder, Binding editorBinding)
             : base(ValidationStep.UpdatedValue, true)
         {
-            _field = field;
-            _fieldBuilder = fieldBuilder;
-            _editorBinding = editorBinding;
+            this.field = field;
+            this.fieldBuilder = fieldBuilder;
+            this.editorBinding = editorBinding;
         }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
@@ -36,11 +36,11 @@ namespace Magellan.Controls.Conventions
             }
 
             var sourceItem = typeof(BindingExpression).GetProperty("SourceItem", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(expression, null);
-            if (sourceItem == null || sourceItem.GetType().Name == "NullDataItem" || sourceItem.GetType() == _previousSourceItemType)
+            if (sourceItem == null || sourceItem.GetType().Name == "NullDataItem" || sourceItem.GetType() == previousSourceItemType)
             {
                 return ValidationResult.ValidResult;
             }
-            _previousSourceItemType = sourceItem.GetType();
+            previousSourceItemType = sourceItem.GetType();
 
             var propertyName = (string)typeof(BindingExpression).GetProperty("SourcePropertyName", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(expression, null);
             if (propertyName == null)
@@ -56,8 +56,8 @@ namespace Magellan.Controls.Conventions
                 return ValidationResult.ValidResult;
             }
 
-            var context = new FieldContext(_field, _editorBinding, sourceItem, propertyName, property);
-            _fieldBuilder.Configure(context);
+            var context = new FieldContext(field, editorBinding, sourceItem, propertyName, property);
+            fieldBuilder.Configure(context);
 
             return ValidationResult.ValidResult;
         }

@@ -14,7 +14,7 @@ namespace Magellan.Abstractions
     /// </summary>
     public class DispatcherWrapper : IDispatcher
     {
-        private readonly Dispatcher _dispatcher;
+        private readonly Dispatcher dispatcher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DispatcherWrapper"/> class.
@@ -33,7 +33,7 @@ namespace Magellan.Abstractions
                     dispatcher = Dispatcher.CurrentDispatcher;
                 }
             }
-            _dispatcher = dispatcher;
+            this.dispatcher = dispatcher;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Abstractions
             }
             else
             {
-                _dispatcher.Invoke(DispatcherPriority.Normal, actionToInvoke);   
+                dispatcher.Invoke(DispatcherPriority.Normal, actionToInvoke);   
             }
         }
 
@@ -62,11 +62,11 @@ namespace Magellan.Abstractions
         [DebuggerNonUserCode]
         public TResult Dispatch<TResult>(Func<TResult> actionToInvoke)
         {
-            if (_dispatcher.CheckAccess())
+            if (dispatcher.CheckAccess())
             {
                 return actionToInvoke();
             }
-            return (TResult)_dispatcher.Invoke(DispatcherPriority.Normal, actionToInvoke);
+            return (TResult)dispatcher.Invoke(DispatcherPriority.Normal, actionToInvoke);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Magellan.Abstractions
         [DebuggerNonUserCode]
         public bool DispatchRequired()
         {
-            return !_dispatcher.CheckAccess();
+            return !dispatcher.CheckAccess();
         }
 
 

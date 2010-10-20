@@ -9,8 +9,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ModelBinderDictionary
     {
-        private readonly Dictionary<Func<Type, bool>, IModelBinder> _binders = new Dictionary<Func<Type, bool>, IModelBinder>();
-        private IModelBinder _defaultBinder;
+        private readonly Dictionary<Func<Type, bool>, IModelBinder> binders = new Dictionary<Func<Type, bool>, IModelBinder>();
+        private IModelBinder defaultBinder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelBinderDictionary"/> class.
@@ -18,7 +18,7 @@ namespace Magellan.Framework
         /// <param name="defaultBinder">The default binder.</param>
         public ModelBinderDictionary(IModelBinder defaultBinder)
         {
-            _defaultBinder = defaultBinder;
+            this.defaultBinder = defaultBinder;
         }
 
         /// <summary>
@@ -27,8 +27,8 @@ namespace Magellan.Framework
         /// <value>The default model binder.</value>
         public IModelBinder DefaultModelBinder
         {
-            get { return _defaultBinder = _defaultBinder ?? new DefaultModelBinder(); }
-            set { _defaultBinder = value;}
+            get { return defaultBinder = defaultBinder ?? new DefaultModelBinder(); }
+            set { defaultBinder = value;}
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Magellan.Framework
         public void Add(Type modelType, IModelBinder binder)
         {
             var evaluator = (Func<Type, bool>)(modelType.IsAssignableFrom);
-            _binders.Add(evaluator, binder);
+            binders.Add(evaluator, binder);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Framework
         /// <returns></returns>
         public IModelBinder GetBinder(Type modelType)
         {
-            foreach (var value in _binders)
+            foreach (var value in binders)
             {
                 if (value.Key(modelType))
                 {
@@ -65,10 +65,10 @@ namespace Magellan.Framework
         /// <param name="binder">The model binder to remove.</param>
         public void Remove(IModelBinder binder)
         {
-            var pairs = _binders.Where(x => x.Value == binder).ToArray();
+            var pairs = binders.Where(x => x.Value == binder).ToArray();
             foreach (var pair in pairs)
             {
-                _binders.Remove(pair.Key);
+                binders.Remove(pair.Key);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Magellan.Framework
         /// </returns>
         public bool Contains(IModelBinder binder)
         {
-            return _binders.Any(x => x.Value == binder);
+            return binders.Any(x => x.Value == binder);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Magellan.Framework
         /// </summary>
         public void Clear()
         {
-            _binders.Clear();
+            binders.Clear();
         }
     }
 }

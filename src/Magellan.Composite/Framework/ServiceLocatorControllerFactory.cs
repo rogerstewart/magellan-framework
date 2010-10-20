@@ -10,8 +10,8 @@ namespace Magellan.Composite.Framework
     /// </summary>
     public class ServiceLocatorControllerFactory : IControllerFactory
     {
-        private readonly IServiceLocator _serviceLocator;
-        private readonly bool _isAsync;
+        private readonly IServiceLocator serviceLocator;
+        private readonly bool isAsync;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceLocatorControllerFactory"/> class.
@@ -36,8 +36,8 @@ namespace Magellan.Composite.Framework
         /// <param name="isAsync">Whether or not controllers should be invoked asynchronously.</param>
         public ServiceLocatorControllerFactory(IServiceLocator serviceLocator, bool isAsync)
         {
-            _serviceLocator = serviceLocator;
-            _isAsync = isAsync;
+            this.serviceLocator = serviceLocator;
+            this.isAsync = isAsync;
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace Magellan.Composite.Framework
         /// <returns></returns>
         public ControllerFactoryResult CreateController(ResolvedNavigationRequest request, string controllerName)
         {
-            var controller = _serviceLocator.GetInstance<IController>(controllerName);
-            if (_isAsync && controller is ControllerBase)
+            var controller = serviceLocator.GetInstance<IController>(controllerName);
+            if (isAsync && controller is ControllerBase)
             {
                 ((ControllerBase)controller).ActionInvoker = new AsyncActionInvoker();
             }

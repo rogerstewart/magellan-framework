@@ -8,9 +8,9 @@ namespace Magellan.Transitionals
     /// </summary>
     public class NavigationTransition
     {
-        private readonly string _name;
-        private readonly string _reverse;
-        private readonly Func<Transition> _transitionBuilder;
+        private readonly string name;
+        private readonly string reverse;
+        private readonly Func<Transition> transitionBuilder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationTransition"/> class.
@@ -20,9 +20,9 @@ namespace Magellan.Transitionals
         /// <param name="transitionBuilder">The transition builder.</param>
         public NavigationTransition(string name, string reverse, Func<Transition> transitionBuilder)
         {
-            _name = name;
-            _reverse = reverse;
-            _transitionBuilder = transitionBuilder;
+            this.name = name;
+            this.reverse = reverse;
+            this.transitionBuilder = transitionBuilder;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Magellan.Transitionals
         /// </summary>
         public string Name
         {
-            get { return _name; }
+            get { return name; }
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Magellan.Transitionals
         /// </summary>
         public string Reverse
         {
-            get { return _reverse; }
+            get { return reverse; }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Magellan.Transitionals
         /// </summary>
         public virtual Transition CreateTransition()
         {
-            return _transitionBuilder();
+            return transitionBuilder();
         }
     }
 }

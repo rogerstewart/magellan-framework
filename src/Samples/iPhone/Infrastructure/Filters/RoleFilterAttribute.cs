@@ -7,23 +7,23 @@ namespace iPhone.Infrastructure.Filters
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public class RoleFilterAttribute : Attribute, IActionFilter
     {
-        private readonly string _roleName;
-        private IMessageService _messageService;
+        private readonly string roleName;
+        private IMessageService messageService;
 
         public RoleFilterAttribute(string roleName)
         {
-            _roleName = roleName;
+            this.roleName = roleName;
         }
 
         public string RoleName
         {
-            get { return _roleName; }
+            get { return roleName; }
         }
 
         public IMessageService MessageService
         {
-            get { return _messageService = _messageService ?? new MessageService(); }
-            set { _messageService = value; }
+            get { return messageService = messageService ?? new MessageService(); }
+            set { messageService = value; }
         }
 
         public void OnActionExecuting(ActionExecutingContext context)

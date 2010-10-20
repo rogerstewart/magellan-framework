@@ -9,7 +9,7 @@ namespace Magellan.Composite.Framework
     /// </summary>
     public class ServiceLocatorViewActivator : IViewActivator
     {
-        private readonly IServiceLocator _serviceLocator;
+        private readonly IServiceLocator serviceLocator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceLocatorViewActivator"/> class.
@@ -24,7 +24,7 @@ namespace Magellan.Composite.Framework
         /// <param name="serviceLocator">The service locator.</param>
         public ServiceLocatorViewActivator(IServiceLocator serviceLocator)
         {
-            _serviceLocator = serviceLocator ?? ServiceLocator.Current;
+            this.serviceLocator = serviceLocator ?? ServiceLocator.Current;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Magellan.Composite.Framework
         /// <returns>An instance of the view.</returns>
         public object Instantiate(Type viewType)
         {
-            return _serviceLocator.GetInstance(viewType);
+            return serviceLocator.GetInstance(viewType);
         }
     }
 }

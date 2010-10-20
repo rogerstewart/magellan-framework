@@ -12,8 +12,8 @@ namespace Magellan.Composite.Framework
     /// </summary>
     public class CompositeViewEngineResult : FrameworkElementViewEngineResult
     {
-        private readonly Type _type;
-        private readonly IViewActivator _viewActivator;
+        private readonly Type type;
+        private readonly IViewActivator viewActivator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeViewEngineResult"/> class.
@@ -25,8 +25,8 @@ namespace Magellan.Composite.Framework
         public CompositeViewEngineResult(ControllerContext controllerContext, ViewResultOptions options, Type type, IViewActivator viewActivator)
             : base(controllerContext, options)
         {
-            _type = type;
-            _viewActivator = viewActivator;
+            this.type = type;
+            this.viewActivator = viewActivator;
         }
 
         /// <summary>
@@ -38,10 +38,10 @@ namespace Magellan.Composite.Framework
             dispatcher.Dispatch(
                 delegate
                 {
-                    TraceSources.MagellanSource.TraceInformation("CompositeViewResult is rendering the view '{0}'.", _type.FullName);
+                    TraceSources.MagellanSource.TraceInformation("CompositeViewResult is rendering the view '{0}'.", type.FullName);
 
                     // Create the view
-                    var instance = (FrameworkElement)_viewActivator.Instantiate(_type);
+                    var instance = (FrameworkElement)viewActivator.Instantiate(type);
                     ViewInitializer.Prepare(instance, Model, ControllerContext.Request);
 
                     // Figure out which region to use

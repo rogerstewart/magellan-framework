@@ -8,11 +8,11 @@ namespace Magellan.Framework
     /// </summary>
     public class ControllerContext : IDisposable
     {
-        private readonly IController _controller;
-        private readonly ResolvedNavigationRequest _request;
-        private readonly ViewEngineCollection _viewEngines;
-        private readonly ModelBinderDictionary _modelBinders;
-        private readonly Action _releaseCallback;
+        private readonly IController controller;
+        private readonly ResolvedNavigationRequest request;
+        private readonly ViewEngineCollection viewEngines;
+        private readonly ModelBinderDictionary modelBinders;
+        private readonly Action releaseCallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerContext"/> class.
@@ -36,11 +36,11 @@ namespace Magellan.Framework
         /// cleaned up.</param>
         public ControllerContext(IController controller, ResolvedNavigationRequest request, ViewEngineCollection viewEngines, ModelBinderDictionary modelBinders, Action releaseCallback)
         {
-            _controller = controller;
-            _request = request;
-            _viewEngines = viewEngines;
-            _modelBinders = modelBinders;
-            _releaseCallback = releaseCallback;
+            this.controller = controller;
+            this.request = request;
+            this.viewEngines = viewEngines;
+            this.modelBinders = modelBinders;
+            this.releaseCallback = releaseCallback;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Framework
         /// <value>The model binders.</value>
         public ModelBinderDictionary ModelBinders
         {
-            get { return _modelBinders; }
+            get { return modelBinders; }
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Magellan.Framework
         /// <value>The controller.</value>
         public IController Controller
         {
-            get { return _controller; }
+            get { return controller; }
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Magellan.Framework
         /// <value>The request.</value>
         public ResolvedNavigationRequest Request
         {
-            get { return _request; }
+            get { return request; }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Magellan.Framework
         /// <value>The view engines.</value>
         public ViewEngineCollection ViewEngines
         {
-            get { return _viewEngines; }
+            get { return viewEngines; }
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Magellan.Framework
         /// </summary>
         public virtual void Dispose()
         {
-            if (_releaseCallback != null) _releaseCallback();
+            if (releaseCallback != null) releaseCallback();
         }
     }
 }

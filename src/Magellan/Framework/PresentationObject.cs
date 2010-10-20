@@ -10,16 +10,16 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class PresentationObject : INotifyPropertyChanged, IDataErrorInfo, IStoreValidationMessages
     {
-        private readonly BusyState _busyState = new BusyState();
-        private readonly ValidationMessageDictionary _validationMessages = new ValidationMessageDictionary();
+        private readonly BusyState busyState = new BusyState();
+        private readonly ValidationMessageDictionary validationMessages = new ValidationMessageDictionary();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PresentationObject"/> class.
         /// </summary>
         protected PresentationObject()
         {
-            _busyState.PropertyChanged += (x, y) => NotifyChanged("IsBusy");
-            _validationMessages.ErrorsChanged += (x, y) => NotifyChanged("");
+            busyState.PropertyChanged += (x, y) => NotifyChanged("IsBusy");
+            validationMessages.ErrorsChanged += (x, y) => NotifyChanged("");
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Magellan.Framework
         /// <value>The state of the busy.</value>
         public BusyState BusyState
         {
-            get { return _busyState; }
+            get { return busyState; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Magellan.Framework
         /// <value>The validation messages.</value>
         public virtual ValidationMessageDictionary ValidationMessages
         {
-            get { return _validationMessages; }
+            get { return validationMessages; }
         }
 
         /// <summary>

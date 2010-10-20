@@ -11,8 +11,8 @@ namespace Magellan.Framework
     /// </summary>
     public class DelegateActionDescriptor : IActionDescriptor
     {
-        private readonly MethodInfo _method;
-        private readonly IController _controller;
+        private readonly MethodInfo method;
+        private readonly IController controller;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DelegateActionDescriptor"/> class.
@@ -21,8 +21,8 @@ namespace Magellan.Framework
         /// <param name="controller">The controller.</param>
         public DelegateActionDescriptor(MethodInfo method, IController controller)
         {
-            _method = method;
-            _controller = controller;
+            this.method = method;
+            this.controller = controller;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Magellan.Framework
         /// <value>The method.</value>
         public MethodInfo Method
         {
-            get { return _method; }
+            get { return method; }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Magellan.Framework
         public ActionResult Execute(ControllerContext controllerContext, ModelBinderDictionary modelBinders)
         {
             var arguments = new List<object>();
-            foreach (var parameterInfo in _method.GetParameters())
+            foreach (var parameterInfo in method.GetParameters())
             {
                 var bindingContext = new ModelBindingContext(parameterInfo.Name, Method, parameterInfo.ParameterType, controllerContext.Request.RouteValues);
                 var binder = modelBinders.GetBinder(parameterInfo.ParameterType);
@@ -55,7 +55,7 @@ namespace Magellan.Framework
 
             try
             {
-                var wrapper = DelegateInvoker.CreateInvoker(_controller, _method);
+                var wrapper = DelegateInvoker.CreateInvoker(controller, method);
                 return (ActionResult) wrapper.Call(arguments.ToArray());
             }
             catch (Exception ex)

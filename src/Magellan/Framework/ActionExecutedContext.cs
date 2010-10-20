@@ -8,7 +8,7 @@ namespace Magellan.Framework
     /// </summary>
     public class ActionExecutedContext
     {
-        private readonly ControllerContext _controllerContext;
+        private readonly ControllerContext controllerContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActionExecutedContext"/> class.
@@ -18,7 +18,7 @@ namespace Magellan.Framework
         /// <param name="exception">The exception.</param>
         public ActionExecutedContext(ControllerContext controllerContext, ActionResult result, Exception exception)
         {
-            _controllerContext = controllerContext;
+            this.controllerContext = controllerContext;
             Exception = exception;
             Result = result;
         }
@@ -34,7 +34,7 @@ namespace Magellan.Framework
         /// </summary>
         public ControllerContext ControllerContext
         {
-            get { return _controllerContext; }
+            get { return controllerContext; }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Magellan.Framework
         /// </summary>
         public ResolvedNavigationRequest Request
         {
-            get { return _controllerContext.Request; }
+            get { return controllerContext.Request; }
         }
 
         /// <summary>

@@ -45,7 +45,7 @@ namespace Magellan.Controls
         /// Dependency property for the <see cref="InferredDescription"/> property.
         /// </summary>
         public static readonly DependencyProperty InferredDescriptionProperty = DependencyProperty.Register("InferredDescription", typeof(object), typeof(Field), new UIPropertyMetadata(null));
-        private readonly FieldInferrer _fieldInferrer = new FieldInferrer();
+        private readonly FieldInferrer fieldInferrer = new FieldInferrer();
 
         /// <summary>
         /// Initializes the <see cref="Field"/> class.
@@ -141,7 +141,7 @@ namespace Magellan.Controls
             var binding = BindingOperations.GetBinding(this, ForProperty);
             if (binding != null)
             {
-                _fieldInferrer.Infer(this, binding);
+                fieldInferrer.Infer(this, binding);
             }
         }
     }

@@ -6,16 +6,16 @@ namespace Sample.Features.Details
 {
     public class DetailsViewModel : ViewModel
     {
-        private readonly IDetailsService _detailsService;
+        private readonly IDetailsService detailsService;
 
         public DetailsViewModel(IDetailsService detailsService)
         {
-            _detailsService = detailsService;
+            this.detailsService = detailsService;
         }
 
         public void Initialize(int id)
         {
-            Person = _detailsService.GetDetails(id);
+            Person = detailsService.GetDetails(id);
         }
 
         public Person Person { get; set; }

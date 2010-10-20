@@ -14,9 +14,9 @@ namespace Magellan.Abstractions
     /// </summary>
     public class FrameNavigationServiceWrapper : INavigationService
     {
-        private readonly Dispatcher _dispatcher;
-        private readonly Frame _frame;
-        private readonly NavigationService _navigationService;
+        private readonly Dispatcher dispatcher;
+        private readonly Frame frame;
+        private readonly NavigationService navigationService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameNavigationServiceWrapper"/> class.
@@ -25,11 +25,11 @@ namespace Magellan.Abstractions
         /// <param name="frame">The frame.</param>
         public FrameNavigationServiceWrapper(Dispatcher dispatcher, Frame frame)
         {
-            _dispatcher = dispatcher;
-            _frame = frame;
-            _navigationService = _frame.NavigationService;
-            _navigationService.Navigating += NavigationServiceNavigating;
-            _navigationService.Navigated += NavigationServiceNavigated;
+            this.dispatcher = dispatcher;
+            this.frame = frame;
+            navigationService = this.frame.NavigationService;
+            navigationService.Navigating += NavigationServiceNavigating;
+            navigationService.Navigated += NavigationServiceNavigated;
         }
 
         private void NavigationServiceNavigating(object sender, NavigatingCancelEventArgs e)
@@ -63,7 +63,7 @@ namespace Magellan.Abstractions
         /// <returns></returns>
         public object GetValue(DependencyProperty property)
         {
-            return _frame.GetValue(property);
+            return frame.GetValue(property);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Magellan.Abstractions
         /// <param name="value">The value.</param>
         public void SetValue(DependencyProperty property, object value)
         {
-            _frame.SetValue(property, value);
+            frame.SetValue(property, value);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Magellan.Abstractions
         /// </value>
         public bool CanGoBack
         {
-            get { return _navigationService.CanGoBack; }
+            get { return navigationService.CanGoBack; }
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Magellan.Abstractions
         /// </value>
         public bool CanGoForward
         {
-            get { return _navigationService.CanGoForward; }
+            get { return navigationService.CanGoForward; }
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Magellan.Abstractions
         /// </summary>
         public void GoBack()
         {
-            _navigationService.GoBack();
+            navigationService.GoBack();
         }
 
         /// <summary>
@@ -113,10 +113,10 @@ namespace Magellan.Abstractions
         /// the journal.</param>
         public void GoBack(bool removeFromJournal)
         {
-            _navigationService.GoBack();
+            navigationService.GoBack();
             if (removeFromJournal)
             {
-                _navigationService.RemoveBackEntry();
+                navigationService.RemoveBackEntry();
             }
         }
 
@@ -125,7 +125,7 @@ namespace Magellan.Abstractions
         /// </summary>
         public void GoForward()
         {
-            _navigationService.GoForward();
+            navigationService.GoForward();
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Magellan.Abstractions
         /// <value>The content.</value>
         public object Content
         {
-            get { return _navigationService.Content; }
+            get { return navigationService.Content; }
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Magellan.Abstractions
         /// <returns></returns>
         public bool NavigateDirectToContent(object root)
         {
-            var result =_navigationService.Navigate(root);
+            var result =navigationService.Navigate(root);
             CommandManager.InvalidateRequerySuggested();
             return result;
         }
@@ -157,7 +157,7 @@ namespace Magellan.Abstractions
         /// <returns></returns>
         public bool NavigateDirectToContent(object root, object navigationState)
         {
-            var result = _navigationService.Navigate(root, navigationState);
+            var result = navigationService.Navigate(root, navigationState);
             CommandManager.InvalidateRequerySuggested();
             return result;
         }
@@ -170,7 +170,7 @@ namespace Magellan.Abstractions
         {
             get
             {
-                return new DispatcherWrapper(_dispatcher);
+                return new DispatcherWrapper(dispatcher);
             }
         }
 
@@ -181,7 +181,7 @@ namespace Magellan.Abstractions
                 TimeSpan.FromMilliseconds(100),
                 DispatcherPriority.Normal,
                 (x, y) => { frame.Continue = false; ((DispatcherTimer)x).Stop(); },
-                _dispatcher
+                dispatcher
                 );
             dispatcherTimer.Start();
             System.Windows.Threading.Dispatcher.PushFrame(frame);
@@ -193,9 +193,9 @@ namespace Magellan.Abstractions
         public void ResetHistory()
         {
             DoEvents();
-            while (_navigationService.CanGoBack)
+            while (navigationService.CanGoBack)
             {
-                _navigationService.RemoveBackEntry();
+                navigationService.RemoveBackEntry();
             }
         }
     }

@@ -12,7 +12,7 @@ namespace Magellan.Framework
     /// </summary>
     public class PageViewEngine : ReflectionBasedViewEngine, IViewNamingConvention
     {
-        private readonly IViewActivator _activator;
+        private readonly IViewActivator activator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PageViewEngine"/> class.
@@ -22,7 +22,7 @@ namespace Magellan.Framework
         public PageViewEngine(IViewActivator activator, params Assembly[] additionalViewAssemblies)
             : base(additionalViewAssemblies)
         {
-            _activator = activator;
+            this.activator = activator;
             NamingConvention = this;
         }
 
@@ -73,7 +73,7 @@ namespace Magellan.Framework
         /// <returns></returns>
         protected override ViewEngineResult CreateViewResult(ControllerContext controllerContext, ViewResultOptions options, Type type)
         {
-            return new PageViewEngineResult(type, options, controllerContext, _activator);
+            return new PageViewEngineResult(type, options, controllerContext, activator);
         }
     }
 }

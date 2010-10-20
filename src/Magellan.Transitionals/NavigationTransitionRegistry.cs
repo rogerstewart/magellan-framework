@@ -10,7 +10,7 @@ namespace Magellan.Transitionals
     /// </summary>
     public class NavigationTransitionRegistry
     {
-        private readonly List<NavigationTransition> _transitions = new List<NavigationTransition>();
+        private readonly List<NavigationTransition> transitions = new List<NavigationTransition>();
 
         /// <summary>
         /// Gets a transition by the specified name.
@@ -18,7 +18,7 @@ namespace Magellan.Transitionals
         /// <param name="name">The name.</param>
         public NavigationTransition Get(string name)
         {
-            return _transitions.FirstOrDefault(x => x.Name == name);
+            return transitions.FirstOrDefault(x => x.Name == name);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Magellan.Transitionals
         /// <param name="transitionBuilder">A callback that will instantiate the transition.</param>
         public void Add(string name, string reverseName, Func<Transition> transitionBuilder)
         {
-            _transitions.Add(new NavigationTransition(name, reverseName, transitionBuilder));
+            transitions.Add(new NavigationTransition(name, reverseName, transitionBuilder));
         }
     }
 }

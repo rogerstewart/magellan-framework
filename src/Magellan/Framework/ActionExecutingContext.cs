@@ -8,8 +8,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ActionExecutingContext
     {
-        private readonly ControllerContext _controllerContext;
-        private readonly ModelBinderDictionary _modelBinders;
+        private readonly ControllerContext controllerContext;
+        private readonly ModelBinderDictionary modelBinders;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActionExecutingContext"/> class.
@@ -18,8 +18,8 @@ namespace Magellan.Framework
         /// <param name="modelBinders">The model binders.</param>
         public ActionExecutingContext(ControllerContext controllerContext, ModelBinderDictionary modelBinders)
         {
-            _controllerContext = controllerContext;
-            _modelBinders = modelBinders;
+            this.controllerContext = controllerContext;
+            this.modelBinders = modelBinders;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Magellan.Framework
         /// </summary>
         public ControllerContext ControllerContext
         {
-            get { return _controllerContext; }
+            get { return controllerContext; }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Magellan.Framework
         /// </summary>
         public ResolvedNavigationRequest Request
         {
-            get { return _controllerContext.Request; }
+            get { return controllerContext.Request; }
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Framework
         /// </summary>
         public ModelBinderDictionary ModelBinders
         {
-            get { return _modelBinders; }
+            get { return modelBinders; }
         }
     }
 }

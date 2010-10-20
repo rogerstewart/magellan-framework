@@ -18,8 +18,8 @@ namespace Magellan.Framework
     /// </summary>
     public class DefaultViewInitializer : IViewInitializer
     {
-        private readonly Func<IEnumerable<MethodInfo>, MethodInfo> _initializeMethodSelector;
-        private readonly ModelBinderDictionary _modelBinders;
+        private readonly Func<IEnumerable<MethodInfo>, MethodInfo> initializeMethodSelector;
+        private readonly ModelBinderDictionary modelBinders;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultViewInitializer"/> class.
@@ -40,8 +40,8 @@ namespace Magellan.Framework
         {
             Guard.ArgumentNotNull(initializeMethodSelector, "initializeMethodSelector");
             
-            _initializeMethodSelector = initializeMethodSelector;
-            _modelBinders = modelBinders ?? new ModelBinderDictionary(new DefaultModelBinder());
+            this.initializeMethodSelector = initializeMethodSelector;
+            this.modelBinders = modelBinders ?? new ModelBinderDictionary(new DefaultModelBinder());
         }
 
         /// <summary>
@@ -128,11 +128,11 @@ namespace Magellan.Framework
         /// <param name="request">The request.</param>
         protected virtual void CallInitializeMethods(object model, ResolvedNavigationRequest request)
         {
-            if (model == null || _initializeMethodSelector == null)
+            if (model == null || initializeMethodSelector == null)
                 return;
 
             var initializers = model.GetType().GetMethods() as IEnumerable<MethodInfo>;
-            var initializer = _initializeMethodSelector(initializers);
+            var initializer = initializeMethodSelector(initializers);
             if (initializer == null)
             {
                 return;
@@ -142,7 +142,7 @@ namespace Magellan.Framework
             foreach (var parameterInfo in initializer.GetParameters())
             {
                 var bindingContext = new ModelBindingContext(parameterInfo.Name, initializer, parameterInfo.ParameterType, request.RouteValues);
-                var binder = _modelBinders.GetBinder(parameterInfo.ParameterType);
+                var binder = modelBinders.GetBinder(parameterInfo.ParameterType);
                 var argument = binder.BindModel(request, bindingContext);
                 arguments.Add(argument);
             }

@@ -10,10 +10,10 @@ namespace Magellan
     /// </summary>
     public class ViewModelRouteCatalog : RouteCatalog
     {
-        private readonly IViewModelFactory _factory;
-        private readonly ModelBinderDictionary _modelBinders;
-        private IRouteValidator _validator;
-        private IViewInitializer _viewInitializer;
+        private readonly IViewModelFactory factory;
+        private readonly ModelBinderDictionary modelBinders;
+        private IRouteValidator validator;
+        private IViewInitializer viewInitializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelRouteCatalog"/> class.
@@ -22,8 +22,8 @@ namespace Magellan
         public ViewModelRouteCatalog(IViewModelFactory factory)
         {
             Guard.ArgumentNotNull(factory, "factory");
-            _factory = factory;
-            _modelBinders = new ModelBinderDictionary(new DefaultModelBinder());
+            this.factory = factory;
+            modelBinders = new ModelBinderDictionary(new DefaultModelBinder());
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Magellan
         /// <value>The view initializer.</value>
         public IViewInitializer ViewInitializer
         {
-            get { return _viewInitializer = _viewInitializer ?? new DefaultViewInitializer(ModelBinders); }
-            set { _viewInitializer = value; }
+            get { return viewInitializer = viewInitializer ?? new DefaultViewInitializer(ModelBinders); }
+            set { viewInitializer = value; }
         }
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace Magellan
         /// <value>The model binders.</value>
         public ModelBinderDictionary ModelBinders
         {
-            get { return _modelBinders; }
+            get { return modelBinders; }
         }
 
         private IRouteHandler CreateHandler()
         {
-            return new ViewModelRouteHandler(_factory, ViewInitializer);
+            return new ViewModelRouteHandler(factory, ViewInitializer);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace Magellan
         /// <value>The validator.</value>
         public IRouteValidator Validator
         {
-            get { return _validator = _validator ?? new ViewModelRouteValidator(); }
-            set { _validator = value; }
+            get { return validator = validator ?? new ViewModelRouteValidator(); }
+            set { validator = value; }
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Magellan
         {
             defaults = defaults ?? new RouteValueDictionary();
 
-            Add(new Route(routeSpecification, CreateHandler, defaults, constraints, _validator));
+            Add(new Route(routeSpecification, CreateHandler, defaults, constraints, validator));
             return this;
         }
     }

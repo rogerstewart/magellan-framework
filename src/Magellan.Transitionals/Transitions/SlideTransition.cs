@@ -13,7 +13,7 @@ namespace Magellan.Transitionals.Transitions
     /// </summary>
     public class SlideTransition : StoryboardTransition
     {
-        private readonly SlideDirection _direction;
+        private readonly SlideDirection direction;
 
         /// <summary>
         /// Initializes the <see cref="SlideTransition"/> class.
@@ -29,7 +29,7 @@ namespace Magellan.Transitionals.Transitions
         /// <param name="direction">The direction.</param>
         public SlideTransition(SlideDirection direction)
         {
-            _direction = direction;
+            this.direction = direction;
             Duration = new Duration(TimeSpan.FromSeconds(0.5));
         }
 
@@ -41,7 +41,7 @@ namespace Magellan.Transitionals.Transitions
         /// <param name="newContent">The new content.</param>
         protected override void BeginTransition(TransitionElement transitionElement, ContentPresenter oldContent, ContentPresenter newContent)
         {
-            if (_direction == SlideDirection.Back)
+            if (direction == SlideDirection.Back)
             {
                 Slide(transitionElement, oldContent, 0, 1.0, null);
                 Slide(transitionElement, newContent, -1.0, 0.0, () => EndTransition(transitionElement, oldContent, newContent));

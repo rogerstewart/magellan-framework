@@ -12,7 +12,7 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class ReflectionBasedViewEngine : IViewEngine
     {
-        private readonly List<Assembly> _additionalViewAssemblies = new List<Assembly>();
+        private readonly List<Assembly> additionalViewAssemblies = new List<Assembly>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReflectionBasedViewEngine"/> class.
@@ -35,7 +35,7 @@ namespace Magellan.Framework
         /// <value>The additional view assemblies.</value>
         public IList<Assembly> AdditionalViewAssemblies
         {
-            get { return _additionalViewAssemblies; }
+            get { return additionalViewAssemblies; }
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Magellan.Framework
         {
             var assembly = controllerContext.Controller.GetType().Assembly;
             return assembly.GetTypes().Union(
-                _additionalViewAssemblies.SelectMany(x => x.GetTypes())
+                additionalViewAssemblies.SelectMany(x => x.GetTypes())
                 );
         }
 

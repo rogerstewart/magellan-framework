@@ -4,33 +4,42 @@ using System.Threading;
 
 namespace Magellan.Framework
 {
+    /// <summary>
+    /// Returned by the <see cref="Scheduler"/> when a task is scheduled.
+    /// </summary>
     public class TimerImplementation : ITimer, IDisposable
     {
-        private readonly TimeSpan _when;
-        private readonly Action<ITimer> _callback;
-        private readonly bool _recurring;
-        private readonly Timer _realTimer;
-        private bool _manuallyCancelled;
-        private bool _isDisposed;
-        private readonly object _lock = new object();
+        private readonly TimeSpan when;
+        private readonly Action<ITimer> callback;
+        private readonly bool recurring;
+        private readonly Timer realTimer;
+        private bool manuallyCancelled;
+        private bool isDisposed;
+        private readonly object sync = new object();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimerImplementation"/> class.
+        /// </summary>
+        /// <param name="when">The when.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="recurring">if set to <c>true</c> [recurring].</param>
         public TimerImplementation(TimeSpan when, Action<ITimer> callback, bool recurring)
         {
-            _when = when;
-            _callback = callback;
-            _recurring = recurring;
-            _realTimer = new Timer(Ticked, null, TimeSpan.FromMilliseconds(-1), when);
+            this.when = when;
+            this.callback = callback;
+            this.recurring = recurring;
+            realTimer = new Timer(Ticked, null, TimeSpan.FromMilliseconds(-1), when);
         }
 
         private void Ticked(object state)
         {
             Pause();
 
-            _callback(this);
+            callback(this);
 
-            lock (_lock)
+            lock (sync)
             {
-                if (_recurring)
+                if (recurring)
                 {
                     Resume();
                 }
@@ -41,6 +50,9 @@ namespace Magellan.Framework
             }
         }
 
+        /// <summary>
+        /// Starts the task.
+        /// </summary>
         public void Start()
         {
             Resume();
@@ -48,45 +60,45 @@ namespace Magellan.Framework
 
         private void Pause()
         {
-            lock (_lock)
+            lock (sync)
             {
-                if (_isDisposed)
+                if (isDisposed)
                     return;
 
-                _realTimer.Change(TimeSpan.FromMilliseconds(-1), TimeSpan.FromMilliseconds(-1));
+                realTimer.Change(TimeSpan.FromMilliseconds(-1), TimeSpan.FromMilliseconds(-1));
             }
         }
 
         private void Resume()
         {
-            lock (_lock)
+            lock (sync)
             {
-                if (_isDisposed || _manuallyCancelled)
+                if (isDisposed || manuallyCancelled)
                     return;
 
-                _realTimer.Change(_when, _when);
+                realTimer.Change(when, when);
             }
         }
 
         public void Cancel()
         {
-            lock (_lock)
+            lock (sync)
             {
-                _manuallyCancelled = true;
+                manuallyCancelled = true;
                 Dispose();
             }
         }
 
         public void Dispose()
         {
-            lock (_lock)
+            lock (sync)
             {
-                if (_isDisposed)
+                if (isDisposed)
                     return;
 
                 Pause();
-                _realTimer.Dispose();
-                _isDisposed = true;
+                realTimer.Dispose();
+                isDisposed = true;
                 Trace.WriteLine("Disposed: " + GetType().Name);
             }
         }

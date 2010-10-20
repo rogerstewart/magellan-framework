@@ -8,8 +8,8 @@ namespace Magellan.Exceptions
     /// </summary>
     public sealed class InvalidRouteException : NavigationException
     {
-        private readonly IRoute _route;
-        private readonly RouteValidationResult _result;
+        private readonly IRoute route;
+        private readonly RouteValidationResult result;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidRouteException"/> class.
@@ -28,8 +28,8 @@ namespace Magellan.Exceptions
         /// <param name="message">The message.</param>
         public InvalidRouteException(IRoute route, RouteValidationResult result, string message) : base(message)
         {
-            _route = route;
-            _result = result;
+            this.route = route;
+            this.result = result;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Magellan.Exceptions
         /// <value>The route.</value>
         public IRoute Route
         {
-            get { return _route; }
+            get { return route; }
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Magellan.Exceptions
         /// <value>The result.</value>
         public RouteValidationResult Result
         {
-            get { return _result; }
+            get { return result; }
         }
     }
 }

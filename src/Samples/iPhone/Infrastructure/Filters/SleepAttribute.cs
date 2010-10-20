@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Magellan.Framework;
 
 namespace iPhone.Infrastructure.Filters
@@ -8,7 +9,7 @@ namespace iPhone.Infrastructure.Filters
     {
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            //Thread.Sleep(1000);
+            Thread.Sleep(1000);
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

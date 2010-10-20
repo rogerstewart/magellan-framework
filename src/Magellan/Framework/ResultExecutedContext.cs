@@ -9,8 +9,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ResultExecutedContext
     {
-        private readonly ControllerContext _controllerContext;
-        private readonly ActionResult _result;
+        private readonly ControllerContext controllerContext;
+        private readonly ActionResult result;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="ResultExecutedContext"/> class.
@@ -20,9 +20,9 @@ namespace Magellan.Framework
         /// <param name="exception">An exception that may have been thrown.</param>
         public ResultExecutedContext(ControllerContext controllerContext, ActionResult result, Exception exception)
         {
-            _result = result;
+            this.result = result;
             Exception = exception;
-            _controllerContext = controllerContext;
+            this.controllerContext = controllerContext;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Magellan.Framework
         /// <value>The controller context.</value>
         public ControllerContext ControllerContext
         {
-            get { return _controllerContext; }
+            get { return controllerContext; }
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Magellan.Framework
         /// <value>The request.</value>
         public ResolvedNavigationRequest Request
         {
-            get { return _controllerContext.Request; }
+            get { return controllerContext.Request; }
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Magellan.Framework
         /// <value>The result.</value>
         public ActionResult Result
         {
-            get { return _result; }
+            get { return result; }
         }
 
         /// <summary>

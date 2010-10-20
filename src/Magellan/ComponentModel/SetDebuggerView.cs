@@ -9,11 +9,11 @@ namespace Magellan.ComponentModel
     /// <typeparam name="T">The type of item in the set.</typeparam>
     internal sealed class SetDebuggerView<T> where T : class
     {
-        private readonly Set<T> _collection;
+        private readonly Set<T> collection;
 
         public SetDebuggerView(Set<T> collection)
         {
-            _collection = collection;
+            this.collection = collection;
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
@@ -21,7 +21,7 @@ namespace Magellan.ComponentModel
         {
             get
             {
-                return _collection.ToArray();
+                return collection.ToArray();
             }
         }
     }

@@ -9,8 +9,8 @@ namespace Magellan.Framework
     /// </summary>
     public class WindowViewEngineResult : FrameworkElementViewEngineResult
     {
-        private readonly Type _viewType;
-        private readonly IViewActivator _viewActivator;
+        private readonly Type viewType;
+        private readonly IViewActivator viewActivator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowViewEngineResult"/> class.
@@ -22,8 +22,8 @@ namespace Magellan.Framework
         public WindowViewEngineResult(Type viewType, ViewResultOptions options, ControllerContext controllerContext, IViewActivator viewActivator) 
             : base(controllerContext, options)
         {
-            _viewType = viewType;
-            _viewActivator = viewActivator;
+            this.viewType = viewType;
+            this.viewActivator = viewActivator;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Magellan.Framework
         /// <value>The type of the view.</value>
         public Type ViewType
         {
-            get { return _viewType; }
+            get { return viewType; }
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace Magellan.Framework
             dispatcher.Dispatch(
                 delegate
                 {
-                    TraceSources.MagellanSource.TraceInformation("The WindowViewEngine is instantiating the window '{0}'.", _viewType);
+                    TraceSources.MagellanSource.TraceInformation("The WindowViewEngine is instantiating the window '{0}'.", viewType);
                     
                     // Prepare the window
-                    RenderedInstance = (Window)_viewActivator.Instantiate(_viewType);
+                    RenderedInstance = (Window)viewActivator.Instantiate(viewType);
 
                     ViewInitializer.Prepare(RenderedInstance, Model, ControllerContext.Request);
 
@@ -66,12 +66,12 @@ namespace Magellan.Framework
                     var dialog = Options.GetViewType() == "Dialog";
                     if (dialog)
                     {
-                        TraceSources.MagellanSource.TraceVerbose("The WindowViewEngine is rendering the window '{0}' as a dialog.", _viewType);
+                        TraceSources.MagellanSource.TraceVerbose("The WindowViewEngine is rendering the window '{0}' as a dialog.", viewType);
                         RenderedInstance.ShowDialog();
                     }
                     else
                     {
-                        TraceSources.MagellanSource.TraceVerbose("The WindowViewEngine is rendering the window '{0}' as a normal window.", _viewType);
+                        TraceSources.MagellanSource.TraceVerbose("The WindowViewEngine is rendering the window '{0}' as a normal window.", viewType);
                         RenderedInstance.Show();
                     }
                 });

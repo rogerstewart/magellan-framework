@@ -11,7 +11,7 @@ namespace Magellan.Framework
     /// </summary>
     public class WindowViewEngine : ReflectionBasedViewEngine, IViewNamingConvention
     {
-        private readonly IViewActivator _viewActivator;
+        private readonly IViewActivator viewActivator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowViewEngine"/> class.
@@ -21,7 +21,7 @@ namespace Magellan.Framework
         public WindowViewEngine(IViewActivator viewActivator, params Assembly[] additionalViewAssemblies)
             : base(additionalViewAssemblies)
         {
-            _viewActivator = viewActivator;
+            this.viewActivator = viewActivator;
             NamingConvention = this;
         }
 
@@ -71,7 +71,7 @@ namespace Magellan.Framework
         /// <returns></returns>
         protected override ViewEngineResult CreateViewResult(ControllerContext controllerContext, ViewResultOptions options, Type type)
         {
-            return new WindowViewEngineResult(type, options, controllerContext, _viewActivator);
+            return new WindowViewEngineResult(type, options, controllerContext, viewActivator);
         }
     }
 }

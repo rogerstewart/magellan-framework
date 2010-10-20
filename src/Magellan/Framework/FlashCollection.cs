@@ -1,19 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using Magellan.ComponentModel;
 
 namespace Magellan.Framework
 {
+    /// <summary>
+    /// Maintains a collection of flashes. Removes flashes from the collection when they are closed.
+    /// </summary>
     public class FlashCollection : DispatchedObservableCollection<Flash>
     {
-        private readonly IScheduler _scheduler;
-        private readonly Dictionary<Flash, ITimer> _timers = new Dictionary<Flash, ITimer>();
+        private readonly IScheduler scheduler;
+        private readonly Dictionary<Flash, ITimer> timers = new Dictionary<Flash, ITimer>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlashCollection"/> class.
+        /// </summary>
+        /// <param name="scheduler">The scheduler.</param>
         public FlashCollection(IScheduler scheduler)
         {
-            _scheduler = scheduler;
+            this.scheduler = scheduler;
         }
 
         protected override void InsertItem(int index, Flash item)
@@ -21,8 +26,8 @@ namespace Magellan.Framework
             item.PropertyChanged += ItemPropertyChanged;
             if (item.Expiry != null)
             {
-                var timer = _scheduler.ScheduleOnce(item.Expiry.Value, x => Remove(item));
-                _timers[item] = timer;
+                var timer = scheduler.ScheduleOnce(item.Expiry.Value, x => Remove(item));
+                timers[item] = timer;
             }
             base.InsertItem(index, item);
         }
@@ -32,9 +37,9 @@ namespace Magellan.Framework
             if (index >= 0 && index < Count)
             {
                 var item = this[index];
-                if (_timers.ContainsKey(item))
+                if (timers.ContainsKey(item))
                 {
-                    var timer = _timers[item];
+                    var timer = timers[item];
                     timer.Cancel();
                 }
             }

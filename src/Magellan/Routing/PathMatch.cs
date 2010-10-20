@@ -8,12 +8,12 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class PathMatch
     {
-        private readonly bool _success;
-        private readonly IRoute _route;
-        private readonly RouteValueDictionary _routeValues;
-        private readonly RouteValueDictionary _leftOver;
-        private readonly List<object> _segmentValues;
-        private readonly string _failReason;
+        private readonly bool success;
+        private readonly IRoute route;
+        private readonly RouteValueDictionary routeValues;
+        private readonly RouteValueDictionary leftOver;
+        private readonly List<object> segmentValues;
+        private readonly string failReason;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PathMatch"/> class.
@@ -26,12 +26,12 @@ namespace Magellan.Routing
         /// <param name="failReason">The fail reason.</param>
         private PathMatch(bool success, IRoute route, RouteValueDictionary routeValues, RouteValueDictionary leftOver, List<object> segmentValues, string failReason)
         {
-            _success = success;
-            _route = route;
-            _routeValues = routeValues;
-            _leftOver = leftOver;
-            _segmentValues = segmentValues;
-            _failReason = failReason;
+            this.success = success;
+            this.route = route;
+            this.routeValues = routeValues;
+            this.leftOver = leftOver;
+            this.segmentValues = segmentValues;
+            this.failReason = failReason;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if success; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Magellan.Routing
         /// <value>The route.</value>
         public IRoute Route
         {
-            get { return _route; }
+            get { return route; }
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Magellan.Routing
         /// <value>The route values.</value>
         public RouteValueDictionary RouteValues
         {
-            get { return _routeValues; }
+            get { return routeValues; }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Magellan.Routing
         /// <value>The segment values.</value>
         public IList<object> SegmentValues
         {
-            get { return _segmentValues; }
+            get { return segmentValues; }
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Magellan.Routing
             get 
             {
                 return string.Join("/",
-                    (_segmentValues ?? new List<object>())
+                    (segmentValues ?? new List<object>())
                     .Where(x => x != null)
                     .Where(x => x is string == false || (x is string && ((string)x).Length > 0))
                     .Select(x => x.ToString())
@@ -117,7 +117,7 @@ namespace Magellan.Routing
         /// <value>The left over values.</value>
         public RouteValueDictionary LeftOverValues
         {
-            get { return _leftOver; }
+            get { return leftOver; }
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Magellan.Routing
         /// <value>The fail reason.</value>
         public string FailReason
         {
-            get { return _failReason; }
+            get { return failReason; }
         }
     }
 }

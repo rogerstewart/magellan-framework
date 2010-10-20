@@ -7,8 +7,8 @@ namespace Magellan.Framework
     /// </summary>
     public abstract class FrameworkElementViewEngineResult : ViewEngineResult
     {
-        private readonly ControllerContext _controllerContext;
-        private readonly ViewResultOptions _options;
+        private readonly ControllerContext controllerContext;
+        private readonly ViewResultOptions options;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkElementViewEngineResult"/> class.
@@ -18,8 +18,8 @@ namespace Magellan.Framework
         protected FrameworkElementViewEngineResult(ControllerContext controllerContext, ViewResultOptions options) 
             : base(true, new string[0])
         {
-            _controllerContext = controllerContext;
-            _options = options;
+            this.controllerContext = controllerContext;
+            this.options = options;
             ViewInitializer = new DefaultViewInitializer(controllerContext.ModelBinders);
         }
 
@@ -35,7 +35,7 @@ namespace Magellan.Framework
         /// <value>The controller context.</value>
         public ControllerContext ControllerContext
         {
-            get { return _controllerContext; }
+            get { return controllerContext; }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Magellan.Framework
         /// <value>The options.</value>
         public ViewResultOptions Options
         {
-            get { return _options; }
+            get { return options; }
         }
     }
 }

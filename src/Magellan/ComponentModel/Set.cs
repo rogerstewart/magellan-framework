@@ -17,8 +17,8 @@ namespace Magellan.ComponentModel
     [DebuggerTypeProxy(typeof(SetDebuggerView<>)), DebuggerDisplay("Count = {Count}")]
     public class Set<T> : IEnumerable<T> where T : class
     {
-        private readonly List<T> _innerList = new List<T>();
-        private readonly object _lock = new object();
+        private readonly List<T> innerList = new List<T>();
+        private readonly object sync = new object();
 
         /// <summary>
         /// Executes a batch of operations on the underlying item list, whilst holding a lock.
@@ -26,9 +26,9 @@ namespace Magellan.ComponentModel
         /// <param name="configurator">The configurator.</param>
         protected void Edit(Action<List<T>> configurator)
         {
-            lock (_lock)
+            lock (sync)
             {
-                configurator(_innerList);
+                configurator(innerList);
             }
         }
 
@@ -39,11 +39,11 @@ namespace Magellan.ComponentModel
         public void Add(T item)
         {
             if (item == null) return;
-            lock (_lock)
+            lock (sync)
             {
-                if (!_innerList.Contains(item))
+                if (!innerList.Contains(item))
                 {
-                    _innerList.Add(item);
+                    innerList.Add(item);
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Magellan.ComponentModel
         public void AddRange(IEnumerable<T> items)
         {
             var allItems = items.ToList();
-            lock (_lock)
+            lock (sync)
             {
                 foreach (var item in allItems)
                 {
@@ -69,7 +69,7 @@ namespace Magellan.ComponentModel
         /// </summary>
         public void Clear()
         {
-            lock (_lock) _innerList.Clear();
+            lock (sync) innerList.Clear();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Magellan.ComponentModel
         public bool Contains(T item)
         {
             if (item == null) return false;
-            lock (_lock) return _innerList.Contains(item);
+            lock (sync) return innerList.Contains(item);
         }
 
         /// <summary>
@@ -89,11 +89,11 @@ namespace Magellan.ComponentModel
         public void Remove(T item)
         {
             if (item == null) return;
-            lock (_lock)
+            lock (sync)
             {
-                if (_innerList.Contains(item))
+                if (innerList.Contains(item))
                 {
-                    _innerList.Remove(item);
+                    innerList.Remove(item);
                 }
             }
         }
@@ -106,10 +106,10 @@ namespace Magellan.ComponentModel
         /// </returns>
         public IEnumerator<T> GetEnumerator()
         {
-            lock (_lock)
+            lock (sync)
             {
-                var enumerator = _innerList.GetEnumerator();
-                return new LockedEnumerator(enumerator, _lock);
+                var enumerator = innerList.GetEnumerator();
+                return new LockedEnumerator(enumerator, sync);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Magellan.ComponentModel
         /// <value>The count.</value>
         public int Count
         {
-            get { lock (_lock) return _innerList.Count; }
+            get { lock (sync) return innerList.Count; }
         }
 
         /// <summary>

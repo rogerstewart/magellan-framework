@@ -9,10 +9,10 @@ namespace Magellan.Framework
     /// </summary>
     public class ModelBindingContext
     {
-        private readonly string _targetParameterName;
-        private readonly MethodInfo _targetMethod;
-        private readonly Type _targetParameterType;
-        private readonly RouteValueDictionary _potentialValues;
+        private readonly string targetParameterName;
+        private readonly MethodInfo targetMethod;
+        private readonly Type targetParameterType;
+        private readonly RouteValueDictionary potentialValues;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelBindingContext"/> class.
@@ -23,10 +23,10 @@ namespace Magellan.Framework
         /// <param name="potentialValues">The potential values.</param>
         public ModelBindingContext(string targetParameterName, MethodInfo targetMethod, Type targetParameterType, RouteValueDictionary potentialValues)
         {
-            _targetParameterName = targetParameterName;
-            _targetMethod = targetMethod;
-            _targetParameterType = targetParameterType;
-            _potentialValues = potentialValues;
+            this.targetParameterName = targetParameterName;
+            this.targetMethod = targetMethod;
+            this.targetParameterType = targetParameterType;
+            this.potentialValues = potentialValues;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Magellan.Framework
         /// <value>The target method.</value>
         public MethodInfo TargetMethod
         {
-            get { return _targetMethod; }
+            get { return targetMethod; }
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Magellan.Framework
         /// <value>The name of the target parameter.</value>
         public string TargetParameterName
         {
-            get { return _targetParameterName; }
+            get { return targetParameterName; }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Magellan.Framework
         /// <value>The type of the target parameter.</value>
         public Type TargetParameterType
         {
-            get { return _targetParameterType; }
+            get { return targetParameterType; }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Magellan.Framework
         /// <value>The potential values.</value>
         public RouteValueDictionary RouteValues
         {
-            get { return _potentialValues; }
+            get { return potentialValues; }
         }
     }
 }

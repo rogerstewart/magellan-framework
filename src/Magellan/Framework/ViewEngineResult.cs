@@ -7,8 +7,8 @@ namespace Magellan.Framework
     /// </summary>
     public class ViewEngineResult
     {
-        private readonly bool _success;
-        private readonly IEnumerable<string> _searchLocations;
+        private readonly bool success;
+        private readonly IEnumerable<string> searchLocations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewEngineResult"/> class.
@@ -17,8 +17,8 @@ namespace Magellan.Framework
         /// <param name="searchLocations">The search locations.</param>
         public ViewEngineResult(bool success, IEnumerable<string> searchLocations)
         {
-            _success = success;
-            _searchLocations = searchLocations;
+            this.success = success;
+            this.searchLocations = searchLocations;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Magellan.Framework
         /// <value><c>true</c> if the view was found; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Magellan.Framework
         /// <value>The search locations.</value>
         public IEnumerable<string> SearchLocations
         {
-            get { return _searchLocations; }
+            get { return searchLocations; }
         }
 
         /// <summary>

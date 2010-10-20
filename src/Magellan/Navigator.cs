@@ -14,10 +14,10 @@ namespace Magellan
     /// </summary>
     internal class Navigator : NavigationServiceDecorator, INavigator
     {
-        private readonly INavigatorFactory _parent;
-        private readonly string _scheme;
-        private readonly IRouteResolver _routes;
-        private readonly NavigationProgressListenerCollection _progressListeners = new NavigationProgressListenerCollection();
+        private readonly INavigatorFactory parent;
+        private readonly string scheme;
+        private readonly IRouteResolver routes;
+        private readonly NavigationProgressListenerCollection progressListeners = new NavigationProgressListenerCollection();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Navigator"/> class.
@@ -33,9 +33,9 @@ namespace Magellan
             Guard.ArgumentNotNull(routes, "routes");
             Guard.ArgumentNotNull(navigationService, "navigationService");
 
-            _parent = parent;
-            _scheme = scheme;
-            _routes = routes;
+            this.parent = parent;
+            this.scheme = scheme;
+            this.routes = routes;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Magellan
         /// <value>The scheme.</value>
         public string Scheme
         {
-            get { return _scheme; }
+            get { return scheme; }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Magellan
         /// <value>The factory.</value>
         public INavigatorFactory Factory
         {
-            get { return _parent; }
+            get { return parent; }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Magellan
         /// <value>The progress listeners.</value>
         public NavigationProgressListenerCollection ProgressListeners
         {
-            get { return _progressListeners; }
+            get { return progressListeners; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Magellan
             var path = requestUri.GetComponents(UriComponents.Host | UriComponents.Path, UriFormat.Unescaped);
             var queryString = requestUri.GetComponents(UriComponents.Query, UriFormat.Unescaped);
 
-            var route = _routes.MatchPathToRoute(path);
+            var route = routes.MatchPathToRoute(path);
             if (!route.Success)
             {
                 throw new UnroutableRequestException(string.Format("The request URI '{0}' could not be routed. {1}{2}", requestUri, Environment.NewLine, route.FailReason));
@@ -122,7 +122,7 @@ namespace Magellan
                     this,
                     route.Route,
                     data,
-                    _progressListeners.Union(Factory.ProgressListeners ?? new NavigationProgressListenerCollection()).ToList()
+                    progressListeners.Union(Factory.ProgressListeners ?? new NavigationProgressListenerCollection()).ToList()
                     ));
         }
 
@@ -132,7 +132,7 @@ namespace Magellan
         /// <param name="request">The request.</param>
         private void ExecuteRequestWithoutUri(RouteValueDictionary request)
         {
-            var path = _routes.MatchRouteToPath(request);
+            var path = routes.MatchRouteToPath(request);
             if (!path.Success)
             {
                 throw new UnroutableRequestException(string.Format("The request values '{0}' could not be routed. {1}{2}", request, Environment.NewLine, path.FailReason));
@@ -141,7 +141,7 @@ namespace Magellan
             var handler = path.Route.CreateRouteHandler();
 
             var uriBuilder = new StringBuilder();
-            uriBuilder.Append(_scheme).Append("://").Append(path.Path);
+            uriBuilder.Append(scheme).Append("://").Append(path.Path);
 
             var queryValues = path.LeftOverValues.Where(x => x.Value is IFormattable || x.Value is string)
                 .Select(x => x.Key + "=" + Uri.EscapeDataString(x.Value.ToString()))
@@ -163,7 +163,7 @@ namespace Magellan
                     this,
                     path.Route,
                     path.RouteValues,
-                    _progressListeners.Union(Factory.ProgressListeners ?? new NavigationProgressListenerCollection()).ToList()
+                    progressListeners.Union(Factory.ProgressListeners ?? new NavigationProgressListenerCollection()).ToList()
                     ));
         }
     }

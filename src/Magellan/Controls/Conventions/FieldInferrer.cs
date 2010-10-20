@@ -10,7 +10,7 @@ namespace Magellan.Controls.Conventions
     /// </summary>
     internal class FieldInferrer
     {
-        private static readonly DependencyProperty _previousFieldBindingProperty = DependencyProperty.RegisterAttached("PreviousFieldBinding", typeof(Binding), typeof(FieldInferrer), new UIPropertyMetadata(null));
+        private static readonly DependencyProperty previousFieldBindingProperty = DependencyProperty.RegisterAttached("PreviousFieldBinding", typeof(Binding), typeof(FieldInferrer), new UIPropertyMetadata(null));
         
         public void Infer(Field field, Binding binding)
         {
@@ -32,12 +32,12 @@ namespace Magellan.Controls.Conventions
 
         private static Binding GetPreviousFieldBinding(DependencyObject obj)
         {
-            return (Binding)obj.GetValue(_previousFieldBindingProperty);
+            return (Binding)obj.GetValue(previousFieldBindingProperty);
         }
 
         private static void SetPreviousFieldBinding(DependencyObject obj, Binding value)
         {
-            obj.SetValue(_previousFieldBindingProperty, value);
+            obj.SetValue(previousFieldBindingProperty, value);
         }
     }
 }

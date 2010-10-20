@@ -18,9 +18,9 @@ namespace Magellan
     /// </summary>
     public class NavigatorFactory : INavigatorFactory
     {
-        private readonly string _uriScheme;
-        private readonly NavigationProgressListenerCollection _navigationProgressListeners = new NavigationProgressListenerCollection();
-        private readonly IRouteResolver _routes;
+        private readonly string uriScheme;
+        private readonly NavigationProgressListenerCollection navigationProgressListeners = new NavigationProgressListenerCollection();
+        private readonly IRouteResolver routes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigatorFactory"/> class.
@@ -71,8 +71,8 @@ namespace Magellan
                 throw new ArgumentException(string.Format("The scheme '{0}' is not a valid URI scheme.", uriScheme));
             }
 
-            _uriScheme = uriScheme;
-            _routes = routes;
+            this.uriScheme = uriScheme;
+            this.routes = routes;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Magellan
         /// <value>The progress listeners.</value>
         public NavigationProgressListenerCollection ProgressListeners
         {
-            get { return _navigationProgressListeners; }
+            get { return navigationProgressListeners; }
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Magellan
 
         private INavigator CreateNavigator(Func<INavigationService> navigationService)
         {
-            return new Navigator(this, _uriScheme, _routes, navigationService);
+            return new Navigator(this, uriScheme, routes, navigationService);
         }
     }
 }

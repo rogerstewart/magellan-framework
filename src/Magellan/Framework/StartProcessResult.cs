@@ -8,8 +8,8 @@ namespace Magellan.Framework
     /// </summary>
     public class StartProcessResult : ActionResult
     {
-        private readonly ProcessStartInfo _startInfo;
-        private readonly bool _waitForExit;
+        private readonly ProcessStartInfo startInfo;
+        private readonly bool waitForExit;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StartProcessResult"/> class.
@@ -19,8 +19,8 @@ namespace Magellan.Framework
         /// to exit.</param>
         public StartProcessResult(ProcessStartInfo startInfo, bool waitForExit)
         {
-            _startInfo = startInfo;
-            _waitForExit = waitForExit;
+            this.startInfo = startInfo;
+            this.waitForExit = waitForExit;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Magellan.Framework
         /// <value>The start info.</value>
         public ProcessStartInfo StartInfo
         {
-            get { return _startInfo; }
+            get { return startInfo; }
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Magellan.Framework
         /// otherwise, <c>false</c>.</value>
         public bool WaitForExit
         {
-            get { return _waitForExit; }
+            get { return waitForExit; }
         }
 
         /// <summary>
@@ -54,11 +54,11 @@ namespace Magellan.Framework
         /// <param name="controllerContext">The controller context.</param>
         protected override void ExecuteInternal(ControllerContext controllerContext)
         {
-            TraceSources.MagellanSource.TraceInformation("The StartProcessResult is launching the process '{0}'.", _startInfo.FileName);
-            StartedProcess = Process.Start(_startInfo);
-            if (_waitForExit)
+            TraceSources.MagellanSource.TraceInformation("The StartProcessResult is launching the process '{0}'.", startInfo.FileName);
+            StartedProcess = Process.Start(startInfo);
+            if (waitForExit)
             {
-                TraceSources.MagellanSource.TraceInformation("The StartProcessResult is waiting for the process '{0}' to exit.", _startInfo.FileName);
+                TraceSources.MagellanSource.TraceInformation("The StartProcessResult is waiting for the process '{0}' to exit.", startInfo.FileName);
                 StartedProcess.WaitForExit();
             }
         }

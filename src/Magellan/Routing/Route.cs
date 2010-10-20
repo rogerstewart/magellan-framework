@@ -12,13 +12,13 @@ namespace Magellan.Routing
     /// </summary>
     public class Route : IRoute
     {
-        private readonly string _pathSpecification;
-        private readonly Func<IRouteHandler> _routeHandler;
-        private readonly IRouteValidator _validator;
-        private readonly IRouteParser _parser;
-        private readonly RouteValueDictionary _defaults;
-        private readonly RouteValueDictionary _constraints;
-        private ParsedRoute _parsedRoute;
+        private readonly string pathSpecification;
+        private readonly Func<IRouteHandler> routeHandler;
+        private readonly IRouteValidator validator;
+        private readonly IRouteParser parser;
+        private readonly RouteValueDictionary defaults;
+        private readonly RouteValueDictionary constraints;
+        private ParsedRoute parsedRoute;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Route"/> class.
@@ -83,14 +83,14 @@ namespace Magellan.Routing
         {
             Guard.ArgumentNotNull(routeHandler, "routeHandler");
 
-            _pathSpecification = routeSpecification ?? string.Empty;
-            _routeHandler = routeHandler;
+            pathSpecification = routeSpecification ?? string.Empty;
+            this.routeHandler = routeHandler;
 
-            _validator = validator ?? new RouteValidator();
-            _defaults = defaults ?? new RouteValueDictionary();
-            _constraints = constraints ?? new RouteValueDictionary();
+            this.validator = validator ?? new RouteValidator();
+            this.defaults = defaults ?? new RouteValueDictionary();
+            this.constraints = constraints ?? new RouteValueDictionary();
             
-            _parser = parser ?? new RouteParser(
+            this.parser = parser ?? new RouteParser(
                 new ParameterSegmentRecognizer(),
                 new LiteralSegmentRecognizer(),
                 new CatchAllParameterSegmentRecognizer()
@@ -104,7 +104,7 @@ namespace Magellan.Routing
         /// <value>The specification.</value>
         public string Specification
         {
-            get { return _pathSpecification; }
+            get { return pathSpecification; }
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Magellan.Routing
         /// <value>The validator.</value>
         public IRouteValidator Validator
         {
-            get { return _validator; }
+            get { return validator; }
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Magellan.Routing
         /// <value>The parser.</value>
         public IRouteParser Parser
         {
-            get { return _parser; }
+            get { return parser; }
         }
 
         /// <summary>
@@ -133,16 +133,16 @@ namespace Magellan.Routing
         /// </summary>
         public void Validate()
         {
-            if (_parsedRoute == null)
+            if (parsedRoute == null)
             {
-                _parsedRoute = _parser.Parse(this, _pathSpecification, _defaults, _constraints);
-                var result = _validator.Validate(_parsedRoute);
+                parsedRoute = parser.Parse(this, pathSpecification, defaults, constraints);
+                var result = validator.Validate(parsedRoute);
                 if (!result.Success)
                 {
                     throw new InvalidRouteException(
                         this,
                         result,
-                        string.Format("The route with specification '{0}' is invalid: {1}", _pathSpecification, string.Join("", result.Errors.Select(x => Environment.NewLine + " - " + x).ToArray()))
+                        string.Format("The route with specification '{0}' is invalid: {1}", pathSpecification, string.Join("", result.Errors.Select(x => Environment.NewLine + " - " + x).ToArray()))
                         );
                 }
             }
@@ -156,7 +156,7 @@ namespace Magellan.Routing
         /// </returns>
         public IRouteHandler CreateRouteHandler()
         {
-            return _routeHandler();
+            return routeHandler();
         }
 
         /// <summary>
@@ -170,9 +170,9 @@ namespace Magellan.Routing
         public RouteMatch MatchPathToRoute(string request)
         {
             Validate();
-            var result = _parsedRoute.MatchPathToRoute(this, request);
+            var result = parsedRoute.MatchPathToRoute(this, request);
 
-            foreach (var defaultValue in _defaults)
+            foreach (var defaultValue in defaults)
             {
                 if (!result.Values.ContainsKey(defaultValue.Key))
                 {
@@ -194,7 +194,7 @@ namespace Magellan.Routing
         public PathMatch MatchRouteToPath(RouteValueDictionary values)
         {
             Validate();
-            return _parsedRoute.MatchRouteToPath(this, values);
+            return parsedRoute.MatchRouteToPath(this, values);
         }
 
         /// <summary>

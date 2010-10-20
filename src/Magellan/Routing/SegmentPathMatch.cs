@@ -7,9 +7,9 @@ namespace Magellan.Routing
     /// </summary>
     public sealed class SegmentPathMatch
     {
-        private readonly bool _success;
-        private readonly string _failReason;
-        private readonly RouteValueDictionary _parameterValues;
+        private readonly bool success;
+        private readonly string failReason;
+        private readonly RouteValueDictionary parameterValues;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SegmentPathMatch"/> class.
@@ -19,9 +19,9 @@ namespace Magellan.Routing
         /// <param name="failReason">The fail reason.</param>
         private SegmentPathMatch(bool success, IDictionary parameterValues, string failReason)
         {
-            _success = success;
-            _failReason = failReason;
-            _parameterValues = new RouteValueDictionary(parameterValues);
+            this.success = success;
+            this.failReason = failReason;
+            this.parameterValues = new RouteValueDictionary(parameterValues);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Magellan.Routing
         /// <value><c>true</c> if success; otherwise, <c>false</c>.</value>
         public bool Success
         {
-            get { return _success; }
+            get { return success; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Magellan.Routing
         /// <value>The values.</value>
         public RouteValueDictionary Values
         {
-            get { return _parameterValues; }
+            get { return parameterValues; }
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Magellan.Routing
         /// <value>The fail reason.</value>
         public string FailReason
         {
-            get { return _failReason; }
+            get { return failReason; }
         }
     }
 }

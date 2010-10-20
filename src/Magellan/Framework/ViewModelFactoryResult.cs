@@ -5,8 +5,8 @@
     /// </summary>
     public class ViewModelFactoryResult
     {
-        private readonly object _view;
-        private readonly object _viewModel;
+        private readonly object view;
+        private readonly object viewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelFactoryResult"/> class.
@@ -15,8 +15,8 @@
         /// <param name="viewModel">The view model.</param>
         public ViewModelFactoryResult(object view, object viewModel)
         {
-            _view = view;
-            _viewModel = viewModel;
+            this.view = view;
+            this.viewModel = viewModel;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@
         /// <value>The view.</value>
         public object View
         {
-            get { return _view; }
+            get { return view; }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@
         /// <value>The view model.</value>
         public object ViewModel
         {
-            get { return _viewModel; }
+            get { return viewModel; }
         }
     }
 }

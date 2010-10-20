@@ -35,9 +35,9 @@ namespace Magellan.Framework
     /// </summary>
     public class RelayCommand<TArgument> : ICommand
     {
-        private readonly Action<TArgument> _execute;
-        private readonly Func<TArgument, bool> _canExecute;
-        private EventHandler _canExecuteChanged;
+        private readonly Action<TArgument> execute;
+        private readonly Func<TArgument, bool> canExecute;
+        private EventHandler canExecuteChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayCommand&lt;TArgument&gt;"/> class.
@@ -56,8 +56,8 @@ namespace Magellan.Framework
         public RelayCommand(Action<TArgument> execute, Func<TArgument, bool> canExecute)
         {
             Guard.ArgumentNotNull(execute, "execute");
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Magellan.Framework
             if (parameter == null && typeof(TArgument).IsValueType)
                 return false;
             
-            return _canExecute == null ? true : _canExecute((TArgument)parameter);
+            return canExecute == null ? true : canExecute((TArgument)parameter);
         }
 
         /// <summary>
@@ -83,14 +83,14 @@ namespace Magellan.Framework
         {
             add
             {
-                _canExecuteChanged += value;
+                canExecuteChanged += value;
 #if !SILVERLIGHT
                 CommandManager.RequerySuggested += value;
 #endif
             }
             remove
             {
-                _canExecuteChanged -= value;
+                canExecuteChanged -= value;
 #if !SILVERLIGHT
                 CommandManager.RequerySuggested -= value;
 #endif
@@ -102,7 +102,7 @@ namespace Magellan.Framework
         /// </summary>
         public void RaiseCanExecuteChanged()
         {
-            var handler = _canExecuteChanged;
+            var handler = canExecuteChanged;
             if (handler != null) handler(this, new EventArgs());
         }
 
@@ -116,7 +116,7 @@ namespace Magellan.Framework
             if (parameter == null && typeof(TArgument).IsValueType)
                 return;
 
-            _execute((TArgument)parameter);
+            execute((TArgument)parameter);
         }
     }
 }

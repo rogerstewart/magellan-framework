@@ -8,8 +8,8 @@ namespace Magellan.Framework
     /// </summary>
     public class BusyState : INotifyPropertyChanged
     {
-        private int _entrances;
-        private readonly object _lock = new object();
+        private int entrances;
+        private readonly object sync = new object();
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -22,7 +22,7 @@ namespace Magellan.Framework
         /// <value><c>true</c> if this instance is busy; otherwise, <c>false</c>.</value>
         public bool IsBusy
         {
-            get { return _entrances > 0; }
+            get { return entrances > 0; }
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Magellan.Framework
         public IDisposable Enter()
         {
             var wasBusy = IsBusy;
-            lock (_lock)
+            lock (sync)
             {
-                _entrances++;
+                entrances++;
             }
             if (wasBusy != IsBusy) OnPropertyChanged(new PropertyChangedEventArgs("IsBusy"));
             return new BusyStateEntrance(Exit);
@@ -47,10 +47,10 @@ namespace Magellan.Framework
         public void Exit()
         {
             var wasBusy = IsBusy;
-            lock (_lock)
+            lock (sync)
             {
-                _entrances--;
-                if (_entrances < 0) _entrances = 0;
+                entrances--;
+                if (entrances < 0) entrances = 0;
             }
             if (wasBusy != IsBusy) OnPropertyChanged(new PropertyChangedEventArgs("IsBusy"));
         }
