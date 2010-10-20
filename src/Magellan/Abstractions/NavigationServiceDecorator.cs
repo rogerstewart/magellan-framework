@@ -54,11 +54,21 @@ namespace Magellan.Abstractions
             remove { Inner.Navigated -= value; }   
         }
 
+        /// <summary>
+        /// Gets the value of a dependency property from the underlying wrapped navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <returns></returns>
         public object GetValue(DependencyProperty property)
         {
             return Inner.GetValue(property);
         }
 
+        /// <summary>
+        /// Sets the value of a dependency property on the underlying navigation service.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The value.</param>
         public void SetValue(DependencyProperty property, object value)
         {
             Inner.SetValue(property, value);

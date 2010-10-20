@@ -78,20 +78,24 @@ namespace Magellan.Framework
         /// </summary>
         public void Clear()
         {
-            List<ValidationMessageCollection> items;
+            List<ValidationMessageCollection> list;
             lock (sync)
             {
-                items = this.items.Values.ToList();
+                list = this.items.Values.ToList();
                 this.items.Clear();
             }
 
-            foreach (var item in items)
+            foreach (var item in list)
             {
                 item.Clear();
             }
             OnErrorsChanged(EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Raises the <see cref="ErrorsChanged"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void OnErrorsChanged(EventArgs e)
         {
             var handler = ErrorsChanged;

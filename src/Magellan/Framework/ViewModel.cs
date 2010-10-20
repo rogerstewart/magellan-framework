@@ -46,21 +46,37 @@ namespace Magellan.Framework
             set { scheduler = value; }
         }
 
+        /// <summary>
+        /// Flashes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public void Flash(string message)
         {
             Flash(new Flash(message, null, true, null));
         }
 
+        /// <summary>
+        /// Flashes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="disappears">The disappears.</param>
         public void Flash(string message, TimeSpan disappears)
         {
             Flash(new Flash(message, null, true, disappears));
         }
 
+        /// <summary>
+        /// Flashes the specified flash.
+        /// </summary>
+        /// <param name="flash">The flash.</param>
         public void Flash(Flash flash)
         {
             Flashes.Add(flash);
         }
 
+        /// <summary>
+        /// Clears the flashes.
+        /// </summary>
         public void ClearFlashes()
         {
             Flashes.Clear();

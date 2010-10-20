@@ -61,11 +61,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Properties\Magellan.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -294,11 +293,15 @@
     <Compile Include="Views\NavigationProperties.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Magellan.snk">
+      <Link>Properties\Magellan.snk</Link>
+    </None>
     <None Include="Diagrams\Controllers.cd" />
     <None Include="Diagrams\Exceptions.cd" />
     <None Include="Diagrams\Routing.cd" />
     <None Include="Diagrams\View Engines.cd" />
     <None Include="Diagrams\Action Results.cd" />
+    <None Include="Properties\Magellan.snk" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -72,6 +71,10 @@ namespace Magellan.Framework
             return null;
         }
 
+        /// <summary>
+        /// Notifies the view that it has been activated.
+        /// </summary>
+        /// <param name="view">The view.</param>
         public void NotifyActivated(object view)
         {
             NotifyActivatedInternal(view);
@@ -87,6 +90,11 @@ namespace Magellan.Framework
             aware.Activated();
         }
 
+        /// <summary>
+        /// Notifies the view that it is being deactivated.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         public void NotifyDeactivating(object view, CancelEventArgs e)
         {
             NotifyDeactivatingInternal(e, view);
@@ -105,6 +113,10 @@ namespace Magellan.Framework
             aware.Deactivating(e);
         }
 
+        /// <summary>
+        /// Notifies the view that it has been deactivated.
+        /// </summary>
+        /// <param name="view">The view.</param>
         public void NotifyDeactivated(object view)
         {
             NotifyDeactivatedInternal(view);

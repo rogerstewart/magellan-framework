@@ -21,6 +21,11 @@ namespace Magellan.Framework
             this.scheduler = scheduler;
         }
 
+        /// <summary>
+        /// Inserts the item.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <param name="item">The item.</param>
         protected override void InsertItem(int index, Flash item)
         {
             item.PropertyChanged += ItemPropertyChanged;
@@ -32,6 +37,10 @@ namespace Magellan.Framework
             base.InsertItem(index, item);
         }
 
+        /// <summary>
+        /// Removes the item.
+        /// </summary>
+        /// <param name="index">The index.</param>
         protected override void RemoveItem(int index)
         {
             if (index >= 0 && index < Count)
