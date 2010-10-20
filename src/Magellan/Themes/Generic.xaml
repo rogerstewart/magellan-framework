@@ -35,8 +35,8 @@
                         >
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="110" Width="Auto" SharedSizeGroup="FieldHeaderGridGroup" />
-                                <ColumnDefinition Width="Auto" MinWidth="400" MaxWidth="500" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="FieldHeaderGridGroup" />
+                                <ColumnDefinition Width="Auto" MinWidth="200" MaxWidth="500" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
@@ -45,7 +45,7 @@
                             </Grid.RowDefinitions>
 
                             <Border Grid.Column="0" Grid.Row="0" MaxWidth="150">
-                                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <StackPanel Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                                     <Label 
                                         x:Name="PART_FieldNameLabel"
                                         Margin="0" Padding="0" 
