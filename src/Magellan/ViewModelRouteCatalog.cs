@@ -129,7 +129,7 @@ namespace Magellan
         {
             defaults = defaults ?? new RouteValueDictionary();
 
-            Add(new Route(routeSpecification, CreateHandler, defaults, constraints, validator));
+            Add(new Route(routeSpecification, CreateHandler, defaults, constraints, Validator));
             return this;
         }
     }
