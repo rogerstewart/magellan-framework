@@ -84,23 +84,39 @@ namespace Magellan
             get { return navigationProgressListeners; }
         }
 
-        /// <summary>
-        /// Creates an <see cref="INavigator"/> bound to the specified navigation service. This method can
-        /// be called multiple times for the same <paramref name="navigationService"/>.
-        /// </summary>
-        /// <param name="navigationService">The navigation service which will be used if the view renders
-        /// page information.</param>
-        /// <returns>
-        /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
-        /// </returns>
-        public INavigator CreateNavigator(INavigationService navigationService)
+    	/// <summary>
+    	/// Creates an <see cref="INavigator"/> bound to the specified navigation service. This method can 
+    	/// be called multiple times for the same <paramref name="navigationService"/>.
+    	/// </summary>
+    	/// <param name="navigationService">The navigation service which will be used if the view renders 
+    	/// page information.</param>
+    	/// <returns>
+    	/// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
+    	/// </returns>
+    	public INavigator CreateNavigator(INavigationService navigationService)
         {
-            Guard.ArgumentNotNull(navigationService, "navigationService");
-
-            return CreateNavigator(() => navigationService);
+        	return CreateNavigator(navigationService, null);
         }
 
-        /// <summary>
+    	/// <summary>
+    	/// Creates an <see cref="INavigator"/> bound to the specified navigation service. This method can 
+    	/// be called multiple times for the same <paramref name="navigationService"/>.
+    	/// </summary>
+    	/// <param name="navigationService">The navigation service which will be used if the view renders 
+    	/// page information.</param>
+    	/// <param name="parent">The parent navigator that created this navigator.</param>
+    	/// <returns>
+    	/// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
+    	/// </returns>
+    	public INavigator CreateNavigator(INavigationService navigationService, INavigator parent)
+		{
+			Guard.ArgumentNotNull(navigationService, "navigationService");
+			
+			return ExistingNavigator.Get(navigationService, 
+				() => NewNavigator(() => navigationService, parent));
+    	}
+
+    	/// <summary>
         /// Creates an <see cref="INavigator"/> bound to the specified frame. This method can
         /// be called multiple times for the same <paramref name="frame"/>.
         /// </summary>
@@ -109,13 +125,28 @@ namespace Magellan
         /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
         /// </returns>
         public INavigator CreateNavigator(Frame frame)
-        {
-            Guard.ArgumentNotNull(frame, "frame");
+    	{
+    		return CreateNavigator(frame, null);
+    	}
 
-            return CreateNavigator(() => new FrameNavigationServiceWrapper(frame.Dispatcher, frame));
-        }
+    	/// <summary>
+    	/// Creates an <see cref="INavigator"/> bound to the specified frame. This method can 
+    	/// be called multiple times for the same <paramref name="frame"/>.
+    	/// </summary>
+    	/// <param name="frame">The navigation service which will be used if the view renders page information.</param>
+    	/// <param name="parent">The parent navigator that created this navigator.</param>
+    	/// <returns>
+    	/// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
+    	/// </returns>
+    	public INavigator CreateNavigator(Frame frame, INavigator parent)
+		{
+			Guard.ArgumentNotNull(frame, "frame");
+			
+			return ExistingNavigator.Get(frame, 
+				() => NewNavigator(() => new FrameNavigationServiceWrapper(frame.Dispatcher, frame), parent));
+    	}
 
-        /// <summary>
+    	/// <summary>
         /// Creates an <see cref="INavigator"/> bound to the specified frame. This method can
         /// be called multiple times for the same <paramref name="frame"/>.
         /// </summary>
@@ -124,22 +155,36 @@ namespace Magellan
         /// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
         /// </returns>
         public INavigator CreateNavigator(ContentControl frame)
-        {
-            Guard.ArgumentNotNull(frame, "frame");
-            if (frame is ButtonBase || frame is Label)
-            {
-                throw new ArgumentException("An attempt was made to create an INavigator for a '{0}', which should not be used as navigation containers. If the intention was to find a navigator that owns the UI element, the NavigatorFactory.GetOwningNavigator method should be used instead.");
-            }
+    	{
+    		return CreateNavigator(frame, null);
+    	}
 
-            if (frame is Frame)
-            {
-                return CreateNavigator((Frame) frame);
-            }
+    	/// <summary>
+    	/// Creates an <see cref="INavigator"/> bound to the specified frame. This method can 
+    	/// be called multiple times for the same <paramref name="frame"/>.
+    	/// </summary>
+    	/// <param name="frame">The navigation service which will be used if the view renders page information.</param>
+    	/// <param name="parent">The parent navigator that created this navigator.</param>
+    	/// <returns>
+    	/// An instance of the <see cref="INavigator"/> interface which can be used for navigation.
+    	/// </returns>
+    	public INavigator CreateNavigator(ContentControl frame, INavigator parent)
+		{
+			Guard.ArgumentNotNull(frame, "frame");
 
-            return CreateNavigator(() => new ContentNavigationServiceWrapper(frame));
-        }
 
-        /// <summary>
+			if (frame is ButtonBase || frame is Label)
+			{
+				throw new ArgumentException("An attempt was made to create an INavigator for a '{0}', which should not be used as navigation containers. If the intention was to find a navigator that owns the UI element, the NavigatorFactory.GetOwningNavigator method should be used instead.");
+			}
+
+			return ExistingNavigator.Get(frame, () => 
+				frame is Frame
+    		       		? CreateNavigator((Frame) frame)
+						: NewNavigator(() => new ContentNavigationServiceWrapper(frame), parent));
+		}
+
+    	/// <summary>
         /// Creates an <see cref="INavigator"/> bound to the navigation service that owns a given source
         /// element. This method can  be called multiple times for the same <paramref name="sourceElement"/>.
         /// </summary>
@@ -179,12 +224,43 @@ namespace Magellan
                 return wrapper;
             };
 
-            return CreateNavigator(lazyFrameGetter);
+            return NewNavigator(lazyFrameGetter, null);
         }
 
-        private INavigator CreateNavigator(Func<INavigationService> navigationService)
+        private INavigator NewNavigator(Func<INavigationService> navigationService, INavigator parent)
         {
-            return new Navigator(this, uriScheme, routes, navigationService);
+			return new Navigator(this, parent, uriScheme, routes, navigationService);
         }
+
+		private static class ExistingNavigator
+		{
+			private static readonly DependencyProperty ExistingNavigatorProperty = DependencyProperty.RegisterAttached("ExistingNavigator", typeof(INavigator), typeof(ExistingNavigator), new UIPropertyMetadata(null));
+
+			public static INavigator Get(object element, Func<INavigator> createNew)
+			{
+				INavigator existing = null;
+
+				var dependencyObject = element as DependencyObject;
+				if (dependencyObject != null)
+					existing = (INavigator) dependencyObject.GetValue(ExistingNavigatorProperty);
+
+				var service = element as INavigationService;
+				if (service != null)
+					existing = (INavigator)service.GetValue(ExistingNavigator.ExistingNavigatorProperty);
+
+				if (existing == null)
+				{
+					existing = createNew();
+
+					if (dependencyObject != null)
+						dependencyObject.SetValue(ExistingNavigatorProperty, existing);
+
+					if (service != null)
+						service.SetValue(ExistingNavigatorProperty, existing);
+				}
+
+				return existing;
+			}
+		}
     }
 }
