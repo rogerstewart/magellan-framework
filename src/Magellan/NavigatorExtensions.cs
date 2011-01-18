@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using Magellan.Exceptions;
@@ -94,7 +95,7 @@ namespace Magellan
         {
             var routeValues = new RouteValueDictionary();
             var controller = typeof(TController);
-            var controllerName = controller.Name.Replace("Controller", "");
+            var controllerName = GetControllerNameFromType(controller);
             routeValues.Add("controller", controllerName);
 
             var body = actionSelector.Body as MethodCallExpression;
@@ -120,11 +121,11 @@ namespace Magellan
                 routeValues.Add(parameter, value);
             }
 
-            var request = new NavigationRequest(routeValues);
-            navigator.ProcessRequest(request);
+			var request = new NavigationRequest(routeValues);
+			navigator.ProcessRequest(request);
         }
 
-        /// <summary>
+    	/// <summary>
         /// Resolves and navigates to the first route that matches the route values for the given view model.
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
@@ -137,15 +138,29 @@ namespace Magellan
         /// <summary>
         /// Resolves and navigates to the first route that matches the route values for the given view model.
         /// </summary>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <typeparam name="TViewModelOrController">The type of the view model.</typeparam>
         /// <param name="navigator">The navigator.</param>
         /// <param name="parameters">The parameters.</param>
-        public static void Navigate<TViewModel>(this INavigator navigator, object parameters)
+        public static void Navigate<TViewModelOrController>(this INavigator navigator, object parameters)
         {
-            var routeValues = new RouteValueDictionary(parameters);
-            routeValues["viewModel"] = typeof(TViewModel).Name.Replace("ViewModel", "");
+			var routeValues = new RouteValueDictionary(parameters);
 
-            navigator.ProcessRequest(new NavigationRequest(routeValues));
+			if (typeof(IController).IsAssignableFrom(typeof(TViewModelOrController)))
+			{
+				routeValues["controller"] = GetControllerNameFromType(typeof(TViewModelOrController));
+			}
+			else
+			{
+				routeValues["viewModel"] = typeof(TViewModelOrController).Name.Replace("ViewModel", "");
+			}
+
+			var request = new NavigationRequest(routeValues);
+			navigator.ProcessRequest(request);
         }
+
+		private static string GetControllerNameFromType(Type controller)
+		{
+			return controller.Name.Replace("Controller", "");
+		}
     }
 }

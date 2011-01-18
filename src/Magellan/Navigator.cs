@@ -14,26 +14,30 @@ namespace Magellan
     /// </summary>
     internal class Navigator : NavigationServiceDecorator, INavigator
     {
-        private readonly INavigatorFactory parent;
+		private readonly INavigatorFactory factory;
+    	private readonly INavigator parent;
         private readonly string scheme;
         private readonly IRouteResolver routes;
         private readonly NavigationProgressListenerCollection progressListeners = new NavigationProgressListenerCollection();
+    	private readonly RouteValueDictionary state = new RouteValueDictionary();
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Navigator"/> class.
-        /// </summary>
-        /// <param name="parent">The parent.</param>
-        /// <param name="scheme">The URI scheme.</param>
-        /// <param name="routes">The routes.</param>
-        /// <param name="navigationService">The navigation service.</param>
-        public Navigator(INavigatorFactory parent, string scheme, IRouteResolver routes, Func<INavigationService> navigationService)
+    	/// <summary>
+    	/// Initializes a new instance of the <see cref="Navigator"/> class.
+    	/// </summary>
+    	/// <param name="factory">The factory that created this navigator.</param>
+    	/// <param name="parent">The parent navigator (can be null).</param>
+    	/// <param name="scheme">The URI scheme.</param>
+    	/// <param name="routes">The routes.</param>
+    	/// <param name="navigationService">The navigation service.</param>
+    	public Navigator(INavigatorFactory factory, INavigator parent, string scheme, IRouteResolver routes, Func<INavigationService> navigationService)
             : base(navigationService)
         {
-            Guard.ArgumentNotNull(parent, "root");
+            Guard.ArgumentNotNull(factory, "root");
             Guard.ArgumentNotNull(routes, "routes");
             Guard.ArgumentNotNull(navigationService, "navigationService");
 
-            this.parent = parent;
+            this.factory = factory;
+			this.parent = parent;
             this.scheme = scheme;
             this.routes = routes;
         }
@@ -47,16 +51,26 @@ namespace Magellan
             get { return scheme; }
         }
 
-        /// <summary>
+    	public event EventHandler CloseRequested;
+
+    	/// <summary>
         /// Gets the <see cref="INavigatorFactory"/> that produced this <see cref="INavigator"/>.
         /// </summary>
         /// <value>The factory.</value>
         public INavigatorFactory Factory
         {
-            get { return parent; }
+            get { return factory; }
         }
+		
+		/// <summary>
+		/// Gets the navigator that created this navigator.
+		/// </summary>
+    	public INavigator Parent
+    	{
+			get { return parent; }
+    	}
 
-        /// <summary>
+    	/// <summary>
         /// Gets a collection of registered progress observers.
         /// </summary>
         /// <value>The progress listeners.</value>
@@ -65,7 +79,18 @@ namespace Magellan
             get { return progressListeners; }
         }
 
-        /// <summary>
+    	public RouteValueDictionary State
+    	{
+			get { return state; }
+    	}
+
+    	public void Close()
+    	{
+    		var handler = CloseRequested;
+			if (handler != null) handler(this, EventArgs.Empty);
+    	}
+
+    	/// <summary>
         /// Resolves and navigates to the given route request.
         /// </summary>
         /// <param name="request">The request.</param>

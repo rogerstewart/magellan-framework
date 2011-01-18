@@ -26,7 +26,7 @@ namespace Magellan.Tests
         [Test]
         public void FactoryProvidesAccessToCreator()
         {
-            var navigator = new Navigator(Factory.Object, "magellan", Resolver.Object, () => NavigationService.Object);
+            var navigator = new Navigator(Factory.Object, null, "magellan", Resolver.Object, () => NavigationService.Object);
             Assert.AreEqual(navigator.Factory, Factory.Object);
         }
 
@@ -35,7 +35,7 @@ namespace Magellan.Tests
         {
             Resolver.Setup(x => x.MatchRouteToPath(It.IsAny<RouteValueDictionary>())).Returns(PathMatch.Failure(null, "Boogedyboo"));
 
-            var navigator = new Navigator(Factory.Object, "magellan", Resolver.Object, () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", Resolver.Object, () => NavigationService.Object);
             Assert.Throws<UnroutableRequestException>(() => navigator.Navigate(new { Foo = "bar"}));
         }
 
@@ -44,7 +44,7 @@ namespace Magellan.Tests
         {
             Resolver.Setup(x => x.MatchPathToRoute(It.IsAny<string>())).Returns(RouteMatch.Failure(null, "Boogedyboo"));
 
-            var navigator = new Navigator(Factory.Object, "magellan", Resolver.Object, () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", Resolver.Object, () => NavigationService.Object);
             Assert.Throws<UnroutableRequestException>(() => navigator.Navigate(new Uri("magellan://patients/list")));
         }
 
@@ -60,7 +60,7 @@ namespace Magellan.Tests
             routes.MapRoute("search/{action}", new { controller = "C1" });
             routes.MapRoute("patients/{action}", new { controller = "C2"});
 
-            var navigator = new Navigator(Factory.Object, "magellan", new RouteResolver(routes), () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", new RouteResolver(routes), () => NavigationService.Object);
 
             navigator.Navigate(new Uri("magellan://patients/list"));
             controller2.Verify(x => x.Execute(It.IsAny<ControllerContext>()));
@@ -81,7 +81,7 @@ namespace Magellan.Tests
             routes.MapRoute("search/{action}", new { controller = "C1" });
             routes.MapRoute("patients/{action}", new { controller = "C2" });
 
-            var navigator = new Navigator(Factory.Object, "magellan", new RouteResolver(routes), () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", new RouteResolver(routes), () => NavigationService.Object);
 
             navigator.Navigate(new { controller = "C2", action = "foo" });
             controller2.Verify(x => x.Execute(It.IsAny<ControllerContext>()));
@@ -101,7 +101,7 @@ namespace Magellan.Tests
             var routes = new ControllerRouteCatalog(controllers);
             routes.MapRoute("search/{action}", new { controller = "C2" });
 
-            var navigator = new Navigator(Factory.Object, "magellan", new RouteResolver(routes), () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", new RouteResolver(routes), () => NavigationService.Object);
 
             navigator.Navigate(new { controller = "C2", action = "foo" });
             controller2.Verify(x => x.Execute(It.Is<ControllerContext>(r => r.Request.HasNonUriData == false && r.Request.Uri.ToString() == "magellan://search/foo")));
@@ -121,7 +121,7 @@ namespace Magellan.Tests
             var routes = new ControllerRouteCatalog(controllers);
             routes.MapRoute("search/{action}", new { controller = "C2" });
 
-            var navigator = new Navigator(Factory.Object, "magellan", new RouteResolver(routes), () => NavigationService.Object);
+			var navigator = new Navigator(Factory.Object, null, "magellan", new RouteResolver(routes), () => NavigationService.Object);
 
             navigator.Navigate(new { controller = "C2", action = "foo", abc = "123", def = new DataSet() });
             controller2.Verify(x => x.Execute(It.Is<ControllerContext>(r => r.Request.HasNonUriData && r.Request.Uri.ToString() == "magellan://search/foo?abc=123")));
