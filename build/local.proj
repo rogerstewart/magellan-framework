@@ -2,19 +2,30 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="lib\MSBuild.Community.Tasks.Targets" />
   <Import Project="lib\MSBuild.Deployment.Tasks.Targets" />
+  <Import Project="lib\MSBuild.Mercurial.tasks"/>
 
   <PropertyGroup>
     <Root>$(MSBuildStartupDirectory)</Root>
     <nunitconsoleexe>$(Root)\lib\NUnit\exe\nunit-console-x86.exe</nunitconsoleexe>
   </PropertyGroup>
-  
-  <Target Name="Package">
+
+  <PropertyGroup>
+    <Major>2</Major>
+    <Minor>2</Minor>
+    <Build>0</Build>
+    <Revision>0</Revision>
+  </PropertyGroup>
+
+  <Target Name="Version">
+    <HgVersion LocalPath=".">
+      <Output TaskParameter="Revision" PropertyName="Build" />
+    </HgVersion>
+  </Target>
+
+  <Target Name="Package" DependsOnTargets="Version">
 
     <!-- Diagnostics -->
     <Message Text="Diagnostics:"/>
-    <Message Text="Build Number:    $(build_number)" />
-    <Message Text="Version number:  $(build_version)" />
-    <Message Text="Version tag:     $(build_versiontag)" />
     <Message Text="Build dir:       $(MSBuildProjectDirectory)" />
     <Message Text="Project root:    $(Root)" />
     <Message Text="Ruby bin path:   $(rubypath)" />
@@ -36,7 +47,7 @@
     <AssemblyInfo
       CodeLanguage="CS"
       OutputFile="$(Root)\src\Magellan\Properties\VersionInfo.cs"
-      AssemblyVersion="$(build_version)"
+      AssemblyVersion="$(Major).$(Minor).$(Build)"
       AssemblyFileVersion="$(build_number)"
       />
 
@@ -47,7 +58,7 @@
     </ItemGroup>
     <Zip Files="@(SourceFilesToZip)"
       WorkingDirectory="$(Root)"
-      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-source.zip"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(Major).$(Minor).$(Build)-source.zip"
       ZipLevel="10"
       />
 
@@ -74,10 +85,10 @@
     </ItemGroup>
     <Zip Files="@(BinaryFilesToZip)"
       WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40"
-      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40.zip"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(Major).$(Minor).$(Build)-NET40.zip"
       ZipLevel="10"
       />
-    
+
     <!-- Zip binaries (.NET 4.0, Magellan with Extensions) -->
     <ItemGroup>
       <ExtensionFiles Include="$(Root)\src\Magellan.Behaviors\bin\Release\*.*" />
@@ -94,33 +105,25 @@
     </ItemGroup>
     <Zip Files="@(BinaryFilesToZip2)"
       WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex"
-      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-NET40-extensions.zip"
+      ZipFileName="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(Major).$(Minor).$(Build)-NET40-extensions.zip"
       ZipLevel="10"
       />
-
-	<!-- Setup ruby gem -->
-	<ItemGroup>
-      <GemSpecs Include="$(MSBuildProjectDirectory)\magellan-framework.gemspec" />
+    
+    <!-- NuGet Package -->
+    <ItemGroup>
+      <NuSpecFiles Include="$(Root)\build\Magellan.nuspec" />
     </ItemGroup>
-    <Copy SourceFiles="@(GemSpecs)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
-    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\lib" />
-    <WriteLinesToFile File="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\VERSION" Lines="$(build_number)" Overwrite="true" />
-	
-    <!-- Build Gem -->
-	<Exec Condition="$(rubypath) != ''" Command="$(rubypath)\gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
-	<Exec Condition="$(rubypath) == ''" Command="gem build magellan-framework.gemspec" WorkingDirectory="$(MSBuildProjectDirectory)\Artifacts\gems\NET40" />
+    <Copy SourceFiles="@(NuSpecFiles)" DestinationFolder="$(Root)\build\Artifacts\Q" />
 
-    <!-- Publish Gem -->
-	<ItemGroup>
-      <GemFiles Include="$(MSBuildProjectDirectory)\Artifacts\gems\NET40\magellan-framework-$(build_number).gem" />
-    </ItemGroup>
-    <Copy SourceFiles="@(GemFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Binaries" />
+    <FileUpdate Files="$(Root)\build\Artifacts\Q\Magellan.nuspec" Regex="(\d+)\.(\d+)\.(\d+)" ReplacementText="$(Major).$(Minor).$(Build)" />
 
-	<!-- Publish VSIX -->
-	<ItemGroup>
+    <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Artifacts\Q\Magellan.nuspec -b $(Root)\build\Artifacts\Q -o $(Root)\build\Artifacts\Binaries" />
+
+    <!-- Publish VSIX -->
+    <ItemGroup>
       <VSIXFiles Include="$(Root)\src\Templates\Magellan.ProjectTemplates\bin\Release\Magellan.ProjectTemplates.vsix" />
     </ItemGroup>
-    <Copy SourceFiles="@(VSIXFiles)" DestinationFiles="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(build_version)$(build_versiontag)-VSTemplates.vsix" />
+    <Copy SourceFiles="@(VSIXFiles)" DestinationFiles="$(MSBuildProjectDirectory)\Artifacts\Binaries\Magellan-$(Major).$(Minor).$(Build)-VSTemplates.vsix" />
 
     <!-- Test -->
     <ItemGroup>

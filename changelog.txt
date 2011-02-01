@@ -4,6 +4,10 @@ Magellan Changelog:
 Below are the key highlights of changes that have been made to Magellan. See the subversion repository for a 
 detailed history and prior versions (http://code.google.com/p/magellan-framework/source/checkout). 
 
+2011-02-01:
+  - Support for nested INavigators and navigator state
+  - NuGet package
+
 2010-08-31: 
   - Published a RubyGem - http://rubygems.org/gems/magellan-framework
 
