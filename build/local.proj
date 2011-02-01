@@ -78,7 +78,7 @@
       <InfoFiles Include="$(Root)\Changelog.txt" />
       <InfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\Assemblies" />
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\NET40" />
     <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
     <ItemGroup>
       <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\**\*.*" />
@@ -98,7 +98,7 @@
       <ExtensionInfoFiles Include="$(Root)\Changelog.txt" />
       <ExtensionInfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\Assemblies" />
+    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\NET40" />
     <Copy SourceFiles="@(ExtensionInfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex" />
     <ItemGroup>
       <BinaryFilesToZip2 Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\**\*.*" />
@@ -113,11 +113,21 @@
     <ItemGroup>
       <NuSpecFiles Include="$(Root)\build\Magellan.nuspec" />
     </ItemGroup>
-    <Copy SourceFiles="@(NuSpecFiles)" DestinationFolder="$(Root)\build\Artifacts\Q" />
+    <Copy SourceFiles="@(NuSpecFiles)" DestinationFolder="$(Root)\build\Artifacts\Q\NET40" />
 
-    <FileUpdate Files="$(Root)\build\Artifacts\Q\Magellan.nuspec" Regex="(\d+)\.(\d+)\.(\d+)" ReplacementText="$(Major).$(Minor).$(Build)" />
+    <FileUpdate Files="$(Root)\build\Artifacts\Q\NET40\Magellan.nuspec" Regex="(\d+)\.(\d+)\.(\d+)" ReplacementText="$(Major).$(Minor).$(Build)" />
 
-    <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Artifacts\Q\Magellan.nuspec -b $(Root)\build\Artifacts\Q -o $(Root)\build\Artifacts\Binaries" />
+    <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Artifacts\Q\NET40\Magellan.nuspec -b $(Root)\build\Artifacts\Q\NET40 -o $(Root)\build\Artifacts\Binaries" />
+
+    <!-- NuGet Package (Extensions) -->
+    <ItemGroup>
+      <NuSpecFiles2 Include="$(Root)\build\Magellan-EX.nuspec" />
+    </ItemGroup>
+    <Copy SourceFiles="@(NuSpecFiles2)" DestinationFolder="$(Root)\build\Artifacts\Q\NET40Ex" />
+
+    <FileUpdate Files="$(Root)\build\Artifacts\Q\NET40Ex\Magellan-EX.nuspec" Regex="(\d+)\.(\d+)\.(\d+)" ReplacementText="$(Major).$(Minor).$(Build)" />
+
+    <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Artifacts\Q\NET40Ex\Magellan-EX.nuspec -b $(Root)\build\Artifacts\Q\NET40Ex -o $(Root)\build\Artifacts\Binaries" />
 
     <!-- Publish VSIX -->
     <ItemGroup>
