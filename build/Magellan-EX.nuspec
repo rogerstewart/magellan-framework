@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<package> 
+  <metadata> 
+    <id>magellan-ex</id> 
+    <version>1.0.0</version> 
+    <authors>Paul Stovell</authors>
+    <description>Magellan is a navigation framework for Windows Presentation Foundation. It helps you to build inductive, navigation-oriented applications. This package includes additional support for Blend Behaviors and Transitionals.</description> 
+    <language>en-US</language>
+    <licenseUrl>http://code.google.com/p/magellan-framework/source/browse/license.txt</licenseUrl>
+    <projectUrl>http://code.google.com/p/magellan-framework/</projectUrl>
+    <iconUrl>http://magellan-framework.googlecode.com/hg/src/Templates/Magellan.ProjectTemplates/Magellan.png</iconUrl>
+    <tags>wpf magellan navigation frame inductive mvvm mvc transitionals behaviors</tags>
+  </metadata>
+</package>
