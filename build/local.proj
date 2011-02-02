@@ -78,7 +78,7 @@
       <InfoFiles Include="$(Root)\Changelog.txt" />
       <InfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\NET40" />
+    <Copy SourceFiles="@(BinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\lib\NET40" />
     <Copy SourceFiles="@(InfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40" />
     <ItemGroup>
       <BinaryFilesToZip Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40\**\*.*" />
@@ -98,7 +98,7 @@
       <ExtensionInfoFiles Include="$(Root)\Changelog.txt" />
       <ExtensionInfoFiles Include="$(Root)\License.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\NET40" />
+    <Copy SourceFiles="@(ExtensionFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\lib\NET40" />
     <Copy SourceFiles="@(ExtensionInfoFiles)" DestinationFolder="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex" />
     <ItemGroup>
       <BinaryFilesToZip2 Include="$(MSBuildProjectDirectory)\Artifacts\Q\NET40Ex\**\*.*" />
