@@ -47,6 +47,15 @@ namespace Magellan.Framework
         }
 
         /// <summary>
+        /// Raises a property changed event for the given property.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        protected void NotifyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
         /// Raises a property changed events for a given set of properties.
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
